@@ -146,14 +146,19 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="inputmanager.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="rectangle.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />

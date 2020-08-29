@@ -40,9 +40,6 @@ unsigned int Shader::createShader(const std::string& vertexShaderPath, ShaderTyp
 	std::string bufferString = buffer.str();
 	shaderSource = bufferString.c_str();
 
-	/*test print*/
-	std::cout << bufferString << std::endl;
-
 	GLenum shadert;
 	if (shaderType == ShaderType::VERTEX_SHADER) {
 		shadert = GL_VERTEX_SHADER;

@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include "rectangle.h"
 
 #include <iostream>
 
@@ -25,6 +26,8 @@ void Renderer::render() {
 		1, 2, 3    // second triangle
 	};
 
+	mesh::Rectangle rectangle;
+
 	GLuint VBO;
 	glGenBuffers(1, &VBO);
 
@@ -36,13 +39,22 @@ void Renderer::render() {
 
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, rectangle.numVertices(), rectangle.vertices(), GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, rectangle.numIndices(), rectangle.indices(), GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+	// triangle - glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	// glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	// glEnableVertexAttribArray(0);
+
+	std::vector<mesh::VertexAttributeData> vertexAttribs = rectangle.vertexAttributes();
+	for (int i = 0; i < vertexAttribs.size(); i++) {
+		glVertexAttribPointer(i, vertexAttribs[i].size, GL_FLOAT, GL_FALSE, vertexAttribs[i].stride, (void*)vertexAttribs[i].pointer);
+		glEnableVertexAttribArray(i);
+	}
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
