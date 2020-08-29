@@ -147,11 +147,18 @@
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="inputmanager.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.gitignore" />
+    <None Include="fragment.shader" />
+    <None Include="vertex.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

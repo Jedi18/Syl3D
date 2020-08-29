@@ -31,7 +31,7 @@ bool Application::initialize() {
 	}
 
 	glfwSetWindowUserPointer(_window, this);
-	glViewport(0, 0, 800, 800);
+	glViewport(0, 0, INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
 	auto frameBufferFunc = [](GLFWwindow* wind, int w, int h)
 	{
 		static_cast<Application*>(glfwGetWindowUserPointer(wind))->frameBufferSizeCallback(wind, w, h);
@@ -42,9 +42,10 @@ bool Application::initialize() {
 }
 
 void Application::run() {
+	_renderer.initialize();
+
 	while (!glfwWindowShouldClose(_window)) {
 		_inputManager.processInput(_window);
-
 		_renderer.render();
 
 		glfwSwapBuffers(_window);
