@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "shaderprogram.h"
 
 class Shader
 {
@@ -14,7 +15,7 @@ public:
 public:
 	Shader();
 
-	unsigned int createShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
+	ShaderProgram createShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
 
 	unsigned int createShader(const std::string& vertexShaderPath, ShaderType shaderType);
 

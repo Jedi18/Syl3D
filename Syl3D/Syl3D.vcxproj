@@ -143,22 +143,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="color.cpp" />
+    <ClCompile Include="coloredtriangle.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="shaderprogram.cpp" />
     <ClCompile Include="triangle.cpp" />
+    <ClCompile Include="vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="color.h" />
+    <ClInclude Include="coloredtriangle.h" />
     <ClInclude Include="inputmanager.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="triangle.h" />
+    <ClInclude Include="vec3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />

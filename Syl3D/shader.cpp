@@ -7,11 +7,9 @@
 #include <sstream>
 #include <iostream>
 
-Shader::Shader() {
+Shader::Shader() {}
 
-}
-
-unsigned int Shader::createShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath) {
+ShaderProgram Shader::createShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath) {
 	GLuint vertexShader = createShader(vertexShaderPath, ShaderType::VERTEX_SHADER);
 	GLuint fragmentShader = createShader(fragmentShaderPath, ShaderType::FRAGMENT_SHADER);
 
@@ -26,7 +24,7 @@ unsigned int Shader::createShaderProgram(const std::string& vertexShaderPath, co
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	return shaderProgram;
+	return ShaderProgram(shaderProgram);
 }
 
 unsigned int Shader::createShader(const std::string& vertexShaderPath, ShaderType shaderType) {

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <glad/glad.h> 
-#include <GLFW/glfw3.h>
-
 #include "shader.h"
 
 class Renderer
@@ -16,5 +13,6 @@ public:
 
 private:
 	Shader _shader;
-	GLuint _shaderProgram;
+	ShaderProgram _shaderProgram;
+	unsigned int _VAO;
 };

@@ -28,11 +28,11 @@ unsigned int* Triangle::indices() {
 }
 
 size_t Triangle::numVertices() {
-    return 9;
+    return sizeof(float) * 9;
 }
 
 size_t Triangle::numIndices() {
-    return 3;
+    return sizeof(unsigned int) * 3;
 }
 
 std::vector<VertexAttributeData> Triangle::vertexAttributes() {
