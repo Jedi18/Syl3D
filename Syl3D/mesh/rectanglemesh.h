@@ -4,12 +4,12 @@
 
 namespace mesh
 {
-	class Triangle : public Mesh
+	class RectangleMesh : public Mesh
 	{
 	public:
-		Triangle();
+		RectangleMesh();
 
-		~Triangle();
+		~RectangleMesh();
 
 		float* vertices() override;
 

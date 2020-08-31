@@ -1,8 +1,8 @@
-#include "rectangle.h"
+#include "rectanglemesh.h"
 
 using namespace mesh;
 
-Rectangle::Rectangle() {
+RectangleMesh::RectangleMesh() {
     _vertices = new float[] {
         // positions          // colors           // texture coords
         0.5f, 0.5f, 0.0f, 1.0f, 1.0f,   // top right
@@ -17,28 +17,28 @@ Rectangle::Rectangle() {
     };
 }
 
-Rectangle::~Rectangle() {
+RectangleMesh::~RectangleMesh() {
     delete[] _vertices;
     delete[] _indices;
 }
 
-float* Rectangle::vertices() {
+float* RectangleMesh::vertices() {
     return _vertices;
 }
 
-unsigned int* Rectangle::indices() {
+unsigned int* RectangleMesh::indices() {
     return _indices;
 }
 
-size_t Rectangle::numVertices() {
+size_t RectangleMesh::numVertices() {
     return 20 * sizeof(float);
 }
 
-size_t Rectangle::numIndices() {
+size_t RectangleMesh::numIndices() {
     return 6 * sizeof(unsigned int);
 }
 
-std::vector<VertexAttributeData> Rectangle::vertexAttributes() {
+std::vector<VertexAttributeData> RectangleMesh::vertexAttributes() {
     std::vector<VertexAttributeData> vertexAttribs;
     vertexAttribs.push_back(VertexAttributeData(3, 5 * sizeof(float), 0));
     vertexAttribs.push_back(VertexAttributeData(2, 5 * sizeof(float), 3 * sizeof(float)));

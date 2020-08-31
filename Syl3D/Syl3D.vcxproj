@@ -144,14 +144,17 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="entity\rectangle.cpp" />
+    <ClCompile Include="entity\triangle.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\vec3.cpp" />
     <ClCompile Include="mesh\coloredtriangle.cpp" />
-    <ClCompile Include="mesh\rectangle.cpp" />
+    <ClCompile Include="mesh\rectanglemesh.cpp" />
     <ClCompile Include="mesh\texturedrectangle.cpp" />
-    <ClCompile Include="mesh\triangle.cpp" />
+    <ClCompile Include="mesh\trianglemesh.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shaderprogram.cpp" />
@@ -161,13 +164,16 @@
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="entity\entity.h" />
+    <ClInclude Include="entity\triangle.h" />
     <ClInclude Include="inputmanager.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\coloredtriangle.h" />
     <ClInclude Include="mesh\mesh.h" />
-    <ClInclude Include="mesh\rectangle.h" />
+    <ClInclude Include="mesh\rectanglemesh.h" />
     <ClInclude Include="mesh\texturedrectangle.h" />
-    <ClInclude Include="mesh\triangle.h" />
+    <ClInclude Include="mesh\trianglemesh.h" />
+    <ClInclude Include="entity\rectangle.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaderprogram.h" />

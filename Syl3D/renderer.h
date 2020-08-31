@@ -2,6 +2,8 @@
 
 #include "shader.h"
 #include "texturematerial.h"
+#include "entity/rectangle.h"
+#include "entity/triangle.h"
 
 class Renderer
 {
@@ -19,5 +21,6 @@ private:
 	Shader _shader;
 	ShaderProgram _shaderProgram;
 	TextureMaterial _texMaterial;
-	unsigned int _VAO;
+	entity::Rectangle* _rectangle;
+	entity::Triangle* _triangle;
 };

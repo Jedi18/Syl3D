@@ -60,17 +60,26 @@
     <ClCompile Include="mesh\coloredtriangle.cpp">
       <Filter>mesh</Filter>
     </ClCompile>
-    <ClCompile Include="mesh\rectangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
     <ClCompile Include="mesh\texturedrectangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="mesh\triangle.cpp">
       <Filter>mesh</Filter>
     </ClCompile>
     <ClCompile Include="math\vec3.cpp">
       <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\rectanglemesh.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\trianglemesh.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\triangle.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,17 +113,26 @@
     <ClInclude Include="mesh\mesh.h">
       <Filter>mesh</Filter>
     </ClInclude>
-    <ClInclude Include="mesh\rectangle.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
     <ClInclude Include="mesh\texturedrectangle.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="mesh\triangle.h">
       <Filter>mesh</Filter>
     </ClInclude>
     <ClInclude Include="math\vec3.h">
       <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\entity.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\rectangle.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\rectanglemesh.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\trianglemesh.h">
+      <Filter>mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
