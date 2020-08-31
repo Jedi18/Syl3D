@@ -26,8 +26,8 @@ private:
 
 private:
 	GLFWwindow* _window;
-	InputManager _inputManager;
 	Renderer _renderer;
+	InputManager _inputManager;
 
 	static const int INIT_WINDOW_WIDTH;
 	static const int INIT_WINDOW_HEIGHT;

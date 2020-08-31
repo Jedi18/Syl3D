@@ -7,7 +7,8 @@ const char* Application::INIT_WINDOW_TITLE = "Syl3D";
 
 Application::Application() 
 	:
-	_window(nullptr)
+	_window(nullptr),
+	_inputManager(&_renderer)
 {}
 
 bool Application::initialize() {

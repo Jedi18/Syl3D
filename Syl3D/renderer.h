@@ -11,6 +11,9 @@ public:
 
 	void render();
 
+	// temp
+	float vis;
+
 private:
 	Shader _shader;
 	ShaderProgram _shaderProgram;

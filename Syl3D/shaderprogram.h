@@ -13,15 +13,15 @@ public:
 
 	unsigned int id() const;
 
-	void setBool(const std::string& uniformName, bool val);
+	void setBool(std::string uniformName, bool val);
 
-	void setFloat(const std::string& uniformName, float val);
+	void setFloat(std::string uniformName, float val);
 
-	void setInt(const std::string& uniformName, int val);
+	void setInt(std::string uniformName, int val);
 
-	void setVec3(const std::string& uniformName, math::Vec3 val);
+	void setVec3(std::string uniformName, math::Vec3 val);
 
-	void setColor(const std::string& uniformName, shading::Color val);
+	void setColor(std::string uniformName, shading::Color val);
 
 private:
 	unsigned int _ID;
