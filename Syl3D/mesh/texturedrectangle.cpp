@@ -5,10 +5,10 @@ using namespace mesh;
 TexturedRectangle::TexturedRectangle() {
     _vertices = new float[] {
         // positions          // colors           // texture coords
-        0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,   // top right
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,   // bottom right
-       -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   // bottom left
-       -0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f    // top left 
+        0.5f, 0.5f, 0.0f, 1.0f, 1.0f,   // top right
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f,   // bottom right
+       -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,   // bottom left
+       -0.5f, 0.5f, 0.0f, 0.0f, 1.0f    // top left 
     };
 
     _indices = new unsigned int[] {
@@ -31,7 +31,7 @@ unsigned int* TexturedRectangle::indices() {
 }
 
 size_t TexturedRectangle::numVertices() {
-    return 32 * sizeof(float);
+    return 20 * sizeof(float);
 }
 
 size_t TexturedRectangle::numIndices() {
@@ -40,8 +40,7 @@ size_t TexturedRectangle::numIndices() {
 
 std::vector<VertexAttributeData> TexturedRectangle::vertexAttributes() {
     std::vector<VertexAttributeData> vertexAttribs;
-    vertexAttribs.push_back(VertexAttributeData(3, 8 * sizeof(float), 0));
-    vertexAttribs.push_back(VertexAttributeData(3, 8 * sizeof(float), 3 * sizeof(float)));
-    vertexAttribs.push_back(VertexAttributeData(2, 8 * sizeof(float), 6 * sizeof(float)));
+    vertexAttribs.push_back(VertexAttributeData(3, 5 * sizeof(float), 0));
+    vertexAttribs.push_back(VertexAttributeData(2, 5 * sizeof(float), 3 * sizeof(float)));
     return vertexAttribs;
 }

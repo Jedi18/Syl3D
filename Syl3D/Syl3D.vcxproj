@@ -144,40 +144,42 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
-    <ClCompile Include="coloredtriangle.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="math\vec3.cpp" />
+    <ClCompile Include="mesh\coloredtriangle.cpp" />
+    <ClCompile Include="mesh\rectangle.cpp" />
+    <ClCompile Include="mesh\texturedrectangle.cpp" />
+    <ClCompile Include="mesh\triangle.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shaderprogram.cpp" />
     <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="texturedrectangle.cpp" />
-    <ClCompile Include="triangle.cpp" />
-    <ClCompile Include="vec3.cpp" />
+    <ClCompile Include="texturematerial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="color.h" />
-    <ClInclude Include="coloredtriangle.h" />
     <ClInclude Include="inputmanager.h" />
-    <ClInclude Include="mesh.h" />
-    <ClInclude Include="rectangle.h" />
+    <ClInclude Include="math\vec3.h" />
+    <ClInclude Include="mesh\coloredtriangle.h" />
+    <ClInclude Include="mesh\mesh.h" />
+    <ClInclude Include="mesh\rectangle.h" />
+    <ClInclude Include="mesh\texturedrectangle.h" />
+    <ClInclude Include="mesh\triangle.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="stb_image.h" />
-    <ClInclude Include="texturedrectangle.h" />
-    <ClInclude Include="triangle.h" />
-    <ClInclude Include="vec3.h" />
+    <ClInclude Include="texturematerial.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="fragment.shader" />
-    <None Include="texfragment.shader" />
-    <None Include="texvertex.shader" />
-    <None Include="vertex.shader" />
+    <None Include="shaders\fragment.shader" />
+    <None Include="shaders\texfragment.shader" />
+    <None Include="shaders\texvertex.shader" />
+    <None Include="shaders\vertex.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

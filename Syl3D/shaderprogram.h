@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "vec3.h"
+#include "math/vec3.h"
 #include "color.h"
 
 class ShaderProgram

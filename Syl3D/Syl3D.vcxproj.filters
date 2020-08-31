@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -15,6 +11,19 @@
     </Filter>
     <Filter Include="mesh">
       <UniqueIdentifier>{c3b4c99c-70ee-4d78-acc9-bae05f85d075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{cc630913-eade-4c01-a452-a308eefc0714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entity">
+      <UniqueIdentifier>{cf002b74-89d7-455f-ba96-3f551f104b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{c98bcec6-02fa-41b5-bbfa-57b7895baf65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,29 +45,32 @@
     <ClCompile Include="shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rectangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="triangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
     <ClCompile Include="shaderprogram.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="coloredtriangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
     <ClCompile Include="stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="texturedrectangle.cpp">
+    <ClCompile Include="texturematerial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\coloredtriangle.cpp">
       <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\rectangle.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\texturedrectangle.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\triangle.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="math\vec3.cpp">
+      <Filter>math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,47 +86,50 @@
     <ClInclude Include="shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mesh.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="rectangle.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="triangle.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
     <ClInclude Include="shaderprogram.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vec3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="coloredtriangle.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="texturedrectangle.h">
+    <ClInclude Include="texturematerial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\coloredtriangle.h">
       <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\mesh.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\rectangle.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\texturedrectangle.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\triangle.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vec3.h">
+      <Filter>math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="vertex.shader">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="fragment.shader">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="..\.gitignore" />
-    <None Include="texvertex.shader">
-      <Filter>Resource Files</Filter>
+    <None Include="shaders\fragment.shader">
+      <Filter>shaders</Filter>
     </None>
-    <None Include="texfragment.shader">
-      <Filter>Resource Files</Filter>
+    <None Include="shaders\texfragment.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\texvertex.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\vertex.shader">
+      <Filter>shaders</Filter>
     </None>
   </ItemGroup>
 </Project>
