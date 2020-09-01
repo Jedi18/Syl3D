@@ -16,5 +16,6 @@ namespace entity
 
 	protected:
 		unsigned int _VAO;
+		bool _usesEBO;
 	};
 }

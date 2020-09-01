@@ -4,6 +4,10 @@
 #include "math/vec3.h"
 #include "color.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 class ShaderProgram
 {
 public:
@@ -22,6 +26,8 @@ public:
 	void setVec3(std::string uniformName, math::Vec3 val);
 
 	void setColor(std::string uniformName, shading::Color val);
+
+	void setMat4(std::string uniformName, glm::mat4 val);
 
 private:
 	unsigned int _ID;

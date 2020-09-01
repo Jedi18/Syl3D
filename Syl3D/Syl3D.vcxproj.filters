@@ -66,9 +66,6 @@
     <ClCompile Include="math\vec3.cpp">
       <Filter>math</Filter>
     </ClCompile>
-    <ClCompile Include="entity.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
     <ClCompile Include="entity\rectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,6 +76,15 @@
       <Filter>mesh</Filter>
     </ClCompile>
     <ClCompile Include="entity\triangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\cubemesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,6 +140,12 @@
     <ClInclude Include="mesh\trianglemesh.h">
       <Filter>mesh</Filter>
     </ClInclude>
+    <ClInclude Include="mesh\cubemesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
@@ -149,5 +161,7 @@
     <None Include="shaders\vertex.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\vertex1.shader" />
+    <None Include="shaders\fragment1.shader" />
   </ItemGroup>
 </Project>

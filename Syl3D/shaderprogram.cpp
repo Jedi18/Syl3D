@@ -35,3 +35,7 @@ void ShaderProgram::setVec3(std::string uniformName, math::Vec3 val) {
 void ShaderProgram::setColor(std::string uniformName, shading::Color val) {
 	glUniform4f(glGetUniformLocation(_ID, uniformName.c_str()), val.r, val.g, val.b, val.a);
 }
+
+void ShaderProgram::setMat4(std::string uniformName, glm::mat4 val) {
+	glUniformMatrix4fv(glGetUniformLocation(_ID, uniformName.c_str()), 1, GL_FALSE, glm::value_ptr(val));
+}

@@ -4,6 +4,7 @@
 #include "texturematerial.h"
 #include "entity/rectangle.h"
 #include "entity/triangle.h"
+#include "entity/cube.h"
 
 class Renderer
 {
@@ -23,4 +24,5 @@ private:
 	TextureMaterial _texMaterial;
 	entity::Rectangle* _rectangle;
 	entity::Triangle* _triangle;
+	entity::Cube* _cube;
 };
