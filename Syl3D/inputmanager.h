@@ -12,6 +12,16 @@ public:
 
 	void processInput(GLFWwindow* window);
 
+	void mouseCallback(GLFWwindow* window, double xpos, double ypos);
+
+	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
 private:
 	Renderer* _renderer;
+	float deltaTime = 0.0f;
+	float lastFrame = 0.0f;
+
+	float lastX = 400;
+	float lastY = 300;
+	bool firstMouse = true;
 };

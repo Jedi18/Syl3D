@@ -24,6 +24,10 @@ public:
 private:
 	void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 
+	void mouseCallback(GLFWwindow* window, double xpos, double ypos);
+
+	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
 private:
 	GLFWwindow* _window;
 	Renderer _renderer;

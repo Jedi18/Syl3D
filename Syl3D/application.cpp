@@ -38,7 +38,20 @@ bool Application::initialize() {
 		static_cast<Application*>(glfwGetWindowUserPointer(wind))->frameBufferSizeCallback(wind, w, h);
 	};
 
+	auto mouseCallbackFunc = [](GLFWwindow* wind, double xpos, double ypos)
+	{
+		static_cast<Application*>(glfwGetWindowUserPointer(wind))->mouseCallback(wind, xpos, ypos);
+	};
+
+	auto scrollCallbackFunc = [](GLFWwindow* wind, double xoffset, double yoffset)
+	{
+		static_cast<Application*>(glfwGetWindowUserPointer(wind))->scrollCallback(wind, xoffset, yoffset);
+	};
+
 	glfwSetFramebufferSizeCallback(_window, frameBufferFunc);
+	glfwSetCursorPosCallback(_window, mouseCallbackFunc);
+	glfwSetScrollCallback(_window, scrollCallbackFunc);
+	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	return true;
 }
 
@@ -58,4 +71,12 @@ void Application::run() {
 
 void Application::frameBufferSizeCallback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
+}
+
+void Application::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
+	_inputManager.mouseCallback(window, xpos, ypos);
+}
+
+void Application::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
+	_inputManager.scrollCallback(window, xoffset, yoffset);
 }
