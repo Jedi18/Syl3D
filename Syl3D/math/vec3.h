@@ -11,6 +11,14 @@ namespace math
 
 		float mag() const;
 
+		Vec3 operator + (const Vec3& other);
+
+		Vec3& operator += (const Vec3& other);
+
+		Vec3 operator * (float k);
+
+		Vec3& operator *= (float k);
+
 	public:
 		float x;
 		float y;

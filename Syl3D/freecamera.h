@@ -28,6 +28,6 @@ private:
 	float _yaw = -90.0f;
 	float _roll = 0.0f;
 	float _zoom = 45.0f;
-	const float _cameraSpeed = 2.5f;
-	const float _sensitivity = 0.2f;
+	const float _cameraSpeed = 5.0f;
+	const float _sensitivity = 0.4f;
 };

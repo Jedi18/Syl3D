@@ -10,6 +10,8 @@ namespace entity
 	public:
 		Cube();
 
+		Cube(math::Vec3 startingPos);
+
 		void draw() override;
 
 	private:

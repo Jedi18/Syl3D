@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include <memory>
+
 #include "shader.h"
 #include "texturematerial.h"
 #include "entity/rectangle.h"
@@ -27,5 +30,5 @@ private:
 	Shader _shader;
 	ShaderProgram _shaderProgram;
 	TextureMaterial _texMaterial;
-	entity::Cube* _cube;
+	std::vector<std::unique_ptr<entity::Cube>> _entities;
 };
