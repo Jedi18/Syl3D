@@ -148,6 +148,7 @@
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\rectangle.cpp" />
     <ClCompile Include="entity\triangle.cpp" />
+    <ClCompile Include="freecamera.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="entity\cube.h" />
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\triangle.h" />
+    <ClInclude Include="freecamera.h" />
     <ClInclude Include="inputmanager.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\coloredtriangle.h" />
