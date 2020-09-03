@@ -4,6 +4,10 @@ FreeCamera::FreeCamera() {
 	cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 	cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+	ASPECT_RATIO = 800.0f / 600.0f;
+
+	_projection = glm::mat4(1.0f);
+	recalculateProjectionMatrix();
 }
 
 glm::mat4 FreeCamera::viewMatrix() {
@@ -41,6 +45,10 @@ void FreeCamera::mouseScrolled(float xoffset, float yoffset) {
 	if (_zoom > 45.0f) {
 		_zoom = 45.0f;
 	}
+
+	if (yoffset != 0) {
+		recalculateProjectionMatrix();
+	}
 }
 
 void FreeCamera::keyboardInput(float dt, float zdir, float xdir) {
@@ -50,4 +58,17 @@ void FreeCamera::keyboardInput(float dt, float zdir, float xdir) {
 
 float FreeCamera::zoom() const {
 	return _zoom;
+}
+
+glm::mat4 FreeCamera::projectionMatrix() {
+	return _projection;
+}
+
+void FreeCamera::recalculateProjectionMatrix() {
+	_projection = glm::perspective(glm::radians(_zoom), ASPECT_RATIO, NEAR, FAR);
+}
+
+void FreeCamera::updateWindowDimensions(float window_width, float window_height) {
+	ASPECT_RATIO = window_width / window_height;
+	recalculateProjectionMatrix();
 }

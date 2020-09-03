@@ -1,15 +1,17 @@
 #pragma once
 
 #include "mesh.h"
+#include <vector>
+#include "../math/vec3.h"
 
 namespace mesh
 {
-	class TexturedRectangle : public Mesh
+	class UVSphereMesh : public Mesh
 	{
 	public:
-		TexturedRectangle();
+		UVSphereMesh();
 
-		~TexturedRectangle();
+		~UVSphereMesh();
 
 		float* vertices() override;
 
@@ -22,7 +24,13 @@ namespace mesh
 		std::vector<VertexAttributeData> vertexAttributes() override;
 
 	private:
+		void addVertex(math::Vec3& vert, std::vector<float>& vertices);
+
+	private:
 		float* _vertices;
 		unsigned int* _indices;
+
+		size_t vert_size;
+		size_t indices_size;
 	};
 }

@@ -56,7 +56,7 @@ bool Application::initialize() {
 }
 
 void Application::run() {
-	_renderer.initialize();
+	_renderer.initialize(INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
 
 	while (!glfwWindowShouldClose(_window)) {
 		_inputManager.processInput(_window);

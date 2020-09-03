@@ -57,12 +57,6 @@
     <ClCompile Include="texturematerial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mesh\coloredtriangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="mesh\texturedrectangle.cpp">
-      <Filter>mesh</Filter>
-    </ClCompile>
     <ClCompile Include="math\vec3.cpp">
       <Filter>math</Filter>
     </ClCompile>
@@ -88,6 +82,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="freecamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\uvspheremesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\uvsphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,13 +116,7 @@
     <ClInclude Include="texturematerial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mesh\coloredtriangle.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
     <ClInclude Include="mesh\mesh.h">
-      <Filter>mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="mesh\texturedrectangle.h">
       <Filter>mesh</Filter>
     </ClInclude>
     <ClInclude Include="math\vec3.h">
@@ -150,6 +144,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="freecamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\uvspheremesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="math\const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\uvsphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -99,3 +99,7 @@ void Entity::scaleZ(float zfactor) {
 void Entity::scale(float factor) {
 	_scale *= factor;
 }
+
+math::Vec3 Entity::position() const {
+	return _pos;
+}

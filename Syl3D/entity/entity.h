@@ -8,6 +8,7 @@
 
 #include "../mesh/mesh.h"
 #include "../math/vec3.h"
+#include "../math/const.h"
 
 namespace entity
 {
@@ -43,6 +44,8 @@ namespace entity
 		virtual void scaleY(float yfactor);
 
 		virtual void scaleZ(float zfactor);
+
+		virtual math::Vec3 position() const;
 
 	protected:
 		unsigned int _VAO;

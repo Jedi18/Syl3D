@@ -8,6 +8,7 @@
 #include "entity/rectangle.h"
 #include "entity/triangle.h"
 #include "entity/cube.h"
+#include "entity/uvsphere.h"
 
 #include "freecamera.h"
 
@@ -20,9 +21,11 @@ class Renderer
 public:
 	Renderer();
 
-	void initialize();
+	void initialize(float window_width, float window_height);
 
 	void render();
+
+	void updateWindowDimensions(float window_width, float window_height);
 
 	FreeCamera _freeCamera;
 
@@ -30,5 +33,5 @@ private:
 	Shader _shader;
 	ShaderProgram _shaderProgram;
 	TextureMaterial _texMaterial;
-	std::vector<std::unique_ptr<entity::Cube>> _entities;
+	std::unique_ptr<entity::UVSphere> uvSphere;
 };

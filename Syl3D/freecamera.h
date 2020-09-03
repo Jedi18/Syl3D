@@ -11,6 +11,8 @@ public:
 
 	glm::mat4 viewMatrix();
 
+	glm::mat4 projectionMatrix();
+
 	void mouseMovement(float xoffset, float yoffset);
 
 	void mouseScrolled(float xoffset, float yoffset);
@@ -18,6 +20,11 @@ public:
 	void keyboardInput(float dt, float zdir, float xdir);
 
 	float zoom() const;
+
+	void updateWindowDimensions(float window_width, float window_height);
+
+private:
+	void recalculateProjectionMatrix();
 
 private:
 	glm::vec3 cameraPos;
@@ -30,4 +37,10 @@ private:
 	float _zoom = 45.0f;
 	const float _cameraSpeed = 5.0f;
 	const float _sensitivity = 0.4f;
+
+	glm::mat4 _projection;
+
+	float ASPECT_RATIO;
+	const float NEAR = 0.1f;
+	const float FAR = 100.0f;
 };
