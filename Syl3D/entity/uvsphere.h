@@ -8,9 +8,9 @@ namespace entity
 	class UVSphere : public Entity
 	{
 	public:
-		UVSphere();
+		UVSphere(int parallels = 10, int meridians = 10);
 
-		UVSphere(math::Vec3 startingPos);
+		UVSphere(math::Vec3 startingPos, int parallels = 10, int meridians = 10);
 
 		void draw() override;
 

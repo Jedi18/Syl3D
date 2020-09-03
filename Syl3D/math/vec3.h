@@ -19,6 +19,10 @@ namespace math
 
 		Vec3& operator *= (float k);
 
+		Vec3 normalized() const;
+
+		void normalize();
+
 	public:
 		float x;
 		float y;

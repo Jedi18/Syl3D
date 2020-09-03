@@ -1,22 +1,22 @@
-#include "uvsphere.h"
+#include "icosphere.h"
 
 using namespace entity;
 
-UVSphere::UVSphere(int parallels, int meridians)
+IcoSphere::IcoSphere(int recursionLevel)
 	:
-	_sphere(parallels, meridians)
+	_sphere(recursionLevel)
 {
 	this->initialize(&_sphere);
 }
 
-UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians)
+IcoSphere::IcoSphere(math::Vec3 startingPos, int recursionLevel)
 	:
-	UVSphere(parallels, meridians)
+	IcoSphere(recursionLevel)
 {
 	_pos = startingPos;
 }
 
-void UVSphere::draw() {
+void IcoSphere::draw() {
 	if (_usesEBO) {
 		glBindVertexArray(_VAO);
 		glDrawElements(GL_TRIANGLES, _sphere.numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);

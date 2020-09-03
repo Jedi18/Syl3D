@@ -18,7 +18,7 @@ void Renderer::initialize(float window_width, float window_height) {
 
 	_shaderProgram = _shader.createShaderProgram("shaders/vertex1.shader", "shaders/fragment1.shader");
 
-	uvSphere = std::make_unique<entity::UVSphere>();
+	uvSphere = std::make_unique<entity::IcoSphere>(2);
 
 	_texMaterial.addTexture("container.jpg");
 	_texMaterial.addTexture("awesomeface.png", true, true);

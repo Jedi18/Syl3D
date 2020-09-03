@@ -6,9 +6,7 @@
 
 using namespace mesh;
 
-UVSphereMesh::UVSphereMesh() {
-	int parallels = 10;
-	int meridians = 10;
+UVSphereMesh::UVSphereMesh(int parallels, int meridians) {
 	std::vector<math::Vec3> vertices;
 	std::vector<int> indices;
 
@@ -90,12 +88,6 @@ UVSphereMesh::UVSphereMesh() {
 	for (int j = 0; j < indices_size; j++) {
 		_indices[j] = indices[j];
 	}
-}
-
-void UVSphereMesh::addVertex(math::Vec3& vert, std::vector<float>& vertices) {
-    vertices.push_back(vert.x);
-    vertices.push_back(vert.y);
-    vertices.push_back(vert.z);
 }
 
 UVSphereMesh::~UVSphereMesh() {

@@ -38,3 +38,15 @@ Vec3& Vec3::operator *= (float k) {
 	z *= k;
 	return *this;
 }
+
+Vec3 Vec3::normalized() const {
+	float m = mag();
+	return Vec3(x / m, y / m, z / m);
+}
+
+void Vec3::normalize() {
+	float m = mag();
+	x = x / m;
+	y = y / m;
+	z = z / m;
+}

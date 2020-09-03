@@ -146,6 +146,7 @@
     <ClCompile Include="color.cpp" />
     <ClCompile Include="entity\cube.cpp" />
     <ClCompile Include="entity\entity.cpp" />
+    <ClCompile Include="entity\icosphere.cpp" />
     <ClCompile Include="entity\rectangle.cpp" />
     <ClCompile Include="entity\triangle.cpp" />
     <ClCompile Include="entity\uvsphere.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\vec3.cpp" />
     <ClCompile Include="mesh\cubemesh.cpp" />
+    <ClCompile Include="mesh\icospheremesh.cpp" />
     <ClCompile Include="mesh\rectanglemesh.cpp" />
     <ClCompile Include="mesh\trianglemesh.cpp" />
     <ClCompile Include="mesh\uvspheremesh.cpp" />
@@ -169,6 +171,7 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="entity\cube.h" />
     <ClInclude Include="entity\entity.h" />
+    <ClInclude Include="entity\icosphere.h" />
     <ClInclude Include="entity\triangle.h" />
     <ClInclude Include="entity\uvsphere.h" />
     <ClInclude Include="freecamera.h" />
@@ -176,6 +179,7 @@
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\cubemesh.h" />
+    <ClInclude Include="mesh\icospheremesh.h" />
     <ClInclude Include="mesh\mesh.h" />
     <ClInclude Include="mesh\rectanglemesh.h" />
     <ClInclude Include="mesh\trianglemesh.h" />

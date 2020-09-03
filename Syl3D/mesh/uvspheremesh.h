@@ -9,7 +9,7 @@ namespace mesh
 	class UVSphereMesh : public Mesh
 	{
 	public:
-		UVSphereMesh();
+		UVSphereMesh(int parallels = 10, int meridians = 10);
 
 		~UVSphereMesh();
 
@@ -22,9 +22,6 @@ namespace mesh
 		size_t numIndices() override;
 
 		std::vector<VertexAttributeData> vertexAttributes() override;
-
-	private:
-		void addVertex(math::Vec3& vert, std::vector<float>& vertices);
 
 	private:
 		float* _vertices;
