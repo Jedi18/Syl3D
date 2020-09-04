@@ -21,6 +21,7 @@ void Renderer::initialize(float window_width, float window_height) {
 
 	uvSphere = std::make_unique<entity::IcoSphere>(2);
 	terrain = std::make_unique<entity::Terrain>();
+	terrain->scale(10);
 
 	_texMaterial.addTexture("container.jpg");
 	_texMaterial.addTexture("awesomeface.png", true, true);
@@ -37,8 +38,8 @@ void Renderer::render() {
 	_shaderProgram.setMat4("view", _freeCamera.viewMatrix());
 	_shaderProgram.setMat4("projection", _freeCamera.projectionMatrix());
 
-	//_shaderProgram.setMat4("model", uvSphere->modelMatrix());
-	//uvSphere->draw();
+	_shaderProgram.setMat4("model", uvSphere->modelMatrix());
+	uvSphere->draw();
 
 	_shaderProgram.setMat4("model", terrain->modelMatrix());
 	terrain->draw();

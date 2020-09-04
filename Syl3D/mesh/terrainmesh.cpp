@@ -1,18 +1,24 @@
 #include "terrainmesh.h"
 
+#include "../math/perlinnoise.h"
+
 using namespace mesh;
 
 TerrainMesh::TerrainMesh() {
     int rows = 10;
     int cols = 10;
 
+    const double frequency = 0.5;
+    const double fx = rows / frequency;
+    const double fy = cols / frequency;
+
     std::vector<math::Vec3> vertices((rows+1) * (cols+1));
 
     int index = 0;
     for (int i = 0; i <= cols; i++) {
         for (int j = 0; j <= rows; j++) {
-            float height = ((float) rand() / (float) RAND_MAX);
-            vertices[index] = math::Vec3((float)j / (float)rows, height, (float)i/(float)cols);
+            float val = math::PerlinNoise::noise2D(i / fx, j / fy);
+            vertices[index] = math::Vec3((((float)j / (float)rows) - 0.5f) * 2.0f, val, (((float)i/(float)cols) - 0.5f) * 2.0f);
             index++;
         }
     }

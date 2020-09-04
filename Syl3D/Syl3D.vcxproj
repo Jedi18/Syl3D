@@ -118,6 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +153,9 @@
     <ClCompile Include="entity\triangle.cpp" />
     <ClCompile Include="entity\uvsphere.cpp" />
     <ClCompile Include="freecamera.cpp" />
-    <ClCompile Include="glad.c" />
+    <ClCompile Include="math\perlinnoise.cpp" />
+    <ClCompile Include="utility\heightmapgenerator.cpp" />
+    <ClCompile Include="vendor\glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\vec3.cpp" />
@@ -180,6 +183,7 @@
     <ClInclude Include="freecamera.h" />
     <ClInclude Include="inputmanager.h" />
     <ClInclude Include="math\const.h" />
+    <ClInclude Include="math\perlinnoise.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\cubemesh.h" />
     <ClInclude Include="mesh\icospheremesh.h" />
@@ -194,6 +198,7 @@
     <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texturematerial.h" />
+    <ClInclude Include="utility\heightmapgenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
