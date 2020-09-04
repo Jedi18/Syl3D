@@ -50,3 +50,8 @@ void Vec3::normalize() {
 	y = y / m;
 	z = z / m;
 }
+
+std::ostream& math::operator << (std::ostream& o, const Vec3& vec) {
+	o << "(" << vec.x << "," << vec.y << "," << vec.z << ")";
+	return o;
+}

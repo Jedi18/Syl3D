@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace math
 {
 	class Vec3
@@ -23,9 +25,13 @@ namespace math
 
 		void normalize();
 
+		friend std::ostream& operator << (std::ostream& o, const Vec3& vec);
+
 	public:
 		float x;
 		float y;
 		float z;
 	};
+
+	std::ostream& operator << (std::ostream& o, const Vec3& vec);
 }

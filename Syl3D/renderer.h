@@ -10,6 +10,7 @@
 #include "entity/cube.h"
 #include "entity/uvsphere.h"
 #include "entity/icosphere.h"
+#include "entity/terrain.h"
 
 #include "freecamera.h"
 
@@ -35,4 +36,5 @@ private:
 	ShaderProgram _shaderProgram;
 	TextureMaterial _texMaterial;
 	std::unique_ptr<entity::IcoSphere> uvSphere;
+	std::unique_ptr<entity::Terrain> terrain;
 };
