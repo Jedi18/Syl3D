@@ -7,6 +7,10 @@ namespace math
 	public:
 		static float noise2D(float x, float y);
 
+		static void setPersistence(float persis);
+
+		static void setOctaves(unsigned int numOctaves);
+
 	private:
 		static float noise1(int x, int y);
 
@@ -18,6 +22,6 @@ namespace math
 
 	private:
 		static float persistence;
-		static float numOctaves;
+		static unsigned int numOctaves;
 	};
 }

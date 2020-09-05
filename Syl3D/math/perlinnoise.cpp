@@ -4,12 +4,12 @@
 using namespace math;
 
 float PerlinNoise::persistence = 0.5f;
-float PerlinNoise::numOctaves = 8.0f;
+unsigned int PerlinNoise::numOctaves = 8.0f;
 
 float PerlinNoise::noise2D(float x, float y) {
     float total = 0;
     float p = persistence;
-    float n = numOctaves - 1;
+    unsigned int n = numOctaves - 1;
 
     for (int i = 0; i < n; i++) {
          float frequency = std::pow(2,i);
@@ -57,4 +57,12 @@ float PerlinNoise::interpolate(float a, float b, float x) {
     float f = (1 - std::cos(ft)) * .5;
 
     return  a * (1 - f) + b * f;
+}
+
+void PerlinNoise::setPersistence(float persis) {
+    persistence = persis;
+}
+
+void PerlinNoise::setOctaves(unsigned int octaves) {
+    numOctaves = octaves;
 }

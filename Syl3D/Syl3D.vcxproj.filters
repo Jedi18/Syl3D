@@ -102,10 +102,10 @@
     <ClCompile Include="vendor\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="utility\heightmapgenerator.cpp">
+    <ClCompile Include="math\perlinnoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\perlinnoise.cpp">
+    <ClCompile Include="mousepicker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,10 +185,10 @@
     <ClInclude Include="entity\terrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="utility\heightmapgenerator.h">
+    <ClInclude Include="math\perlinnoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="math\perlinnoise.h">
+    <ClInclude Include="mousepicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

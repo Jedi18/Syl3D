@@ -4,7 +4,7 @@ FreeCamera::FreeCamera() {
 	cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 	cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-	ASPECT_RATIO = 800.0f / 600.0f;
+	ASPECT_RATIO = WINDOW_WIDTH / WINDOW_HEIGHT;
 
 	_projection = glm::mat4(1.0f);
 	recalculateProjectionMatrix();
@@ -70,5 +70,15 @@ void FreeCamera::recalculateProjectionMatrix() {
 
 void FreeCamera::updateWindowDimensions(float window_width, float window_height) {
 	ASPECT_RATIO = window_width / window_height;
+	WINDOW_WIDTH = window_width;
+	WINDOW_HEIGHT = window_height;
 	recalculateProjectionMatrix();
+}
+
+float FreeCamera::windowWidth() const {
+	return WINDOW_WIDTH;
+}
+
+float FreeCamera::windowHeight() const {
+	return WINDOW_HEIGHT;
 }

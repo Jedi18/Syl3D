@@ -23,6 +23,10 @@ public:
 
 	void updateWindowDimensions(float window_width, float window_height);
 
+	float windowWidth() const;
+
+	float windowHeight() const;
+
 private:
 	void recalculateProjectionMatrix();
 
@@ -43,4 +47,6 @@ private:
 	float ASPECT_RATIO;
 	const float NEAR = 0.1f;
 	const float FAR = 100.0f;
+	float WINDOW_WIDTH = 800.0f;
+	float WINDOW_HEIGHT = 600.0f;
 };

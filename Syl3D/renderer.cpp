@@ -9,6 +9,7 @@
 
 Renderer::Renderer() 
 	:
+	_mousePicker(&_freeCamera),
 	_shaderProgram(-1),
 	_texMaterial(&_shaderProgram)
 {}

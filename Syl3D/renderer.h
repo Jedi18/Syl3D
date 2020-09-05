@@ -13,6 +13,7 @@
 #include "entity/terrain.h"
 
 #include "freecamera.h"
+#include "mousepicker.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -30,6 +31,7 @@ public:
 	void updateWindowDimensions(float window_width, float window_height);
 
 	FreeCamera _freeCamera;
+	MousePicker _mousePicker;
 
 private:
 	Shader _shader;
