@@ -11,6 +11,8 @@
 class ShaderProgram
 {
 public:
+	ShaderProgram();
+
 	ShaderProgram(unsigned int ID);
 
 	void use();

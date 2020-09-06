@@ -51,7 +51,7 @@ bool Application::initialize() {
 	glfwSetFramebufferSizeCallback(_window, frameBufferFunc);
 	glfwSetCursorPosCallback(_window, mouseCallbackFunc);
 	glfwSetScrollCallback(_window, scrollCallbackFunc);
-	//glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	return true;
 }
 

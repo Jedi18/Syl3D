@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 
-#include "shader.h"
+#include "shadermanager.h"
 #include "texturematerial.h"
 #include "entity/rectangle.h"
 #include "entity/triangle.h"
@@ -14,6 +14,7 @@
 
 #include "freecamera.h"
 #include "mousepicker.h"
+#include "entitycontainer.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -34,9 +35,7 @@ public:
 	MousePicker _mousePicker;
 
 private:
-	Shader _shader;
-	ShaderProgram _shaderProgram;
-	TextureMaterial _texMaterial;
-	std::unique_ptr<entity::IcoSphere> uvSphere;
-	std::unique_ptr<entity::Terrain> terrain;
+	std::shared_ptr<ShaderManager> _shaderManager;
+	EntityContainer _entityContainer;
+	//std::unique_ptr<entity::Terrain> terrain;
 };

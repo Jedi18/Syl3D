@@ -108,6 +108,12 @@
     <ClCompile Include="mousepicker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shadermanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entitycontainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h">
@@ -191,22 +197,31 @@
     <ClInclude Include="mousepicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="shadermanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entitycontainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="shaders\fragment.shader">
-      <Filter>shaders</Filter>
-    </None>
     <None Include="shaders\texfragment.shader">
       <Filter>shaders</Filter>
     </None>
     <None Include="shaders\texvertex.shader">
       <Filter>shaders</Filter>
     </None>
-    <None Include="shaders\vertex.shader">
-      <Filter>shaders</Filter>
-    </None>
     <None Include="shaders\vertex1.shader" />
     <None Include="shaders\fragment1.shader" />
+    <None Include="shaders\colorvertex.shader" />
+    <None Include="shaders\colorfragment.shader" />
+    <None Include="shaders\lampfragment.shader" />
+    <None Include="shaders\defaultvertex.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\defaultfragment.shader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

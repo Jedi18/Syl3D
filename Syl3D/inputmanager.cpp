@@ -46,8 +46,8 @@ void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
 	lastY = (float)ypos;
 
 	_renderer->_freeCamera.mouseMovement(xoffset, yoffset);
-	glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xoffset, yoffset);
-	std::cout << "(" << mouseRay.x << ", " << mouseRay.y << ", " << mouseRay.z << ")\n";
+	//glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xoffset, yoffset);
+	//std::cout << "(" << mouseRay.x << ", " << mouseRay.y << ", " << mouseRay.z << ")\n";
 }
 
 void InputManager::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {

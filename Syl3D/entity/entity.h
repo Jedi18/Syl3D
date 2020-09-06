@@ -15,7 +15,7 @@ namespace entity
 	class Entity
 	{
 	public:
-		Entity();
+		Entity(std::string shaderName = "default");
 
 		void initialize(mesh::Mesh* mesh);
 
@@ -47,11 +47,14 @@ namespace entity
 
 		virtual math::Vec3 position() const;
 
+		std::string shaderName() const;
+
 	protected:
 		unsigned int _VAO;
 		bool _usesEBO;
 		math::Vec3 _pos;
 		math::Vec3 _scale;
 		glm::mat4 _rotation;
+		std::string _shaderName;
 	};
 }

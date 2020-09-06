@@ -2,7 +2,9 @@
 
 using namespace entity;
 
-Cube::Cube()
+Cube::Cube(std::string shaderName)
+	:
+	Entity(shaderName)
 {
 	this->initialize(&_cube);
 }

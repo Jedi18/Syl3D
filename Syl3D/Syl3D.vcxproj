@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="entitycontainer.cpp" />
     <ClCompile Include="entity\cube.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\icosphere.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="freecamera.cpp" />
     <ClCompile Include="math\perlinnoise.cpp" />
     <ClCompile Include="mousepicker.cpp" />
+    <ClCompile Include="shadermanager.cpp" />
     <ClCompile Include="vendor\glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -174,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="application.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="entitycontainer.h" />
     <ClInclude Include="entity\cube.h" />
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\icosphere.h" />
@@ -196,17 +199,21 @@
     <ClInclude Include="mousepicker.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="shadermanager.h" />
     <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texturematerial.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="shaders\fragment.shader" />
+    <None Include="shaders\colorfragment.shader" />
+    <None Include="shaders\colorvertex.shader" />
+    <None Include="shaders\defaultfragment.shader" />
     <None Include="shaders\fragment1.shader" />
+    <None Include="shaders\lampfragment.shader" />
     <None Include="shaders\texfragment.shader" />
     <None Include="shaders\texvertex.shader" />
-    <None Include="shaders\vertex.shader" />
+    <None Include="shaders\defaultvertex.shader" />
     <None Include="shaders\vertex1.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

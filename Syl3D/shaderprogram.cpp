@@ -3,6 +3,11 @@
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
 
+ShaderProgram::ShaderProgram()
+	:
+	ShaderProgram(-1)
+{}
+
 ShaderProgram::ShaderProgram(unsigned int ID) 
 	:
 	_ID(ID)

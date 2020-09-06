@@ -2,16 +2,17 @@
 
 using namespace entity;
 
-UVSphere::UVSphere(int parallels, int meridians)
+UVSphere::UVSphere(int parallels, int meridians, std::string shaderName)
 	:
+	Entity(shaderName),
 	_sphere(parallels, meridians)
 {
 	this->initialize(&_sphere);
 }
 
-UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians)
+UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians, std::string shaderName)
 	:
-	UVSphere(parallels, meridians)
+	UVSphere(parallels, meridians, shaderName)
 {
 	_pos = startingPos;
 }

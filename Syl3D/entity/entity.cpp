@@ -2,8 +2,9 @@
 
 using namespace entity;
 
-Entity::Entity() 
+Entity::Entity(std::string shaderName)
 	:
+	_shaderName(shaderName),
 	_scale(1,1,1)
 {
 	_rotation = glm::mat4(1.0f);
@@ -102,4 +103,8 @@ void Entity::scale(float factor) {
 
 math::Vec3 Entity::position() const {
 	return _pos;
+}
+
+std::string Entity::shaderName() const {
+	return _shaderName;
 }

@@ -9,7 +9,7 @@
 
 Shader::Shader() {}
 
-ShaderProgram Shader::createShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath) {
+std::shared_ptr<ShaderProgram> Shader::createShaderProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath) {
 	GLuint vertexShader = createShader(vertexShaderPath, ShaderType::VERTEX_SHADER);
 	GLuint fragmentShader = createShader(fragmentShaderPath, ShaderType::FRAGMENT_SHADER);
 
@@ -24,7 +24,7 @@ ShaderProgram Shader::createShaderProgram(const std::string& vertexShaderPath, c
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	return ShaderProgram(shaderProgram);
+	return std::make_shared<ShaderProgram>(shaderProgram);
 }
 
 unsigned int Shader::createShader(const std::string& vertexShaderPath, ShaderType shaderType) {
