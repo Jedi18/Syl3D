@@ -5,7 +5,7 @@
 class MousePicker
 {
 public:
-	MousePicker(FreeCamera* freeCam);
+	MousePicker(std::shared_ptr<FreeCamera> freeCam);
 
 	glm::vec3 calculateMouseRay(float mouseX, float mouseY);
 
@@ -15,5 +15,5 @@ private:
 	glm::vec3 eyeToWorldCoords(glm::vec4 eyeCoords) const;
 
 private:
-	FreeCamera* _freeCamera;
+	std::shared_ptr<FreeCamera> _freeCamera;
 };

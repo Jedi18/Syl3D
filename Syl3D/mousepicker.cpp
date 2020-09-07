@@ -1,6 +1,6 @@
 #include "mousepicker.h"
 
-MousePicker::MousePicker(FreeCamera* freeCam) 
+MousePicker::MousePicker(std::shared_ptr<FreeCamera> freeCam)
 	:
 	_freeCamera(freeCam)
 {}

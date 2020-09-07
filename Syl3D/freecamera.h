@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "math/vec3.h"
+
 class FreeCamera
 {
 public:
@@ -26,6 +28,8 @@ public:
 	float windowWidth() const;
 
 	float windowHeight() const;
+
+	math::Vec3 cameraPosition() const;
 
 private:
 	void recalculateProjectionMatrix();

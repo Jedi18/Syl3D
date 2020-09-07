@@ -59,6 +59,10 @@ void Entity::translate(math::Vec3 pos) {
 	_pos += pos;
 }
 
+void Entity::translateTo(math::Vec3 pos) {
+	_pos = pos;
+}
+
 void Entity::rotateX(float angleInRadians) {
 	_rotation = glm::rotate(_rotation, angleInRadians, glm::vec3(1, 0, 0));
 }

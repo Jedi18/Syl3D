@@ -30,7 +30,7 @@ void InputManager::processInput(GLFWwindow* window) {
 		xdir += 1;
 	}
 
-	_renderer->_freeCamera.keyboardInput(deltaTime, zdir, xdir);
+	_renderer->_freeCamera->keyboardInput(deltaTime, zdir, xdir);
 }
 
 void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
@@ -45,11 +45,11 @@ void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
 	lastX = (float)xpos;
 	lastY = (float)ypos;
 
-	_renderer->_freeCamera.mouseMovement(xoffset, yoffset);
+	_renderer->_freeCamera->mouseMovement(xoffset, yoffset);
 	//glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xoffset, yoffset);
 	//std::cout << "(" << mouseRay.x << ", " << mouseRay.y << ", " << mouseRay.z << ")\n";
 }
 
 void InputManager::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
-	_renderer->_freeCamera.mouseScrolled((float)xoffset, (float)yoffset);
+	_renderer->_freeCamera->mouseScrolled((float)xoffset, (float)yoffset);
 }

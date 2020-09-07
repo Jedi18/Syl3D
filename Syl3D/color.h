@@ -7,9 +7,11 @@ namespace shading
 	public:
 		Color();
 
-		Color(float r, float g, float b);
+		explicit Color(float r, float g, float b);
 
-		Color(float r, float g, float b, float a);
+		explicit Color(float r, float g, float b, float a);
+
+		explicit Color(int r, int g, int b);
 
 	public:
 		float r;

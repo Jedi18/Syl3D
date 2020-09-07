@@ -206,8 +206,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="shaders\colorfragment.shader" />
-    <None Include="shaders\colorvertex.shader" />
+    <None Include="shaders\phongfragment.shader" />
+    <None Include="shaders\phongvertex.shader" />
     <None Include="shaders\defaultfragment.shader" />
     <None Include="shaders\fragment1.shader" />
     <None Include="shaders\lampfragment.shader" />

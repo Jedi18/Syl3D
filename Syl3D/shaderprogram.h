@@ -29,6 +29,8 @@ public:
 
 	void setColor(std::string uniformName, shading::Color val);
 
+	void setColor3(std::string uniformName, shading::Color val);
+
 	void setMat4(std::string uniformName, glm::mat4 val);
 
 private:

@@ -25,6 +25,8 @@ namespace entity
 
 		virtual void translate(math::Vec3 pos);
 
+		virtual void translateTo(math::Vec3 pos);
+
 		virtual void rotateX(float angleInRadians);
 
 		virtual void rotateY(float angleInRadians);

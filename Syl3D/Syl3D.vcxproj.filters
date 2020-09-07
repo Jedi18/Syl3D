@@ -214,8 +214,6 @@
     </None>
     <None Include="shaders\vertex1.shader" />
     <None Include="shaders\fragment1.shader" />
-    <None Include="shaders\colorvertex.shader" />
-    <None Include="shaders\colorfragment.shader" />
     <None Include="shaders\lampfragment.shader" />
     <None Include="shaders\defaultvertex.shader">
       <Filter>shaders</Filter>
@@ -223,5 +221,7 @@
     <None Include="shaders\defaultfragment.shader">
       <Filter>shaders</Filter>
     </None>
+    <None Include="shaders\phongvertex.shader" />
+    <None Include="shaders\phongfragment.shader" />
   </ItemGroup>
 </Project>

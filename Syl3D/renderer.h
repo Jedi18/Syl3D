@@ -31,11 +31,11 @@ public:
 
 	void updateWindowDimensions(float window_width, float window_height);
 
-	FreeCamera _freeCamera;
+	std::shared_ptr<FreeCamera> _freeCamera;
 	MousePicker _mousePicker;
 
 private:
 	std::shared_ptr<ShaderManager> _shaderManager;
+	std::shared_ptr<entity::UVSphere> lamp;
 	EntityContainer _entityContainer;
-	//std::unique_ptr<entity::Terrain> terrain;
 };
