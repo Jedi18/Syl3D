@@ -31,6 +31,8 @@ public:
 
 	math::Vec3 cameraPosition() const;
 
+	math::Vec3 cameraFrontDirection() const;
+
 private:
 	void recalculateProjectionMatrix();
 

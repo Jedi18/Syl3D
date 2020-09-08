@@ -86,3 +86,7 @@ float FreeCamera::windowHeight() const {
 math::Vec3 FreeCamera::cameraPosition() const {
 	return math::Vec3(cameraPos.x, cameraPos.y, cameraPos.z);
 }
+
+math::Vec3 FreeCamera::cameraFrontDirection() const {
+	return math::Vec3(cameraFront.x, cameraFront.y, cameraFront.z);
+}

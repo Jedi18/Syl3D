@@ -229,5 +229,9 @@
     <None Include="shaders\matfragment.shader" />
     <None Include="shaders\lightmapvertex.shader" />
     <None Include="shaders\lightmapfragment.shader" />
+    <None Include="shaders\directionalvertex.shader" />
+    <None Include="shaders\directionalfragment.shader" />
+    <None Include="shaders\pointfragment.shader" />
+    <None Include="shaders\spotlightfragment.shader" />
   </ItemGroup>
 </Project>

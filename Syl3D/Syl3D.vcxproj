@@ -206,6 +206,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
+    <None Include="shaders\directionalfragment.shader" />
+    <None Include="shaders\directionalvertex.shader" />
     <None Include="shaders\gouradfragment.shader" />
     <None Include="shaders\gouradvertex.shader" />
     <None Include="shaders\lightmapfragment.shader" />
@@ -217,6 +219,8 @@
     <None Include="shaders\defaultfragment.shader" />
     <None Include="shaders\fragment1.shader" />
     <None Include="shaders\lampfragment.shader" />
+    <None Include="shaders\pointfragment.shader" />
+    <None Include="shaders\spotlightfragment.shader" />
     <None Include="shaders\texfragment.shader" />
     <None Include="shaders\texvertex.shader" />
     <None Include="shaders\defaultvertex.shader" />

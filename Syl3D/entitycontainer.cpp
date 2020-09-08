@@ -25,14 +25,26 @@ void EntityContainer::drawEntities() {
 		std::shared_ptr<ShaderProgram> shaderProgram = _shaderManager->currentShader();
 
 		if (iter->first == "phongShader") {
-			shaderProgram->setColor3("material.specular", shading::Color(0.5f, 0.5f, 0.5f));
 			shaderProgram->setFloat("material.shininess", 32.0f);
 
 			shaderProgram->setColor3("light.ambient", shading::Color(0.2f, 0.2f, 0.2f));
 			shaderProgram->setColor3("light.diffuse", shading::Color(0.5f, 0.5f, 0.5f));
 			shaderProgram->setColor3("light.specular", shading::Color(1.0f, 1.0f, 1.0f));
 
+			shaderProgram->setVec3("light.position", _freeCamera->cameraPosition());
+			shaderProgram->setVec3("light.direction", _freeCamera->cameraFrontDirection());
+			shaderProgram->setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
+			shaderProgram->setFloat("light.outerCutOff", glm::cos(glm::radians(17.5)));
+
+			/* Spotlight
 			shaderProgram->setVec3("light.position", lightPos);
+			shaderProgram->setFloat("light.constant", 1.0f);
+			shaderProgram->setFloat("light.linearConstant", 0.09f);
+			shaderProgram->setFloat("light.quadraticConstant", 0.032f); */
+
+			/* Directional
+			shaderProgram->setVec3("light.direction", math::Vec3(-0.2f, -1.0f, -0.3f));*/
+
 			shaderProgram->setVec3("viewPos", _freeCamera->cameraPosition());
 		}
 
