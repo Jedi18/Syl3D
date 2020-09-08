@@ -12,17 +12,18 @@
 class TextureMaterial
 {
 public:
-	TextureMaterial(ShaderProgram* shaderProgram);
+	TextureMaterial(std::shared_ptr<ShaderProgram> shaderProgram);
 
-	void addTexture(std::string textureFile, bool rgba = false, bool flipVertical = false);
+	void addTexture(std::string textureName, std::string textureFile, bool rgba = false, bool flipVertical = false);
 
-	void setShaderProgram(ShaderProgram* shaderProgram);
+	void setShaderProgram(std::shared_ptr<ShaderProgram> shaderProgram);
 
 	void activateTextures();
 
 private:
-	ShaderProgram* _shaderProgram;
+	std::shared_ptr<ShaderProgram> _shaderProgram;
 	std::vector<unsigned int> _textures;
+	std::vector<std::string> _textureNames;
 
 	static const std::map<int, GLenum> texturePositionMap;
 };

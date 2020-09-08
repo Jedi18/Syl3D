@@ -22,11 +22,17 @@ void Renderer::initialize(float window_width, float window_height) {
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
 
-	_shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
-	_shaderManager->addShader("lampShader", "shaders/phongvertex.shader", "shaders/lampfragment.shader");
+	_shaderManager->addShader("phongShader", "shaders/lightmapvertex.shader", "shaders/lightmapfragment.shader");
+	_shaderManager->addShader("lampShader", "shaders/matvertex.shader", "shaders/lampfragment.shader");
+
+	std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
+	_texMaterial->addTexture("material.diffuse", "container2.png", true);
+	_texMaterial->addTexture("material.specular", "container2_specular.png", true);
 
 	lamp = std::make_shared<entity::UVSphere>(10, 10, "lampShader");
 	std::shared_ptr<entity::Cube> cube1 = std::make_shared<entity::Cube>("phongShader");
+
+	cube1->setTexture(_texMaterial);
 
 	lamp->translate(math::Vec3(-5.2f, 5.0f, -5.0f));
 

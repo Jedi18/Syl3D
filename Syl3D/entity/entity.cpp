@@ -5,7 +5,8 @@ using namespace entity;
 Entity::Entity(std::string shaderName)
 	:
 	_shaderName(shaderName),
-	_scale(1,1,1)
+	_scale(1,1,1),
+	_textureMaterial(nullptr)
 {
 	_rotation = glm::mat4(1.0f);
 }
@@ -111,4 +112,14 @@ math::Vec3 Entity::position() const {
 
 std::string Entity::shaderName() const {
 	return _shaderName;
+}
+
+void Entity::setTexture(std::shared_ptr<TextureMaterial> texMaterial) {
+	_textureMaterial = texMaterial;
+}
+
+void Entity::activateTexture() {
+	if (_textureMaterial != nullptr) {
+		_textureMaterial->activateTextures();
+	}
 }

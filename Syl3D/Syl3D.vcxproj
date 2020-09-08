@@ -206,6 +206,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
+    <None Include="shaders\gouradfragment.shader" />
+    <None Include="shaders\gouradvertex.shader" />
+    <None Include="shaders\lightmapfragment.shader" />
+    <None Include="shaders\lightmapvertex.shader" />
+    <None Include="shaders\matfragment.shader" />
+    <None Include="shaders\matvertex.shader" />
     <None Include="shaders\phongfragment.shader" />
     <None Include="shaders\phongvertex.shader" />
     <None Include="shaders\defaultfragment.shader" />

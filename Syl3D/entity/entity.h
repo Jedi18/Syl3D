@@ -10,6 +10,8 @@
 #include "../math/vec3.h"
 #include "../math/const.h"
 
+#include "../texturematerial.h"
+
 namespace entity
 {
 	class Entity
@@ -51,6 +53,10 @@ namespace entity
 
 		std::string shaderName() const;
 
+		void setTexture(std::shared_ptr<TextureMaterial> texMaterial);
+
+		void activateTexture();
+
 	protected:
 		unsigned int _VAO;
 		bool _usesEBO;
@@ -58,5 +64,6 @@ namespace entity
 		math::Vec3 _scale;
 		glm::mat4 _rotation;
 		std::string _shaderName;
+		std::shared_ptr<TextureMaterial> _textureMaterial;
 	};
 }

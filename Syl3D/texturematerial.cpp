@@ -15,12 +15,12 @@ const std::map<int, GLenum> TextureMaterial::texturePositionMap = {
 	{7, GL_TEXTURE7}
 };
 
-TextureMaterial::TextureMaterial(ShaderProgram* shaderProgram)
+TextureMaterial::TextureMaterial(std::shared_ptr<ShaderProgram> shaderProgram)
 	:
 	_shaderProgram(shaderProgram)
 {}
 
-void TextureMaterial::addTexture(std::string textureFile, bool rgba, bool flipVertical) {
+void TextureMaterial::addTexture(std::string textureName, std::string textureFile, bool rgba, bool flipVertical) {
 	GLuint texture1;
 	glGenTextures(1, &texture1);
 	glBindTexture(GL_TEXTURE_2D, texture1);
@@ -59,11 +59,12 @@ void TextureMaterial::addTexture(std::string textureFile, bool rgba, bool flipVe
 	glActiveTexture(texturePositionMap.at(_textures.size()));
 	glBindTexture(GL_TEXTURE_2D, texture1);
 
-	_shaderProgram->setInt("texture" + std::to_string(_textures.size()), _textures.size());
+	_shaderProgram->setInt(textureName, _textures.size());
 	_textures.push_back(texture1);
+	_textureNames.push_back(textureName);
 }
 
-void TextureMaterial::setShaderProgram(ShaderProgram* shaderProgram) {
+void TextureMaterial::setShaderProgram(std::shared_ptr<ShaderProgram> shaderProgram) {
 	_shaderProgram = shaderProgram;
 }
 
@@ -72,6 +73,6 @@ void TextureMaterial::activateTextures() {
 	for (int i = 0; i < _textures.size(); i++) {
 		glActiveTexture(texturePositionMap.at(i));
 		glBindTexture(GL_TEXTURE_2D, _textures[i]);
-		_shaderProgram->setInt("texture" + std::to_string(i), i);
+		_shaderProgram->setInt(_textureNames[i], i);
 	}
 }
