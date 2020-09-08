@@ -35,8 +35,8 @@ void Renderer::initialize(float window_width, float window_height) {
 	math::Vec3(-1.3f,  1.0f, -1.5f)
 	};
 
-	_shaderManager->addShader("phongShader", "shaders/directionalvertex.shader", "shaders/spotlightfragment.shader");
-	//_shaderManager->addShader("lampShader", "shaders/matvertex.shader", "shaders/lampfragment.shader");
+	_shaderManager->addShader("phongShader", "shaders/directionalvertex.shader", "shaders/fullfragment.shader");
+	_shaderManager->addShader("lampShader", "shaders/matvertex.shader", "shaders/lampfragment.shader");
 
 	std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
 	_texMaterial->addTexture("material.diffuse", "container2.png", true);

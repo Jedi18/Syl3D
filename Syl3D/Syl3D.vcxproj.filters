@@ -233,5 +233,6 @@
     <None Include="shaders\directionalfragment.shader" />
     <None Include="shaders\pointfragment.shader" />
     <None Include="shaders\spotlightfragment.shader" />
+    <None Include="shaders\fullfragment.shader" />
   </ItemGroup>
 </Project>

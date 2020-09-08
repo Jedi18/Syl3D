@@ -208,6 +208,7 @@
     <None Include="..\.gitignore" />
     <None Include="shaders\directionalfragment.shader" />
     <None Include="shaders\directionalvertex.shader" />
+    <None Include="shaders\fullfragment.shader" />
     <None Include="shaders\gouradfragment.shader" />
     <None Include="shaders\gouradvertex.shader" />
     <None Include="shaders\lightmapfragment.shader" />
