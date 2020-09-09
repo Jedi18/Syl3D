@@ -12,6 +12,10 @@
 #include "entity/icosphere.h"
 #include "entity/terrain.h"
 
+#include "lights/pointlight.h"
+#include "lights/directionallight.h"
+#include "lights/spotlight.h"
+
 #include "freecamera.h"
 #include "mousepicker.h"
 #include "entitycontainer.h"
@@ -36,6 +40,6 @@ public:
 
 private:
 	std::shared_ptr<ShaderManager> _shaderManager;
-	std::shared_ptr<entity::UVSphere> lamp;
 	EntityContainer _entityContainer;
+	std::shared_ptr<light::SpotLight> _spotLight;
 };

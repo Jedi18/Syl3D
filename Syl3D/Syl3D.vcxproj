@@ -154,6 +154,9 @@
     <ClCompile Include="entity\triangle.cpp" />
     <ClCompile Include="entity\uvsphere.cpp" />
     <ClCompile Include="freecamera.cpp" />
+    <ClCompile Include="lights\directionallight.cpp" />
+    <ClCompile Include="lights\pointlight.cpp" />
+    <ClCompile Include="lights\spotlight.cpp" />
     <ClCompile Include="math\perlinnoise.cpp" />
     <ClCompile Include="mousepicker.cpp" />
     <ClCompile Include="shadermanager.cpp" />
@@ -185,6 +188,10 @@
     <ClInclude Include="entity\uvsphere.h" />
     <ClInclude Include="freecamera.h" />
     <ClInclude Include="inputmanager.h" />
+    <ClInclude Include="lights\directionallight.h" />
+    <ClInclude Include="lights\light.h" />
+    <ClInclude Include="lights\pointlight.h" />
+    <ClInclude Include="lights\spotlight.h" />
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\perlinnoise.h" />
     <ClInclude Include="math\vec3.h" />
@@ -206,26 +213,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="shaders\directionalfragment.shader" />
-    <None Include="shaders\directionalvertex.shader" />
-    <None Include="shaders\fullfragment.shader" />
     <None Include="shaders\gouradfragment.shader" />
     <None Include="shaders\gouradvertex.shader" />
-    <None Include="shaders\lightmapfragment.shader" />
-    <None Include="shaders\lightmapvertex.shader" />
-    <None Include="shaders\matfragment.shader" />
-    <None Include="shaders\matvertex.shader" />
     <None Include="shaders\phongfragment.shader" />
     <None Include="shaders\phongvertex.shader" />
     <None Include="shaders\defaultfragment.shader" />
-    <None Include="shaders\fragment1.shader" />
     <None Include="shaders\lampfragment.shader" />
-    <None Include="shaders\pointfragment.shader" />
-    <None Include="shaders\spotlightfragment.shader" />
-    <None Include="shaders\texfragment.shader" />
-    <None Include="shaders\texvertex.shader" />
     <None Include="shaders\defaultvertex.shader" />
-    <None Include="shaders\vertex1.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
