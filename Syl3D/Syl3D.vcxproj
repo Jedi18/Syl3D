@@ -160,6 +160,7 @@
     <ClCompile Include="math\perlinnoise.cpp" />
     <ClCompile Include="mousepicker.cpp" />
     <ClCompile Include="shadermanager.cpp" />
+    <ClCompile Include="utility\heightmapgenerator.cpp" />
     <ClCompile Include="vendor\glad.c" />
     <ClCompile Include="inputmanager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texturematerial.h" />
+    <ClInclude Include="utility\heightmapgenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />

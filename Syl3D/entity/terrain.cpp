@@ -2,16 +2,17 @@
 
 using namespace entity;
 
-Terrain::Terrain()
+Terrain::Terrain(utility::HeightmapData& heightmapData, std::string shaderName)
 	:
-	_terrain()
+	Entity(shaderName),
+	_terrain(heightmapData)
 {
 	this->initialize(&_terrain);
 }
 
-Terrain::Terrain(math::Vec3 startingPos)
+Terrain::Terrain(math::Vec3 startingPos, utility::HeightmapData& heightmapData, std::string shaderName)
 	:
-	Terrain()
+	Terrain(heightmapData, shaderName)
 {
 	_pos = startingPos;
 }

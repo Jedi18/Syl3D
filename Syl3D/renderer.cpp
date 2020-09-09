@@ -1,6 +1,8 @@
 #include "renderer.h"
 #include "mesh/rectanglemesh.h"
 
+#include "utility/heightmapgenerator.h"
+
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
 #include "stb_image.h"
@@ -38,9 +40,13 @@ void Renderer::initialize(float window_width, float window_height) {
 	_shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
 
 	std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
-	_texMaterial->addTexture("material.diffuse", "container2.png", true);
-	_texMaterial->addTexture("material.specular", "container2_specular.png", true);
+	_texMaterial->addTexture("material.diffuse", "resources/container2.png", true);
+	_texMaterial->addTexture("material.specular", "resources/container2_specular.png", true);
 	
+	/*std::shared_ptr<TextureMaterial> _uvMat = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
+	_uvMat->addTexture("material.diffuse", "resources/sphcol.jpg", false);
+	_uvMat->addTexture("material.specular", "resources/sphspec.jpg", true);*/
+
 	for (int i = 0; i < 10; i++) {
 		float angle = 20.0f * i;
 		std::shared_ptr<entity::Cube> cube = std::make_shared<entity::Cube>("phongShader");
@@ -49,6 +55,15 @@ void Renderer::initialize(float window_width, float window_height) {
 		cube->setTexture(_texMaterial);
 		_entityContainer.addEntity("cube" + std::to_string(i), cube);
 	}
+
+	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
+	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/test2.png");
+	
+	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData, "phongShader");
+	terrain1->setTexture(_texMaterial);
+	terrain1->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
+	terrain1->scale(10);
+	_entityContainer.addEntity("terrain1", terrain1);
 
 	_spotLight = std::make_shared<light::SpotLight>(_freeCamera->cameraPosition(), _freeCamera->cameraFrontDirection(), shading::Color(0.8f, 0.8f, 0.8f));
 

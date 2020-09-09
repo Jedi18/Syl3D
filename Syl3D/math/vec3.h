@@ -21,6 +21,10 @@ namespace math
 
 		Vec3& operator *= (float k);
 
+		Vec3 operator - (const Vec3& other);
+
+		static Vec3 cross(const Vec3& a, const Vec3& b);
+
 		Vec3 normalized() const;
 
 		void normalize();

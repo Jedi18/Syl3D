@@ -55,3 +55,11 @@ std::ostream& math::operator << (std::ostream& o, const Vec3& vec) {
 	o << "(" << vec.x << "," << vec.y << "," << vec.z << ")";
 	return o;
 }
+
+Vec3 Vec3::operator - (const Vec3& other) {
+	return Vec3(x - other.x, y - other.y, z - other.z);
+}
+
+Vec3 Vec3::cross(const Vec3& a, const Vec3& b) {
+	return Vec3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+}

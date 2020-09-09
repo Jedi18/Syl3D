@@ -71,7 +71,7 @@ UVSphereMesh::UVSphereMesh(int parallels, int meridians) {
 		indices.emplace_back(b);
 	}
 
-	vert_size = vertices.size() * 3;
+	vert_size = vertices.size() * 8;
 	indices_size = indices.size();
 
 	_vertices = new float[vert_size];
@@ -81,7 +81,12 @@ UVSphereMesh::UVSphereMesh(int parallels, int meridians) {
 		_vertices[index] = vertices[i].x;
 		_vertices[index + 1] = vertices[i].y;
 		_vertices[index + 2] = vertices[i].z;
-		index += 3;
+		_vertices[index + 3] = vertices[i].x;
+		_vertices[index + 4] = vertices[i].y;
+		_vertices[index + 5] = vertices[i].z;
+		_vertices[index + 6] = i / (meridians);
+		_vertices[index + 7] = i % (meridians);
+		index += 8;
 	}
 
 	_indices = new unsigned int[indices_size];
@@ -118,6 +123,8 @@ size_t UVSphereMesh::numIndices() {
 
 std::vector<VertexAttributeData> UVSphereMesh::vertexAttributes() {
     std::vector<VertexAttributeData> vertexAttribs;
-    vertexAttribs.push_back(VertexAttributeData(3, 3 * sizeof(float), 0));
+    vertexAttribs.push_back(VertexAttributeData(3, 8 * sizeof(float), 0));
+	vertexAttribs.push_back(VertexAttributeData(3, 8 * sizeof(float), 3 * sizeof(float)));
+	vertexAttribs.push_back(VertexAttributeData(2, 8 * sizeof(float), 6 * sizeof(float)));
     return vertexAttribs;
 }

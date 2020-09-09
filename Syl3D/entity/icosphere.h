@@ -8,9 +8,9 @@ namespace entity
 	class IcoSphere : public Entity
 	{
 	public:
-		IcoSphere(int recursionLevel = 3);
+		IcoSphere(int recursionLevel = 3, std::string shaderName = "default");
 
-		IcoSphere(math::Vec3 startingPos, int recursionLevel = 3);
+		IcoSphere(math::Vec3 startingPos, int recursionLevel = 3, std::string shaderName = "default");
 
 		void draw() override;
 
