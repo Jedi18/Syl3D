@@ -6,32 +6,32 @@ TerrainMesh::TerrainMesh(utility::HeightmapData& heightmapData) {
     int rows = heightmapData.rows;
     int cols = heightmapData.cols;
 
-    std::vector<math::Vec3> vertices((rows + 1) * (cols + 1));
-    std::vector<math::Vec3> normals((rows + 1) * (cols + 1));
+    std::vector<math::Vec3> vertices((size_t)rows * (size_t)cols);
+    std::vector<math::Vec3> normals((size_t)rows * (size_t)cols);
 
-    int index = 0;
-    for (int i = 0; i <= cols; i++) {
-        for (int j = 0; j <= rows; j++) {
+    size_t index = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
             float val = heightmapData.heightmap[i + j * cols];
-            vertices[index] = math::Vec3((((float)j / (float)rows) - 0.5f) * 2.0f, val, (((float)i/(float)cols) - 0.5f) * 2.0f);
+            vertices[index] = math::Vec3((float)i / (float)rows * 2.0f, val, (float)j/(float)cols * 2.0f);
             normals[index] = math::Vec3(0.0f, 0.0f, 0.0f);
             index++;
         }
     }
 
-    indices_size = rows * cols * 6;
+    indices_size = (rows-1) * (cols-1) * 6;
     _indices = new unsigned int[indices_size];
     index = 0;
 
-    for (int i = 0; i < cols; i++) {
-        for (int j = 0; j < rows; j++) {
-            _indices[index] = i * (rows + 1) + j;
-            _indices[index + 1] = (i + 1) * (rows + 1) + j;
-            _indices[index + 2] = (i + 1) * (rows + 1) + (j + 1);
+    for (int i = 0; i < rows-1; i++) {
+        for (int j = 0; j < cols-1; j++) {
+            _indices[index + 0] = i * cols + j;
+            _indices[index + 1] = (i + 1) * cols + j;
+            _indices[index + 2] = (i + 1) * cols + (j + 1);
 
-            _indices[index + 3] = i * (rows + 1) + j;
-            _indices[index + 4] = (i + 1) * (rows + 1) + (j + 1);
-            _indices[index + 5] = i * (rows + 1) + (j + 1);
+            _indices[index + 3] = i * cols + j;
+            _indices[index + 4] = (i + 1) * cols + (j + 1);
+            _indices[index + 5] = i * cols + (j + 1);
 
             math::Vec3 norm1 = getTriangleNormal(vertices[_indices[index]], vertices[_indices[index + 1]], vertices[_indices[index + 2]]);
             norm1.normalize();
@@ -95,9 +95,9 @@ void TerrainMesh::storeInVertices(std::vector<math::Vec3>& verts, std::vector<ma
     for (int j = 0; j < n; j++) {
         normals[j].normalize();
 
-        _vertices[i] = verts[j].x;
-        _vertices[i + 1] = verts[j].y;
-        _vertices[i + 2] = verts[j].z;
+        _vertices[i] = verts[j].x - 1.0f;
+        _vertices[i + 1] = verts[j].y - 1.0f;
+        _vertices[i + 2] = verts[j].z - 1.0f;
         _vertices[i + 3] = normals[j].x;
         _vertices[i + 4] = normals[j].y;
         _vertices[i + 5] = normals[j].z;
@@ -113,5 +113,5 @@ math::Vec3 TerrainMesh::getTriangleNormal(math::Vec3 vert1, math::Vec3 vert2, ma
     vert3 += math::Vec3(1.0f, 1.0f, 1.0f);
     math::Vec3 ab = vert2 - vert1;
     math::Vec3 ac = vert3 - vert1;
-    return math::Vec3::cross(vert2, vert3);
+    return math::Vec3::cross(vert3, vert2);
 }

@@ -12,7 +12,7 @@ HeightmapData HeightmapGenerator::ProceduralHeightmap(const unsigned int rows, c
     const double fy = cols / frequency;
 
     HeightmapData heightmapData;
-    heightmapData.heightmap = new float[(rows + 1) * (cols + 1)];
+    heightmapData.heightmap = new float[(size_t)(rows + 1) * (size_t)(cols + 1)];
     heightmapData.rows = rows;
     heightmapData.cols = cols;
     heightmapData.tilingX = rows;
@@ -34,12 +34,12 @@ HeightmapData HeightmapGenerator::LoadHeightmapFromFile(const std::string& heigh
     unsigned char* data = stbi_load(heightmapFile.c_str(), &width, &height, &nrChannels, 0);
 
     HeightmapData heightmapData;
-    heightmapData.rows = width-1;
-    heightmapData.cols = height-1;
-    heightmapData.tilingX = width - 1;
-    heightmapData.tilingY = height - 1;
+    heightmapData.rows = width;
+    heightmapData.cols = height;
+    heightmapData.tilingX = width;
+    heightmapData.tilingY = height;
 
-    heightmapData.heightmap = new float[width * height];
+    heightmapData.heightmap = new float[(size_t)width * (size_t)height];
     if (data) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {

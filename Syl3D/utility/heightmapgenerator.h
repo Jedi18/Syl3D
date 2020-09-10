@@ -7,8 +7,8 @@ namespace utility
 	struct HeightmapData
 	{
 		float* heightmap;
-		unsigned int rows;
-		unsigned int cols;
+		int rows;
+		int cols;
 		float tilingX;
 		float tilingY;
 	};

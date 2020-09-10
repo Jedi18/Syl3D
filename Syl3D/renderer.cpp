@@ -57,7 +57,7 @@ void Renderer::initialize(float window_width, float window_height) {
 	}
 
 	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
-	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/test2.png");
+	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/test3.png");
 	
 	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData, "phongShader");
 	terrain1->setTexture(_texMaterial);
