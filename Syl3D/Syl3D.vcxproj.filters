@@ -244,5 +244,6 @@
     <None Include="shaders\phongfragment.shader" />
     <None Include="shaders\gouradfragment.shader" />
     <None Include="shaders\gouradvertex.shader" />
+    <None Include="shaders\terrainfragment.shader" />
   </ItemGroup>
 </Project>

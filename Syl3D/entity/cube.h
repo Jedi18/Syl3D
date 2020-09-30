@@ -14,6 +14,8 @@ namespace entity
 
 		void draw() override;
 
+		bool intersects(math::Vec3 raycenter, math::Vec3 raydirection);
+
 	private:
 		mesh::CubeMesh _cube;
 	};

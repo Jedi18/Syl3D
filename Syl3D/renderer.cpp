@@ -10,6 +10,10 @@
 #include "color.h"
 #include <iostream>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 Renderer::Renderer() 
 	:
 	_freeCamera(std::make_shared<FreeCamera>()),
@@ -38,10 +42,19 @@ void Renderer::initialize(float window_width, float window_height) {
 	};
 
 	_shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
+	_shaderManager->addShader("terrainShader", "shaders/phongvertex.shader", "shaders/terrainfragment.shader");
 
 	std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
-	_texMaterial->addTexture("material.diffuse", "resources/container2.png", true);
-	_texMaterial->addTexture("material.specular", "resources/container2_specular.png", true);
+	_texMaterial->addTexture("material.diffuse", "resources/container2.png");
+	_texMaterial->addTexture("material.specular", "resources/container2_specular.png");
+
+	_wallMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
+	_wallMaterial->addTexture("material.diffuse", "resources/wall.jpg");
+	_wallMaterial->addTexture("material.specular", "resources/container2_specular.png");
+
+	std::shared_ptr<TextureMaterial> _terrainTex = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("terrainShader"));
+	_terrainTex->addTexture("material.diffuse", "resources/snowtex.png");
+	_terrainTex->addTexture("material.specular", "resources/container2_specular.png");
 	
 	/*std::shared_ptr<TextureMaterial> _uvMat = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
 	_uvMat->addTexture("material.diffuse", "resources/sphcol.jpg", false);
@@ -54,15 +67,17 @@ void Renderer::initialize(float window_width, float window_height) {
 		cube->rotateAround(glm::radians(angle), math::Vec3(1.0f, 0.3f, 0.5f));
 		cube->setTexture(_texMaterial);
 		_entityContainer.addEntity("cube" + std::to_string(i), cube);
+
+		_cubes.push_back(cube);
 	}
 
 	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
-	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/test3.png");
+	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/snow1.png");
 	
-	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData, "phongShader");
-	terrain1->setTexture(_texMaterial);
+	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData, "terrainShader");
+	terrain1->setTexture(_terrainTex);
 	terrain1->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
-	terrain1->scale(10);
+	terrain1->scale(20);
 	_entityContainer.addEntity("terrain1", terrain1);
 
 	_spotLight = std::make_shared<light::SpotLight>(_freeCamera->cameraPosition(), _freeCamera->cameraFrontDirection(), shading::Color(0.8f, 0.8f, 0.8f));
@@ -78,17 +93,21 @@ void Renderer::render() {
 	glClearColor(0.2f, 0.3f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//_entityContainer.lightPos = math::Vec3(1.0f + sin(glfwGetTime()) * 10.0f, 0, sin(glfwGetTime() / 2.0f) * 10.0f);
-	//lamp->translateTo(math::Vec3(1.0f + sin(glfwGetTime()) * 10.0f, 0, sin(glfwGetTime() / 2.0f) * 10.0f));
-
 	_spotLight->setPosition(_freeCamera->cameraPosition());
 	_spotLight->setDirection(_freeCamera->cameraFrontDirection());
 	_entityContainer.drawEntities();
-
-	//_shaderProgram.setMat4("model", terrain->modelMatrix());
-	//terrain->draw();
 }
 
 void Renderer::updateWindowDimensions(float window_width, float window_height) {
 	_freeCamera->updateWindowDimensions(window_width, window_height);
+}
+
+void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
+	for (std::shared_ptr<entity::Cube> cube : _cubes) {
+		if (cube->intersects(_freeCamera->cameraPosition(), mouseRay)) {
+			//cube->highlight(true);
+			//std::cout << cube->position() << '\n';
+			cube->setTexture(_wallMaterial);
+		}
+	}
 }

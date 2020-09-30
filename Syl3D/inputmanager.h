@@ -16,6 +16,8 @@ public:
 
 	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
+	void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
+
 private:
 	Renderer* _renderer;
 	float deltaTime = 0.0f;
@@ -24,4 +26,5 @@ private:
 	float lastX = 400;
 	float lastY = 300;
 	bool firstMouse = true;
+	bool selectMode;
 };

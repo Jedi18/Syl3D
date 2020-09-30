@@ -20,7 +20,7 @@ TextureMaterial::TextureMaterial(std::shared_ptr<ShaderProgram> shaderProgram)
 	_shaderProgram(shaderProgram)
 {}
 
-void TextureMaterial::addTexture(std::string textureName, std::string textureFile, bool rgba, bool flipVertical) {
+void TextureMaterial::addTexture(std::string textureName, std::string textureFile, bool flipVertical) {
 	GLuint texture1;
 	glGenTextures(1, &texture1);
 	glBindTexture(GL_TEXTURE_2D, texture1);
@@ -37,17 +37,18 @@ void TextureMaterial::addTexture(std::string textureName, std::string textureFil
 		stbi_set_flip_vertically_on_load(false);
 	}
 
-	int width, height, nrChannels;
+	int width, height, nrChannels = 4;
 	unsigned char* data = stbi_load(textureFile.c_str(), &width, &height, &nrChannels, 0);
 
 	if (data) {
-		if (rgba) {
+		if (nrChannels == 4) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
 		}
-		else {
+		else if (nrChannels == 3) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
 		}
-		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else {
 		std::cout << "Failed to load the texture" << std::endl;

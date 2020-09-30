@@ -2,7 +2,8 @@
 
 InputManager::InputManager(Renderer* rend) 
 	:
-	_renderer(rend)
+	_renderer(rend),
+	selectMode(false)
 {}
 
 void InputManager::processInput(GLFWwindow* window) {
@@ -40,16 +41,34 @@ void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
 		firstMouse = false;
 	}
 
-	float xoffset = (float)(xpos - lastX);
-	float yoffset = (float)(lastY - ypos);
-	lastX = (float)xpos;
-	lastY = (float)ypos;
+	if (selectMode) {
+		glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xpos, ypos);
+		_renderer->mouseRayIntersections(math::Vec3(mouseRay.x, mouseRay.y, mouseRay.z));
+	}
+	else {
+		float xoffset = (float)(xpos - lastX);
+		float yoffset = (float)(lastY - ypos);
+		lastX = (float)xpos;
+		lastY = (float)ypos;
 
-	_renderer->_freeCamera->mouseMovement(xoffset, yoffset);
-	//glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xoffset, yoffset);
-	//std::cout << "(" << mouseRay.x << ", " << mouseRay.y << ", " << mouseRay.z << ")\n";
+		_renderer->_freeCamera->mouseMovement(xoffset, yoffset);
+	}
 }
 
 void InputManager::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 	_renderer->_freeCamera->mouseScrolled((float)xoffset, (float)yoffset);
+}
+
+void InputManager::keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods) {
+	if (key == GLFW_KEY_P && action == GLFW_PRESS) {
+		if (selectMode) {
+			selectMode = false;
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			firstMouse = true;
+		}
+		else {
+			selectMode = true;
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		}
+	}
 }

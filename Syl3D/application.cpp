@@ -48,9 +48,15 @@ bool Application::initialize() {
 		static_cast<Application*>(glfwGetWindowUserPointer(wind))->scrollCallback(wind, xoffset, yoffset);
 	};
 
+	auto keyCallbackFunc = [](GLFWwindow* wind, int key, int scancode, int action, int mods)
+	{
+		static_cast<Application*>(glfwGetWindowUserPointer(wind))->keyCallback(wind, key, scancode, action, mods);
+	};
+
 	glfwSetFramebufferSizeCallback(_window, frameBufferFunc);
 	glfwSetCursorPosCallback(_window, mouseCallbackFunc);
 	glfwSetScrollCallback(_window, scrollCallbackFunc);
+	glfwSetKeyCallback(_window, keyCallbackFunc);
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	return true;
 }
@@ -79,4 +85,8 @@ void Application::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
 
 void Application::scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
 	_inputManager.scrollCallback(window, xoffset, yoffset);
+}
+
+void Application::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+	_inputManager.keyCallback(window, key, scancode, action, mods);
 }

@@ -28,20 +28,16 @@ void EntityContainer::drawEntities() {
 		_shaderManager->useShader(iter->first);
 		std::shared_ptr<ShaderProgram> shaderProgram = _shaderManager->currentShader();
 
-		if (iter->first == "phongShader") {
-			shaderProgram->setFloat("material.shininess", 32.0f);
-			shaderProgram->setVec3("viewPos", _freeCamera->cameraPosition());
+		shaderProgram->setFloat("material.shininess", 32.0f);
+		shaderProgram->setVec3("viewPos", _freeCamera->cameraPosition());
 
-			setLightUniforms(shaderProgram);
-		}
+		setLightUniforms(shaderProgram);
 
 		shaderProgram->setMat4("view", viewMatrix);
 		shaderProgram->setMat4("projection", projectionMatrix);
 
 		for (std::shared_ptr<entity::Entity> ptr : iter->second) {
-			if (iter->first == "phongShader") {
-				ptr->activateTexture();
-			}
+			ptr->activateTexture();
 			glm::mat4 modelMatrix = ptr->modelMatrix();
 			shaderProgram->setMat4("model", modelMatrix);
 			shaderProgram->setMat4("normalMatrix", glm::transpose(glm::inverse(modelMatrix)));

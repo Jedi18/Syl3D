@@ -14,7 +14,7 @@ class TextureMaterial
 public:
 	TextureMaterial(std::shared_ptr<ShaderProgram> shaderProgram);
 
-	void addTexture(std::string textureName, std::string textureFile, bool rgba = false, bool flipVertical = false);
+	void addTexture(std::string textureName, std::string textureFile, bool flipVertical = false);
 
 	void setShaderProgram(std::shared_ptr<ShaderProgram> shaderProgram);
 

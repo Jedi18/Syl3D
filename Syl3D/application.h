@@ -28,6 +28,8 @@ private:
 
 	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
+	void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+
 private:
 	GLFWwindow* _window;
 	Renderer _renderer;

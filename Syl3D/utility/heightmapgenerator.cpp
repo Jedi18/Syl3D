@@ -36,8 +36,8 @@ HeightmapData HeightmapGenerator::LoadHeightmapFromFile(const std::string& heigh
     HeightmapData heightmapData;
     heightmapData.rows = width;
     heightmapData.cols = height;
-    heightmapData.tilingX = width;
-    heightmapData.tilingY = height;
+    heightmapData.tilingX = 1;
+    heightmapData.tilingY = 1;
 
     heightmapData.heightmap = new float[(size_t)width * (size_t)height];
     if (data) {

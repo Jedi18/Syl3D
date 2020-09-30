@@ -35,6 +35,8 @@ public:
 
 	void updateWindowDimensions(float window_width, float window_height);
 
+	void mouseRayIntersections(math::Vec3 mouseRay);
+
 	std::shared_ptr<FreeCamera> _freeCamera;
 	MousePicker _mousePicker;
 
@@ -42,4 +44,7 @@ private:
 	std::shared_ptr<ShaderManager> _shaderManager;
 	EntityContainer _entityContainer;
 	std::shared_ptr<light::SpotLight> _spotLight;
+
+	std::vector<std::shared_ptr<entity::Cube>> _cubes;
+	std::shared_ptr<TextureMaterial> _wallMaterial;
 };
