@@ -103,10 +103,9 @@ void Renderer::updateWindowDimensions(float window_width, float window_height) {
 }
 
 void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
+	math::Ray ray(_freeCamera->cameraPosition(), mouseRay);
 	for (std::shared_ptr<entity::Cube> cube : _cubes) {
-		if (cube->intersects(_freeCamera->cameraPosition(), mouseRay)) {
-			//cube->highlight(true);
-			//std::cout << cube->position() << '\n';
+		if (cube->intersects(ray)) {
 			cube->setTexture(_wallMaterial);
 		}
 	}

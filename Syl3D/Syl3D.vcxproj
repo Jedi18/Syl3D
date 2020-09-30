@@ -150,6 +150,7 @@
     <ClCompile Include="entity\cube.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\icosphere.cpp" />
+    <ClCompile Include="entity\model.cpp" />
     <ClCompile Include="entity\rectangle.cpp" />
     <ClCompile Include="entity\terrain.cpp" />
     <ClCompile Include="entity\triangle.cpp" />
@@ -159,8 +160,11 @@
     <ClCompile Include="lights\pointlight.cpp" />
     <ClCompile Include="lights\spotlight.cpp" />
     <ClCompile Include="math\perlinnoise.cpp" />
+    <ClCompile Include="math\ray.cpp" />
+    <ClCompile Include="mesh\modelmesh.cpp" />
     <ClCompile Include="mousepicker.cpp" />
     <ClCompile Include="shadermanager.cpp" />
+    <ClCompile Include="collisions\SphereBB.cpp" />
     <ClCompile Include="utility\heightmapgenerator.cpp" />
     <ClCompile Include="vendor\glad.c" />
     <ClCompile Include="inputmanager.cpp" />
@@ -180,11 +184,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="collisions\BoundingBox.h" />
     <ClInclude Include="color.h" />
     <ClInclude Include="entitycontainer.h" />
     <ClInclude Include="entity\cube.h" />
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\icosphere.h" />
+    <ClInclude Include="entity\model.h" />
     <ClInclude Include="entity\terrain.h" />
     <ClInclude Include="entity\triangle.h" />
     <ClInclude Include="entity\uvsphere.h" />
@@ -196,10 +202,12 @@
     <ClInclude Include="lights\spotlight.h" />
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\perlinnoise.h" />
+    <ClInclude Include="math\ray.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\cubemesh.h" />
     <ClInclude Include="mesh\icospheremesh.h" />
     <ClInclude Include="mesh\mesh.h" />
+    <ClInclude Include="mesh\modelmesh.h" />
     <ClInclude Include="mesh\rectanglemesh.h" />
     <ClInclude Include="mesh\terrainmesh.h" />
     <ClInclude Include="mesh\trianglemesh.h" />
@@ -210,6 +218,7 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadermanager.h" />
     <ClInclude Include="shaderprogram.h" />
+    <ClInclude Include="collisions\SphereBB.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texturematerial.h" />
     <ClInclude Include="utility\heightmapgenerator.h" />

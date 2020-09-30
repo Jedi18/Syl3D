@@ -17,7 +17,7 @@ float Vec3::mag() const {
 	return std::sqrt(x * x + y * y + z * z);
 }
 
-Vec3 Vec3::operator + (const Vec3& other) {
+Vec3 Vec3::operator + (const Vec3& other) const {
 	return Vec3(x + other.x, y + other.y, z + other.z);
 }
 
@@ -28,7 +28,7 @@ Vec3& Vec3::operator += (const Vec3& other) {
 	return *this;
 }
 
-Vec3 Vec3::operator * (float k) {
+Vec3 Vec3::operator * (float k) const {
 	return Vec3(x * k, y * k, z * k);
 }
 
@@ -56,7 +56,7 @@ std::ostream& math::operator << (std::ostream& o, const Vec3& vec) {
 	return o;
 }
 
-Vec3 Vec3::operator - (const Vec3& other) {
+Vec3 Vec3::operator - (const Vec3& other) const {
 	return Vec3(x - other.x, y - other.y, z - other.z);
 }
 

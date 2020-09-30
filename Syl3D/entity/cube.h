@@ -2,6 +2,7 @@
 
 #include "entity.h"
 #include "../mesh/cubemesh.h"
+#include "../collisions/SphereBB.h"
 
 namespace entity
 {
@@ -14,9 +15,10 @@ namespace entity
 
 		void draw() override;
 
-		bool intersects(math::Vec3 raycenter, math::Vec3 raydirection);
+		bool intersects(const math::Ray& ray) const;
 
 	private:
 		mesh::CubeMesh _cube;
+		collisions::SphereBB _boundingBox;
 	};
 }
