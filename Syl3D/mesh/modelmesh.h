@@ -9,6 +9,8 @@ namespace mesh
 	public:
 		ModelMesh();
 
+		ModelMesh(const std::vector<float>& verts, const std::vector<unsigned int>& inds);
+
 		~ModelMesh();
 
 		float* vertices() override;
@@ -20,6 +22,10 @@ namespace mesh
 		size_t numIndices() override;
 
 		std::vector<VertexAttributeData> vertexAttributes() override;
+
+		void setVertices(const std::vector<float>& verts);
+
+		void setIndices(const std::vector<unsigned int>& inds);
 
 	private:
 		float* _vertices;

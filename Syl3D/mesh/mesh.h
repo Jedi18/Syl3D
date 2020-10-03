@@ -1,9 +1,18 @@
 #pragma once
 
 #include <vector>
+#include "../math/vec2.h"
+#include "../math/vec3.h"
 
 namespace mesh
 {
+	struct Vertex
+	{
+		math::Vec3 position;
+		math::Vec3 normal;
+		math::Vec2 textureCoords;
+	};
+
 	struct VertexAttributeData
 	{
 		VertexAttributeData(unsigned int size_in, size_t stride_in, size_t pointer_in) {
