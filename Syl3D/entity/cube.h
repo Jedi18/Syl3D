@@ -18,7 +18,7 @@ namespace entity
 		bool intersects(const math::Ray& ray) const;
 
 	private:
-		mesh::CubeMesh _cube;
+		std::shared_ptr<mesh::CubeMesh> _cube;
 		collisions::SphereBB _boundingBox;
 	};
 }

@@ -30,5 +30,7 @@ namespace mesh
 	private:
 		float* _vertices;
 		unsigned int* _indices;
+		size_t _numVertices;
+		size_t _numIndices;
 	};
 }

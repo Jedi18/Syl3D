@@ -13,6 +13,6 @@ namespace entity
 		void draw() override;
 
 	private:
-		mesh::TriangleMesh _triangle;
+		std::shared_ptr<mesh::TriangleMesh> _triangle;
 	};
 }

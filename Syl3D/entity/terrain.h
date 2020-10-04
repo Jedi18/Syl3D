@@ -15,6 +15,6 @@ namespace entity
 		void draw() override;
 
 	private:
-		mesh::TerrainMesh _terrain;
+		std::shared_ptr<mesh::TerrainMesh> _terrain;
 	};
 }

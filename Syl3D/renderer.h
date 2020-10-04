@@ -11,6 +11,9 @@
 #include "entity/uvsphere.h"
 #include "entity/icosphere.h"
 #include "entity/terrain.h"
+#include "entity/model.h"
+
+#include "utility/modelfactory.h"
 
 #include "lights/pointlight.h"
 #include "lights/directionallight.h"

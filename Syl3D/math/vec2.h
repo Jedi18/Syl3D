@@ -9,7 +9,7 @@ namespace math
 	public:
 		Vec2();
 
-		Vec2(float x, float y;
+		Vec2(float x, float y);
 
 		float mag() const;
 

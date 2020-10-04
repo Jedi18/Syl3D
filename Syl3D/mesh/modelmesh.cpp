@@ -35,33 +35,35 @@ unsigned int* ModelMesh::indices() {
 }
 
 size_t ModelMesh::numVertices() {
-    return 0 * sizeof(float);
+    return _numVertices * sizeof(float);
 }
 
 size_t ModelMesh::numIndices() {
-    return 0;
+    return _numIndices * sizeof(unsigned int);
 }
 
 std::vector<VertexAttributeData> ModelMesh::vertexAttributes() {
     std::vector<VertexAttributeData> vertexAttribs;
+    vertexAttribs.push_back(VertexAttributeData(3, 8 * sizeof(float), 0));
+    vertexAttribs.push_back(VertexAttributeData(3, 8 * sizeof(float), 3 * sizeof(float)));
+    vertexAttribs.push_back(VertexAttributeData(2, 8 * sizeof(float), 6 * sizeof(float)));
     return vertexAttribs;
 }
 
-
 void ModelMesh::setVertices(const std::vector<float>& verts) {
-    size_t n = verts.size();
-    _vertices = new float[n];
+    _numVertices = verts.size();
+    _vertices = new float[_numVertices];
 
-    for (size_t i = 0; i < n; i++) {
+    for (size_t i = 0; i < _numVertices; i++) {
         _vertices[i] = verts[i];
     }
 }
 
 void ModelMesh::setIndices(const std::vector<unsigned int>& inds) {
-    size_t n = inds.size();
-    _indices = new unsigned int[n];
+    _numIndices = inds.size();
+    _indices = new unsigned int[_numIndices];
 
-    for (size_t i = 0; i < n; i++) {
+    for (size_t i = 0; i < _numIndices; i++) {
         _indices[i] = inds[i];
     }
 }

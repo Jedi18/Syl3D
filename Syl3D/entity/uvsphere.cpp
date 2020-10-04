@@ -5,9 +5,9 @@ using namespace entity;
 UVSphere::UVSphere(int parallels, int meridians, std::string shaderName)
 	:
 	Entity(shaderName),
-	_sphere(parallels, meridians)
+	_sphere(std::make_shared<mesh::UVSphereMesh>(parallels, meridians))
 {
-	this->initialize(&_sphere);
+	this->initialize({ std::static_pointer_cast<mesh::Mesh>(_sphere) });
 }
 
 UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians, std::string shaderName)
@@ -19,7 +19,7 @@ UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians, std::st
 
 void UVSphere::draw() {
 	if (_usesEBO) {
-		glBindVertexArray(_VAO);
-		glDrawElements(GL_TRIANGLES, _sphere.numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
+		glBindVertexArray(_VAOs[0]);
+		glDrawElements(GL_TRIANGLES, _sphere->numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 	}
 }

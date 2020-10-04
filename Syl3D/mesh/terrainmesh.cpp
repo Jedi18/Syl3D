@@ -3,6 +3,8 @@
 using namespace mesh;
 
 TerrainMesh::TerrainMesh(utility::HeightmapData& heightmapData) {
+    _vertices = nullptr;
+    _indices = nullptr;
     int rows = heightmapData.rows;
     int cols = heightmapData.cols;
 

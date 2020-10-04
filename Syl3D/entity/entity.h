@@ -5,6 +5,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <vector>
 
 #include "../mesh/mesh.h"
 #include "../math/vec3.h"
@@ -19,7 +20,7 @@ namespace entity
 	public:
 		Entity(std::string shaderName = "default");
 
-		void initialize(mesh::Mesh* mesh);
+		void initialize(const std::vector<std::shared_ptr<mesh::Mesh>>& mesh);
 
 		virtual void draw() = 0;
 
@@ -58,7 +59,7 @@ namespace entity
 		void activateTexture();
 
 	protected:
-		unsigned int _VAO;
+		std::vector<unsigned int> _VAOs;
 		bool _usesEBO;
 		math::Vec3 _pos;
 		math::Vec3 _scale;

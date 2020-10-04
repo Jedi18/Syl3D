@@ -15,6 +15,6 @@ namespace entity
 		void draw() override;
 
 	private:
-		mesh::UVSphereMesh _sphere;
+		std::shared_ptr<mesh::UVSphereMesh> _sphere;
 	};
 }

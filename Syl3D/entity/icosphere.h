@@ -15,6 +15,6 @@ namespace entity
 		void draw() override;
 
 	private:
-		mesh::IcoSphereMesh _sphere;
+		std::shared_ptr<mesh::IcoSphereMesh> _sphere;
 	};
 }
