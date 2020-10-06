@@ -80,14 +80,14 @@ void Renderer::initialize(float window_width, float window_height) {
 	terrain1->scale(20);
 	_entityContainer.addEntity("terrain1", terrain1);
 
-	std::shared_ptr<entity::Model> model1 = utility::ModelFactory::loadModel("resources/backpack/backpack.obj", "phongShader");
-	model1->setTexture(_texMaterial);
+	std::shared_ptr<entity::Model> model1 = utility::ModelFactory::loadModel("resources/backpack/backpack.obj", "phongShader", _shaderManager->shaderByName("phongShader"));
+	model1->translate(math::Vec3(0, -4, 0));
 	_entityContainer.addEntity("model1", model1);
 
 	_spotLight = std::make_shared<light::SpotLight>(_freeCamera->cameraPosition(), _freeCamera->cameraFrontDirection(), shading::Color(0.8f, 0.8f, 0.8f));
 
 	_entityContainer.addLight(std::make_shared<light::PointLight>(math::Vec3(0.7f, 0.2f, 2.0f), shading::Color(0.8f, 0.8f, 0.8f)));
-	_entityContainer.addLight(std::make_shared<light::DirectionalLight>(math::Vec3(-0.2f, -1.0f, -0.3f), shading::Color(0.4f, 0.4f, 0.4f)));
+	_entityContainer.addLight(std::make_shared<light::DirectionalLight>(math::Vec3(-0.2f, -1.0f, -0.3f), shading::Color(0.7f, 0.7f, 0.7f)));
 	_entityContainer.addLight(_spotLight);
 
 	updateWindowDimensions(window_width, window_height);

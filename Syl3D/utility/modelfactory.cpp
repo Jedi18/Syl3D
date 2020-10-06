@@ -2,7 +2,9 @@
 
 using namespace utility;
 
-std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, const std::string& shaderName) {
+std::map<std::string, ModelFactory::TexturePath> ModelFactory::textures;
+
+std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, const std::string& shaderName, std::shared_ptr<ShaderProgram> shaderProgram) {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -11,11 +13,25 @@ std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, 
 		throw std::exception("Assimp Loading Error");
 	}
 
+	textures.clear();
 	std::vector<std::shared_ptr<mesh::ModelMesh>> meshes;
 	std::string directory = path.substr(0, path.find_last_of('/'));
 	processNode(scene->mRootNode, scene, meshes);
 
-	return std::make_shared<entity::Model>(meshes, shaderName);
+	std::shared_ptr<TextureMaterial> _modelTex = std::make_shared<TextureMaterial>(shaderProgram);
+	for (auto texture : textures) {
+		if (texture.second.type == "texture_diffuse") {
+			_modelTex->addTexture("material.diffuse", directory + "/" + texture.first);
+		}
+
+		if (texture.second.type == "texture_specular") {
+			_modelTex->addTexture("material.specular", directory + "/" + texture.first);
+		}
+	}
+
+	std::shared_ptr<entity::Model> model = std::make_shared<entity::Model>(meshes, shaderName);
+	model->setTexture(_modelTex);
+	return model;
 }
 
 void ModelFactory::processNode(aiNode* node, const aiScene* scene, std::vector<std::shared_ptr<mesh::ModelMesh>>& meshes) {
@@ -59,6 +75,16 @@ std::shared_ptr<mesh::ModelMesh> ModelFactory::processMesh(aiMesh* mesh, const a
 		}
 	}
 
+	if (mesh->mMaterialIndex >= 0) {
+		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+
+		std::vector<TexturePath> diffuseMaps = loadMaterialTexture(material, aiTextureType_DIFFUSE, "texture_diffuse");
+		std::vector<TexturePath> specularMaps = loadMaterialTexture(material, aiTextureType_SPECULAR, "texture_specular");
+
+		//std::cout << "Diffuse maps length - " << diffuseMaps.size() << '\n';
+		//std::cout << "Specular maps length - " << specularMaps.size() << '\n';
+	}
+
 	std::vector<float> verts = convertVertexesToFloatVector(vertices);
 	return std::make_shared<mesh::ModelMesh>(verts, indices);
 }
@@ -80,4 +106,24 @@ std::vector<float> ModelFactory::convertVertexesToFloatVector(const std::vector<
 		vertices[i * 8 + 7] = vertexes[i].textureCoords.y;
 	}
 	return vertices;
+}
+
+std::vector<ModelFactory::TexturePath> ModelFactory::loadMaterialTexture(aiMaterial* material, aiTextureType type, const std::string& typeName) {
+	std::vector<TexturePath> texturesList;
+
+	for (unsigned int i = 0; i < material->GetTextureCount(type); i++) {
+		aiString str;
+		material->GetTexture(type, i, &str);
+		std::string texturePath(str.C_Str());
+
+		if (textures.find(texturePath) == textures.end()) {
+			textures[texturePath] = TexturePath();
+			textures[texturePath].path = texturePath;
+			textures[texturePath].type = typeName;
+		}
+
+		texturesList.push_back(textures[texturePath]);
+	}
+
+	return texturesList;
 }
