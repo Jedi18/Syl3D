@@ -10,21 +10,21 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
+-->
 
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/Jedi18/Syl3D">
+  <!-- <a href="https://github.com/Jedi18/Syl3D">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  </a> -->
 
   <h3 align="center">Syl3D</h3>
 
@@ -75,7 +75,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[Syl3D](Jedi18.github.com/Syl3D/img/syl3d4.png)
 
 Syl3D so far supports meshes, textures, terrain (procedural and using heightmaps), lighting, mouse picking using ray intersections. There are a lot more things that could be added.
 
@@ -111,7 +111,15 @@ You need the following to build and run the project successfully.
    git clone https://github.com/Jedi18/Syl3D.git
    ```
 
+2. Compile GLFW from the source code or use the pre-compiled binaries from https://www.glfw.org/download.html . Use [this page](https://learnopengl.com/Getting-started/Creating-a-window) for help.
 
+3. Use GLAD's [web service] (http://glad.dav1d.de/) to get the desired files. Use [this page](https://learnopengl.com/Getting-started/Creating-a-window) for help.
+
+4. Compile or use pre-compiled binaries for [Assimp](http://assimp.org/index.php/downloads) . Use [this page](https://learnopengl.com/Model-Loading/Assimp) for help.
+
+5. Add the relevant files for GLFW, GLAD and Assimp to the project's include and linker dependencies in the project settings.
+
+6. Run the application!
 
 <!-- USAGE EXAMPLES
 ## Usage
