@@ -75,9 +75,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Syl3D](Jedi18.github.com/Syl3D/img/syl3d4.png)
+![Syl3D](img/syl3d4.PNG)
 
-Syl3D so far supports meshes, textures, terrain (procedural and using heightmaps), lighting, mouse picking using ray intersections. There are a lot more things that could be added.
+Syl3D so far supports meshes, textures, terrain (procedural and using heightmaps), lighting, basic camera movement, mouse picking using ray intersections. There are a lot more things that could be added.
 
 
 ### Built With
@@ -113,11 +113,11 @@ You need the following to build and run the project successfully.
 
 2. Compile GLFW from the source code or use the pre-compiled binaries from https://www.glfw.org/download.html . Use [this page](https://learnopengl.com/Getting-started/Creating-a-window) for help.
 
-3. Use GLAD's [web service] (http://glad.dav1d.de/) to get the desired files. Use [this page](https://learnopengl.com/Getting-started/Creating-a-window) for help.
+3. Use GLAD's [web service](http://glad.dav1d.de/) to get the desired files. Use [this page](https://learnopengl.com/Getting-started/Creating-a-window) for help.
 
 4. Compile or use pre-compiled binaries for [Assimp](http://assimp.org/index.php/downloads) . Use [this page](https://learnopengl.com/Model-Loading/Assimp) for help.
 
-5. Add the relevant files for GLFW, GLAD and Assimp to the project's include and linker dependencies in the project settings.
+5. Add the relevant files for GLFW, GLAD and Assimp to the project's include and linker dependencies in the project settings. Add the folder paths to the additional include directories under C/C++ and the lib files in Linker->Input.
 
 6. Run the application!
 
