@@ -13,6 +13,13 @@ namespace shading
 
 		explicit Color(int r, int g, int b);
 
+		Color operator+ (const Color& A);
+
+		Color operator- (const Color& A);
+
+		void operator= (const Color& A);
+
+
 	public:
 		float r;
 		float g;
