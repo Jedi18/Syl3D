@@ -3,7 +3,7 @@
 using namespace mesh;
 
 CubeMesh::CubeMesh() {
-    _vertices = new float [] {
+    _vertices = new float [8 * 36] {
         // positions          // normals           // texture coords
         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
         0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,

@@ -3,13 +3,13 @@
 using namespace mesh;
 
 TriangleMesh::TriangleMesh() {
-    _vertices = new float[] {
+    _vertices = new float[3 * 5] {
         -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
         0.5f, -0.5f, 0.0f, 0.5f, 1.0f,
         0.0f, 0.5f, 0.0f, 1.0f, 0.0f
     };
 
-    _indices = new unsigned int[] {
+    _indices = new unsigned int[3] {
         0, 1, 2
     };
 }
