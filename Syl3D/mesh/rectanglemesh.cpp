@@ -3,14 +3,14 @@
 using namespace mesh;
 
 RectangleMesh::RectangleMesh() {
-    _vertices = new float[20] {
+    _vertices = new float[5 * 4] {
         0.5f, 0.5f, 0.0f, 1.0f, 1.0f,   // top right
         0.5f, -0.5f, 0.0f, 1.0f, 0.0f,   // bottom right
        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,   // bottom left
        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f    // top left 
     };
 
-    _indices = new unsigned int[6] {
+    _indices = new unsigned int[3 * 2] {
         0, 1, 3,   // first triangle
         1, 2, 3    // second triangle
     };

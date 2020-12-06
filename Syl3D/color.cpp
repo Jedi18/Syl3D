@@ -22,6 +22,14 @@ Color::Color(int r, int g, int b)
 	r((float)r/255.0f), g((float)g/255.0f), b((float)b/255.0f)
 {}
 
+Color::Color(const Color& A)
+{
+	this->r = A.r;
+	this->b = A.b;
+	this->g = A.g;
+	this->a = A.a;
+}
+
 Color Color::operator+(const Color& A)
 {
 	Color temp;

@@ -3,7 +3,7 @@
 using namespace mesh;
 
 TriangleMesh::TriangleMesh() {
-    _vertices = new float[15] {
+    _vertices = new float[3 * 5] {
         -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
         0.5f, -0.5f, 0.0f, 0.5f, 1.0f,
         0.0f, 0.5f, 0.0f, 1.0f, 0.0f
