@@ -1,9 +1,15 @@
 #include "application.h"
 #include <iostream>
 
+#include "vendor/imgui/imgui.h"
+#include "vendor/imgui/imgui_impl_glfw.h"
+#include "vendor/imgui/imgui_impl_opengl3.h"
+
 const int Application::INIT_WINDOW_WIDTH = 800;
 const int Application::INIT_WINDOW_HEIGHT = 600;
 const char* Application::INIT_WINDOW_TITLE = "Syl3D";
+
+const char* glsl_version = "#version 330";
 
 Application::Application() 
 	:
@@ -64,13 +70,36 @@ bool Application::initialize() {
 void Application::run() {
 	_renderer.initialize(INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+	ImGui::StyleColorsClassic();
+	ImGui_ImplGlfw_InitForOpenGL(_window, true);
+	ImGui_ImplOpenGL3_Init(glsl_version);
+	bool show_demo_window = true;
+
 	while (!glfwWindowShouldClose(_window)) {
 		_inputManager.processInput(_window);
 		_renderer.render();
 
+		// Start the Dear ImGui frame
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+		ImGui::ShowDemoWindow(&show_demo_window);
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		glfwSwapBuffers(_window);
 		glfwPollEvents();
 	}
+
+	// Cleanup
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	glfwTerminate();
 }
