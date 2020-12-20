@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "shadermanager.h"
-#include "texturematerial.h"
+#include "texture/texturematerial.h"
 #include "entity/rectangle.h"
 #include "entity/triangle.h"
 #include "entity/cube.h"
@@ -21,7 +21,8 @@
 
 #include "freecamera.h"
 #include "mousepicker.h"
-#include "entitycontainer.h"
+#include "entity/entitycontainer.h"
+#include "entity/entityfactory.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -40,12 +41,15 @@ public:
 
 	void mouseRayIntersections(math::Vec3 mouseRay);
 
+	EntityFactory& entityFactory();
+
 	std::shared_ptr<FreeCamera> _freeCamera;
 	MousePicker _mousePicker;
 
 private:
 	std::shared_ptr<ShaderManager> _shaderManager;
 	EntityContainer _entityContainer;
+	EntityFactory _entityFactory;
 	std::shared_ptr<light::SpotLight> _spotLight;
 
 	std::vector<std::shared_ptr<entity::Cube>> _cubes;

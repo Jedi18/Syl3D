@@ -3,10 +3,10 @@
 #include <string>
 #include <memory>
 #include <vector>
-#include "entity/entity.h"
-#include "shadermanager.h"
-#include "freecamera.h"
-#include "lights/light.h"
+#include "entity.h"
+#include "../shadermanager.h"
+#include "../freecamera.h"
+#include "../lights/light.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

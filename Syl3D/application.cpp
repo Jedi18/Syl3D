@@ -9,12 +9,11 @@ const int Application::INIT_WINDOW_WIDTH = 800;
 const int Application::INIT_WINDOW_HEIGHT = 600;
 const char* Application::INIT_WINDOW_TITLE = "Syl3D";
 
-const char* glsl_version = "#version 330";
-
 Application::Application() 
 	:
 	_window(nullptr),
-	_inputManager(&_renderer)
+	_inputManager(&_renderer),
+	_guiManager(_renderer.entityFactory())
 {}
 
 bool Application::initialize() {
@@ -64,43 +63,27 @@ bool Application::initialize() {
 	glfwSetScrollCallback(_window, scrollCallbackFunc);
 	glfwSetKeyCallback(_window, keyCallbackFunc);
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+	_renderer.initialize(INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
+	_guiManager.initialize(_window);
+
 	return true;
 }
 
 void Application::run() {
-	_renderer.initialize(INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
-
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-
-	ImGui::StyleColorsClassic();
-	ImGui_ImplGlfw_InitForOpenGL(_window, true);
-	ImGui_ImplOpenGL3_Init(glsl_version);
-	bool show_demo_window = true;
-
 	while (!glfwWindowShouldClose(_window)) {
 		_inputManager.processInput(_window);
 		_renderer.render();
 
-		// Start the Dear ImGui frame
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-		ImGui::ShowDemoWindow(&show_demo_window);
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		if (_inputManager.selectMode) {
+			_guiManager.render();
+		}
 
 		glfwSwapBuffers(_window);
 		glfwPollEvents();
 	}
 
-	// Cleanup
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
-
+	_guiManager.cleanUp();
 	glfwTerminate();
 }
 

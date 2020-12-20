@@ -2,10 +2,11 @@
 #include "mesh/rectanglemesh.h"
 
 #include "utility/heightmapgenerator.h"
+#include "texture/texturefactory.h"
 
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
-#include "stb_image.h"
+#include "vendor/stb_image/stb_image.h"
 
 #include "color.h"
 #include <iostream>
@@ -41,20 +42,29 @@ void Renderer::initialize(float window_width, float window_height) {
 	math::Vec3(-1.3f,  1.0f, -1.5f)
 	};
 
+	TextureFactory* textureFactory = TextureFactory::textureFactory();
+	textureFactory->setShaderManager(_shaderManager);
+
 	_shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
 	_shaderManager->addShader("terrainShader", "shaders/phongvertex.shader", "shaders/terrainfragment.shader");
 
-	std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
-	_texMaterial->addTexture("material.diffuse", "resources/container2.png");
-	_texMaterial->addTexture("material.specular", "resources/container2_specular.png");
+	textureFactory->addShader("phongShader");
+	textureFactory->addShader("terrainShader");
 
-	_wallMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
+	//std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
+	//_texMaterial->addTexture("material.diffuse", "resources/container2.png");
+	//_texMaterial->addTexture("material.specular", "resources/container2_specular.png");
+	std::shared_ptr<TextureMaterial> _texMaterial = textureFactory->addTextureMaterial("texMaterial", "resources/container2.png", "resources/container2_specular.png");
+	_wallMaterial = textureFactory->addTextureMaterial("wallMaterial", "resources/wall.jpg", "resources/container2_specular.png");
+	/*_wallMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
 	_wallMaterial->addTexture("material.diffuse", "resources/wall.jpg");
-	_wallMaterial->addTexture("material.specular", "resources/container2_specular.png");
+	_wallMaterial->addTexture("material.specular", "resources/container2_specular.png");*/
 
-	std::shared_ptr<TextureMaterial> _terrainTex = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("terrainShader"));
+	/*std::shared_ptr<TextureMaterial> _terrainTex = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("terrainShader"));
 	_terrainTex->addTexture("material.diffuse", "resources/snowtex.png");
-	_terrainTex->addTexture("material.specular", "resources/container2_specular.png");
+	_terrainTex->addTexture("material.specular", "resources/container2_specular.png");*/
+
+	std::shared_ptr<TextureMaterial> _terrainTex = textureFactory->addTextureMaterial("terrainTex", "resources/snowtex.png", "resources/container2_specular.png", "terrainShader");
 	
 	/*std::shared_ptr<TextureMaterial> _uvMat = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
 	_uvMat->addTexture("material.diffuse", "resources/sphcol.jpg", false);
@@ -113,4 +123,8 @@ void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
 			cube->setTexture(_wallMaterial);
 		}
 	}
+}
+
+EntityFactory& Renderer::entityFactory() {
+	return _entityFactory;
 }

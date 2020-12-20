@@ -18,6 +18,9 @@ public:
 
 	void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 
+public:
+	bool selectMode;
+
 private:
 	Renderer* _renderer;
 	float deltaTime = 0.0f;
@@ -26,5 +29,4 @@ private:
 	float lastX = 400;
 	float lastY = 300;
 	bool firstMouse = true;
-	bool selectMode;
 };

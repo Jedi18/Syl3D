@@ -11,7 +11,7 @@
 #include "../math/vec3.h"
 #include "../math/const.h"
 
-#include "../texturematerial.h"
+#include "../texture/texturematerial.h"
 
 namespace entity
 {

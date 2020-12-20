@@ -1,6 +1,6 @@
 #include "texturematerial.h"
 
-#include "stb_image.h"
+#include "../vendor/stb_image/stb_image.h"
 
 #include <iostream>
 
