@@ -13,7 +13,7 @@ Application::Application()
 	:
 	_window(nullptr),
 	_inputManager(&_renderer),
-	_guiManager(_renderer.entityFactory())
+	_guiManager()
 {}
 
 bool Application::initialize() {

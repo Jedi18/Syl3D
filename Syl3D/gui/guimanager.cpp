@@ -2,10 +2,9 @@
 
 #include <iostream>
 
-GUIManager::GUIManager(EntityFactory& entityFactory)
-	:
-	entityFactory(entityFactory)
-{}
+#include "../entity/cube.h"
+#include "../entity/entityfactory.h"
+#include "../texture/texturefactory.h"
 
 void GUIManager::initialize(GLFWwindow* window) {
 	IMGUI_CHECKVERSION();
@@ -39,7 +38,12 @@ void GUIManager::toolsMenu() {
 	ImGui::Text("Add Entity");
 
 	if (ImGui::Button("Cube")) {
-		std::cout << "Add a cube!!!!!!!!!" << std::endl;
+		EntityFactory* entityFactory = EntityFactory::entityFactory();
+		TextureFactory* textureFactory = TextureFactory::textureFactory();
+		std::shared_ptr<entity::Cube> cube = std::dynamic_pointer_cast<entity::Cube>(entityFactory->addEntity(EntityFactory::EntityType::Cube));
+		cube->translateTo(math::Vec3(0.0f, 0.0f, 0.0f));
+		cube->scale(5);
+		cube->setTexture(textureFactory->getTextureMaterial("texMaterial"));
 	}
 
 	ImGui::End();

@@ -33,3 +33,13 @@ std::shared_ptr<TextureMaterial> TextureFactory::addTextureMaterial(const std::s
 	textureList[textureName] = _texMaterial;
 	return _texMaterial;
 }
+
+std::shared_ptr<TextureMaterial> TextureFactory::getTextureMaterial(const std::string& textureName) {
+	return textureList[textureName];
+}
+
+void TextureFactory::releaseInstance() {
+	if (_textureFactory != nullptr) {
+		delete _textureFactory;
+	}
+}

@@ -16,6 +16,10 @@ public:
 
 	static std::shared_ptr<TextureMaterial> addTextureMaterial(const std::string& textureName, const std::string& diffuseTex, const std::string& specularTex, std::string shaderName = "default");
 
+	static std::shared_ptr<TextureMaterial> getTextureMaterial(const std::string& textureName);
+
+	static void releaseInstance();
+
 private:
 	static TextureFactory* _textureFactory;
 	static std::vector<std::string> shaderList;

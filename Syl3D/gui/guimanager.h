@@ -7,13 +7,9 @@
 #include "../vendor/imgui/imgui_impl_glfw.h"
 #include "../vendor/imgui/imgui_impl_opengl3.h"
 
-#include "../entity/entityfactory.h"
-
 class GUIManager
 {
 public:
-	GUIManager(EntityFactory& entityFactory);
-
 	void initialize(GLFWwindow* window);
 
 	void render();
@@ -25,6 +21,5 @@ public:
 private:
 	const char* glsl_version = "#version 330";
 	bool show_demo_window = true;
-	EntityFactory& entityFactory;
 };
 

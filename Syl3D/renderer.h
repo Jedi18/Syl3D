@@ -33,6 +33,9 @@ class Renderer
 public:
 	Renderer();
 
+	/**
+	 * Initialization
+	 */
 	void initialize(float window_width, float window_height);
 
 	void render();
@@ -41,15 +44,12 @@ public:
 
 	void mouseRayIntersections(math::Vec3 mouseRay);
 
-	EntityFactory& entityFactory();
-
 	std::shared_ptr<FreeCamera> _freeCamera;
 	MousePicker _mousePicker;
 
 private:
 	std::shared_ptr<ShaderManager> _shaderManager;
-	EntityContainer _entityContainer;
-	EntityFactory _entityFactory;
+	std::shared_ptr<EntityContainer> _entityContainer;
 	std::shared_ptr<light::SpotLight> _spotLight;
 
 	std::vector<std::shared_ptr<entity::Cube>> _cubes;

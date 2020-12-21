@@ -20,7 +20,7 @@ Renderer::Renderer()
 	_freeCamera(std::make_shared<FreeCamera>()),
 	_mousePicker(_freeCamera),
 	_shaderManager(std::make_shared<ShaderManager>()),
-	_entityContainer(_shaderManager, _freeCamera)
+	_entityContainer(std::make_shared<EntityContainer>(_shaderManager, _freeCamera))
 {}
 
 void Renderer::initialize(float window_width, float window_height) {
@@ -51,32 +51,20 @@ void Renderer::initialize(float window_width, float window_height) {
 	textureFactory->addShader("phongShader");
 	textureFactory->addShader("terrainShader");
 
-	//std::shared_ptr<TextureMaterial> _texMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
-	//_texMaterial->addTexture("material.diffuse", "resources/container2.png");
-	//_texMaterial->addTexture("material.specular", "resources/container2_specular.png");
 	std::shared_ptr<TextureMaterial> _texMaterial = textureFactory->addTextureMaterial("texMaterial", "resources/container2.png", "resources/container2_specular.png");
 	_wallMaterial = textureFactory->addTextureMaterial("wallMaterial", "resources/wall.jpg", "resources/container2_specular.png");
-	/*_wallMaterial = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
-	_wallMaterial->addTexture("material.diffuse", "resources/wall.jpg");
-	_wallMaterial->addTexture("material.specular", "resources/container2_specular.png");*/
-
-	/*std::shared_ptr<TextureMaterial> _terrainTex = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("terrainShader"));
-	_terrainTex->addTexture("material.diffuse", "resources/snowtex.png");
-	_terrainTex->addTexture("material.specular", "resources/container2_specular.png");*/
-
 	std::shared_ptr<TextureMaterial> _terrainTex = textureFactory->addTextureMaterial("terrainTex", "resources/snowtex.png", "resources/container2_specular.png", "terrainShader");
-	
-	/*std::shared_ptr<TextureMaterial> _uvMat = std::make_shared<TextureMaterial>(_shaderManager->shaderByName("phongShader"));
-	_uvMat->addTexture("material.diffuse", "resources/sphcol.jpg", false);
-	_uvMat->addTexture("material.specular", "resources/sphspec.jpg", true);*/
+
+	EntityFactory* entityFactory = EntityFactory::entityFactory();
+	entityFactory->setEntityContainer(_entityContainer);
 
 	for (int i = 0; i < 10; i++) {
 		float angle = 20.0f * i;
-		std::shared_ptr<entity::Cube> cube = std::make_shared<entity::Cube>("phongShader");
+		std::shared_ptr<entity::Cube> cube = std::dynamic_pointer_cast<entity::Cube>(entityFactory->addEntity(EntityFactory::EntityType::Cube));
 		cube->translateTo(cubePositions[i]);
 		cube->rotateAround(glm::radians(angle), math::Vec3(1.0f, 0.3f, 0.5f));
 		cube->setTexture(_texMaterial);
-		_entityContainer.addEntity("cube" + std::to_string(i), cube);
+		//_entityContainer->addEntity("cube" + std::to_string(i), cube);
 
 		_cubes.push_back(cube);
 	}
@@ -88,17 +76,17 @@ void Renderer::initialize(float window_width, float window_height) {
 	terrain1->setTexture(_terrainTex);
 	terrain1->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
 	terrain1->scale(20);
-	_entityContainer.addEntity("terrain1", terrain1);
+	_entityContainer->addEntity("terrain1", terrain1);
 
 	std::shared_ptr<entity::Model> model1 = utility::ModelFactory::loadModel("resources/backpack/backpack.obj", "phongShader", _shaderManager->shaderByName("phongShader"));
 	model1->translate(math::Vec3(0, -4, 0));
-	_entityContainer.addEntity("model1", model1);
+	_entityContainer->addEntity("model1", model1);
 
 	_spotLight = std::make_shared<light::SpotLight>(_freeCamera->cameraPosition(), _freeCamera->cameraFrontDirection(), shading::Color(0.8f, 0.8f, 0.8f));
 
-	_entityContainer.addLight(std::make_shared<light::PointLight>(math::Vec3(0.7f, 0.2f, 2.0f), shading::Color(0.8f, 0.8f, 0.8f)));
-	_entityContainer.addLight(std::make_shared<light::DirectionalLight>(math::Vec3(-0.2f, -1.0f, -0.3f), shading::Color(0.7f, 0.7f, 0.7f)));
-	_entityContainer.addLight(_spotLight);
+	_entityContainer->addLight(std::make_shared<light::PointLight>(math::Vec3(0.7f, 0.2f, 2.0f), shading::Color(0.8f, 0.8f, 0.8f)));
+	_entityContainer->addLight(std::make_shared<light::DirectionalLight>(math::Vec3(-0.2f, -1.0f, -0.3f), shading::Color(0.7f, 0.7f, 0.7f)));
+	_entityContainer->addLight(_spotLight);
 
 	updateWindowDimensions(window_width, window_height);
 }
@@ -109,7 +97,7 @@ void Renderer::render() {
 
 	_spotLight->setPosition(_freeCamera->cameraPosition());
 	_spotLight->setDirection(_freeCamera->cameraFrontDirection());
-	_entityContainer.drawEntities();
+	_entityContainer->drawEntities();
 }
 
 void Renderer::updateWindowDimensions(float window_width, float window_height) {
@@ -123,8 +111,4 @@ void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
 			cube->setTexture(_wallMaterial);
 		}
 	}
-}
-
-EntityFactory& Renderer::entityFactory() {
-	return _entityFactory;
 }
