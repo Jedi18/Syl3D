@@ -7,8 +7,8 @@ using namespace entity;
 Cube::Cube(std::string shaderName)
 	:
 	Entity(shaderName),
-	_cube(std::make_shared<mesh::CubeMesh>()),
-	_boundingBox(_scale.x / 2)
+	Collidable(new collisions::SphereBB(_scale.x/2)),
+	_cube(std::make_shared<mesh::CubeMesh>())
 {
 	this->initialize({ std::static_pointer_cast<mesh::Mesh>(_cube) });
 }
@@ -28,7 +28,7 @@ void Cube::draw() {
 }
 
 bool Cube::intersects(const math::Ray& ray) const {
-	return _boundingBox.intersects(_pos, ray);
+	return _boundingBox->intersects(_pos, ray);
 }
 
 void Cube::accept(EntityVisitor& v) {

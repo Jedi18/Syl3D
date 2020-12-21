@@ -3,6 +3,7 @@
 
 #include "utility/heightmapgenerator.h"
 #include "texture/texturefactory.h"
+#include "collisions/collidable.h"
 
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
@@ -10,6 +11,7 @@
 
 #include "color.h"
 #include <iostream>
+#include <vector>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -60,11 +62,17 @@ void Renderer::initialize(float window_width, float window_height) {
 
 	for (int i = 0; i < 10; i++) {
 		float angle = 20.0f * i;
-		std::shared_ptr<entity::Cube> cube = std::dynamic_pointer_cast<entity::Cube>(entityFactory->addEntity(EntityFactory::EntityType::Cube));
-		cube->translateTo(cubePositions[i]);
-		cube->rotateAround(glm::radians(angle), math::Vec3(1.0f, 0.3f, 0.5f));
-
-		_cubes.push_back(cube);
+		std::shared_ptr<entity::Entity> ent;
+		
+		if (i % 2 == 0) {
+			ent = entityFactory->addEntity(EntityFactory::EntityType::Cube);
+		}
+		else {
+			ent = entityFactory->addEntity(EntityFactory::EntityType::UVSphere);
+		}
+		
+		ent->translateTo(cubePositions[i]);
+		ent->rotateAround(glm::radians(angle), math::Vec3(1.0f, 0.3f, 0.5f));
 	}
 
 	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
@@ -104,10 +112,14 @@ void Renderer::updateWindowDimensions(float window_width, float window_height) {
 
 void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
 	math::Ray ray(_freeCamera->cameraPosition(), mouseRay);
-	for (std::shared_ptr<entity::Cube> cube : _cubes) {
-		if (cube->intersects(ray)) {
-			cube->setTexture(_wallMaterial);
-			_entityContainer->setSelectedEntity(cube);
+	std::vector<std::shared_ptr<collisions::Collidable>> collidableEntities = _entityContainer->collidableEntities();
+	for (std::shared_ptr<collisions::Collidable> collidable : collidableEntities) {
+		if (collidable->intersects(ray)) {
+			_entityContainer->setSelectedEntity(std::dynamic_pointer_cast<entity::Entity>(collidable));
+			std::shared_ptr<entity::Entity> ent = std::dynamic_pointer_cast<entity::Entity>(collidable);
+			if (ent != nullptr) {
+				ent->setTexture(_wallMaterial);
+			}
 		}
 	}
 }

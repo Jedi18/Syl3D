@@ -1,5 +1,9 @@
 #pragma once
-class EntityEditor
+
+namespace gui
 {
-};
+	class EntityEditor
+	{
+	};
+}
 

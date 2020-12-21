@@ -52,6 +52,5 @@ private:
 	std::shared_ptr<EntityContainer> _entityContainer;
 	std::shared_ptr<light::SpotLight> _spotLight;
 
-	std::vector<std::shared_ptr<entity::Cube>> _cubes;
 	std::shared_ptr<TextureMaterial> _wallMaterial;
 };

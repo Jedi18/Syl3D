@@ -6,6 +6,10 @@
 #include "../entity/entityfactory.h"
 #include "../texture/texturefactory.h"
 
+#include "entityinfovisitor.h"
+
+using namespace gui;
+
 void GUIManager::initialize(GLFWwindow* window) {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -47,8 +51,20 @@ void GUIManager::toolsMenu() {
 
 	std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
 	ImGui::Text("Current Selected Entity");
-	std::string isselectedentity = (entityContainer->selectedEntity() == nullptr) ? "No entity selected" : "Entity selected!";
-	ImGui::Text(isselectedentity.c_str());
+	
+	std::shared_ptr<entity::Entity> selectedEntity = entityContainer->selectedEntity();
+
+	std::string entityInfo;
+	if (selectedEntity == nullptr) {
+		entityInfo = "No entity selected";
+	}
+	else {
+		EntityInfoVisitor entityInfoVisitor;
+		selectedEntity->accept(entityInfoVisitor);
+		entityInfo = entityInfoVisitor.getData();
+	}
+
+	ImGui::Text(entityInfo.c_str());
 
 	ImGui::End();
 }

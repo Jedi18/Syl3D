@@ -14,6 +14,10 @@ void EntityContainer::addEntity(std::string entityName, std::shared_ptr<entity::
 	}
 
 	_shaderEntityMap[shaderName].push_back(entity);
+
+	if (std::dynamic_pointer_cast<collisions::Collidable>(entity) != nullptr) {
+		_collidableEntities.push_back(std::dynamic_pointer_cast<collisions::Collidable>(entity));
+	}
 }
 
 void EntityContainer::addLight(std::shared_ptr<light::Light> light) {
@@ -79,4 +83,8 @@ void EntityContainer::setLightUniforms(std::shared_ptr<ShaderProgram> shaderProg
 	shaderProgram->setInt("numDirLights", numDirLights);
 	shaderProgram->setInt("numPointLights", numPointLights);
 	shaderProgram->setInt("numSpotLights", numSpotLights);
+}
+
+std::vector<std::shared_ptr<collisions::Collidable>> EntityContainer::collidableEntities() {
+	return _collidableEntities;
 }

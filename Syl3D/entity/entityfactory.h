@@ -8,6 +8,7 @@ class EntityFactory
 public:
 	enum class EntityType {
 		Cube,
+		UVSphere,
 		Terrain
 	};
 

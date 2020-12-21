@@ -1,6 +1,7 @@
 #include "entityfactory.h"
 
 #include "cube.h"
+#include "uvsphere.h"
 #include "terrain.h"
 #include "../texture/texturefactory.h"
 
@@ -46,6 +47,11 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 		case EntityFactory::EntityType::Cube:
 		{
 			entity = std::make_shared<entity::Cube>(_defaultShaders[(int)EntityFactory::EntityType::Cube]);
+			break;
+		}
+		case EntityFactory::EntityType::UVSphere:
+		{
+			entity = std::make_shared<entity::UVSphere>(10,10,_defaultShaders[(int)EntityFactory::EntityType::UVSphere]);
 			break;
 		}
 	}

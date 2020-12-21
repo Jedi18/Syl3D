@@ -7,19 +7,22 @@
 #include "../vendor/imgui/imgui_impl_glfw.h"
 #include "../vendor/imgui/imgui_impl_opengl3.h"
 
-class GUIManager
+namespace gui
 {
-public:
-	void initialize(GLFWwindow* window);
+	class GUIManager
+	{
+	public:
+		void initialize(GLFWwindow* window);
 
-	void render();
+		void render();
 
-	void cleanUp();
+		void cleanUp();
 
-	void toolsMenu();
+		void toolsMenu();
 
-private:
-	const char* glsl_version = "#version 330";
-	bool show_demo_window = true;
-};
+	private:
+		const char* glsl_version = "#version 330";
+		bool show_demo_window = true;
+	};
+}
 
