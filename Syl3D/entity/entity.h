@@ -12,6 +12,7 @@
 #include "../math/const.h"
 
 #include "../texture/texturematerial.h"
+#include "entityvisitor.h"
 
 namespace entity
 {
@@ -57,6 +58,9 @@ namespace entity
 		void setTexture(std::shared_ptr<TextureMaterial> texMaterial);
 
 		void activateTexture();
+
+	public:
+		virtual void accept(EntityVisitor& v) = 0;
 
 	protected:
 		std::vector<unsigned int> _VAOs;

@@ -30,3 +30,7 @@ void Cube::draw() {
 bool Cube::intersects(const math::Ray& ray) const {
 	return _boundingBox.intersects(_pos, ray);
 }
+
+void Cube::accept(EntityVisitor& v) {
+	v.visit(this);
+}

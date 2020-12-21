@@ -335,6 +335,9 @@
     <ClInclude Include="gui\entityeditor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="entity\entityvisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />

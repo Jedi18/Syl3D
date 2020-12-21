@@ -23,3 +23,7 @@ void UVSphere::draw() {
 		glDrawElements(GL_TRIANGLES, _sphere->numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 	}
 }
+
+void UVSphere::accept(EntityVisitor& v) {
+	v.visit(this);
+}

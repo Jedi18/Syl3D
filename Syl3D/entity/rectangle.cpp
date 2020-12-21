@@ -15,3 +15,7 @@ void Rectangle::draw() {
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 }
+
+void Rectangle::accept(EntityVisitor& v) {
+	v.visit(this);
+}

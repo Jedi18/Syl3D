@@ -202,6 +202,7 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="collisions\BoundingBox.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="entity\entityvisitor.h" />
     <ClInclude Include="gui\entityeditor.h" />
     <ClInclude Include="entity\entitycontainer.h" />
     <ClInclude Include="entity\entityfactory.h" />

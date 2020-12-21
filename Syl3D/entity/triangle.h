@@ -12,6 +12,8 @@ namespace entity
 
 		void draw() override;
 
+		void accept(EntityVisitor& v) override;
+
 	private:
 		std::shared_ptr<mesh::TriangleMesh> _triangle;
 	};

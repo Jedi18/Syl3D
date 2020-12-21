@@ -27,3 +27,7 @@ void Model::draw() {
 		}
 	}
 }
+
+void Model::accept(EntityVisitor& v) {
+	v.visit(this);
+}
