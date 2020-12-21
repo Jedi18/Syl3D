@@ -58,10 +58,16 @@ bool Application::initialize() {
 		static_cast<Application*>(glfwGetWindowUserPointer(wind))->keyCallback(wind, key, scancode, action, mods);
 	};
 
+	auto mouseButtonCallbackFunc = [](GLFWwindow* wind, int button, int action, int mode)
+	{
+		static_cast<Application*>(glfwGetWindowUserPointer(wind))->mouseButtonCallback(wind, button, action, mode);
+	};
+
 	glfwSetFramebufferSizeCallback(_window, frameBufferFunc);
 	glfwSetCursorPosCallback(_window, mouseCallbackFunc);
 	glfwSetScrollCallback(_window, scrollCallbackFunc);
 	glfwSetKeyCallback(_window, keyCallbackFunc);
+	glfwSetMouseButtonCallback(_window, mouseButtonCallbackFunc);
 	glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	_renderer.initialize(INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT);
@@ -101,4 +107,8 @@ void Application::scrollCallback(GLFWwindow* window, double xoffset, double yoff
 
 void Application::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	_inputManager.keyCallback(window, key, scancode, action, mods);
+}
+
+void Application::mouseButtonCallback(GLFWwindow* wind, int button, int action, int mode) {
+	_inputManager.mouseButtonCallback(wind, button, action, mode);
 }

@@ -1,10 +1,20 @@
 #include "entityfactory.h"
 
 #include "cube.h"
+#include "terrain.h"
+#include "../texture/texturefactory.h"
 
 EntityFactory* EntityFactory::_instance = nullptr;
 unsigned int EntityFactory::ENTITY_COUNT = 0;
-std::shared_ptr<EntityContainer> EntityFactory::_entityContainer = nullptr;
+std::map<int, std::string> EntityFactory::_defaultShaders = std::map<int, std::string>();
+
+EntityFactory::EntityFactory() {
+	for (int entityT = (int)EntityType::Cube; entityT <= (int)EntityType::Terrain; entityT++) {
+		_defaultShaders[entityT] = "phongShader";
+	}
+
+	_defaultShaders[(int)EntityType::Terrain] = "terrainShader";
+}
 
 EntityFactory* EntityFactory::entityFactory() {
 	if (_instance == nullptr) {
@@ -24,19 +34,26 @@ void EntityFactory::setEntityContainer(std::shared_ptr<EntityContainer> entityCo
 	_entityContainer = entityContainer;
 }
 
+std::shared_ptr<EntityContainer> EntityFactory::entityContainer() {
+	return _entityContainer;
+}
+
 std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::EntityType entityType) {
 	std::shared_ptr<entity::Entity> entity = nullptr;
+	TextureFactory* textureFactory = TextureFactory::textureFactory();
 
 	switch (entityType) {
 		case EntityFactory::EntityType::Cube:
 		{
-			entity = std::make_shared<entity::Cube>("phongShader");
+			entity = std::make_shared<entity::Cube>(_defaultShaders[(int)EntityFactory::EntityType::Cube]);
+			break;
 		}
 	}
 
 	if (entity != nullptr) {
 		_entityContainer->addEntity("entity" + std::to_string(ENTITY_COUNT), entity);
 	}
+	entity->setTexture(textureFactory->getTextureMaterial("texMaterial"));
 
 	return entity;
 }

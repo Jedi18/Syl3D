@@ -63,8 +63,6 @@ void Renderer::initialize(float window_width, float window_height) {
 		std::shared_ptr<entity::Cube> cube = std::dynamic_pointer_cast<entity::Cube>(entityFactory->addEntity(EntityFactory::EntityType::Cube));
 		cube->translateTo(cubePositions[i]);
 		cube->rotateAround(glm::radians(angle), math::Vec3(1.0f, 0.3f, 0.5f));
-		cube->setTexture(_texMaterial);
-		//_entityContainer->addEntity("cube" + std::to_string(i), cube);
 
 		_cubes.push_back(cube);
 	}
@@ -109,6 +107,7 @@ void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
 	for (std::shared_ptr<entity::Cube> cube : _cubes) {
 		if (cube->intersects(ray)) {
 			cube->setTexture(_wallMaterial);
+			_entityContainer->setSelectedEntity(cube);
 		}
 	}
 }

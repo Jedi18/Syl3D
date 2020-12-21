@@ -20,6 +20,14 @@ void EntityContainer::addLight(std::shared_ptr<light::Light> light) {
 	_lights.push_back(light);
 }
 
+void EntityContainer::setSelectedEntity(std::shared_ptr<entity::Entity> entity) {
+	_selectedEntity = entity;
+}
+
+std::shared_ptr<entity::Entity> EntityContainer::selectedEntity() {
+	return _selectedEntity;
+}
+
 void EntityContainer::drawEntities() {
 	glm::mat4 viewMatrix = _freeCamera->viewMatrix();
 	glm::mat4 projectionMatrix = _freeCamera->projectionMatrix();

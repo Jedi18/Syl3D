@@ -41,11 +41,7 @@ void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
 		firstMouse = false;
 	}
 
-	if (selectMode) {
-		glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xpos, ypos);
-		_renderer->mouseRayIntersections(math::Vec3(mouseRay.x, mouseRay.y, mouseRay.z));
-	}
-	else {
+	if (!selectMode) {
 		float xoffset = (float)(xpos - lastX);
 		float yoffset = (float)(lastY - ypos);
 		lastX = (float)xpos;
@@ -69,6 +65,19 @@ void InputManager::keyCallback(GLFWwindow* window, int key, int scanCode, int ac
 		else {
 			selectMode = true;
 			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		}
+	}
+}
+
+void InputManager::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+	if (selectMode) {
+		if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+		{
+			double xpos, ypos;
+			glfwGetCursorPos(window, &xpos, &ypos);
+
+			glm::vec3 mouseRay = _renderer->_mousePicker.calculateMouseRay(xpos, ypos);
+			_renderer->mouseRayIntersections(math::Vec3(mouseRay.x, mouseRay.y, mouseRay.z));
 		}
 	}
 }

@@ -21,7 +21,11 @@ public:
 
 	void addLight(std::shared_ptr<light::Light> light);
 
+	void setSelectedEntity(std::shared_ptr<entity::Entity> entity);
+
 	void drawEntities();
+
+	std::shared_ptr<entity::Entity> selectedEntity();
 
 private:
 	void setLightUniforms(std::shared_ptr<ShaderProgram> shaderProgram);
@@ -32,4 +36,5 @@ private:
 	// so we can draw all the related enities for a shader, might change later
 	std::map<std::string, std::vector<std::shared_ptr<entity::Entity>>> _shaderEntityMap;
 	std::vector<std::shared_ptr<light::Light>> _lights;
+	std::shared_ptr<entity::Entity> _selectedEntity = nullptr;
 };

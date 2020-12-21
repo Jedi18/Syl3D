@@ -40,11 +40,15 @@ void GUIManager::toolsMenu() {
 	if (ImGui::Button("Cube")) {
 		EntityFactory* entityFactory = EntityFactory::entityFactory();
 		TextureFactory* textureFactory = TextureFactory::textureFactory();
-		std::shared_ptr<entity::Cube> cube = std::dynamic_pointer_cast<entity::Cube>(entityFactory->addEntity(EntityFactory::EntityType::Cube));
+		std::shared_ptr<entity::Entity> cube = entityFactory->addEntity(EntityFactory::EntityType::Cube);
 		cube->translateTo(math::Vec3(0.0f, 0.0f, 0.0f));
 		cube->scale(5);
-		cube->setTexture(textureFactory->getTextureMaterial("texMaterial"));
 	}
+
+	std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
+	ImGui::Text("Current Selected Entity");
+	std::string isselectedentity = (entityContainer->selectedEntity() == nullptr) ? "No entity selected" : "Entity selected!";
+	ImGui::Text(isselectedentity.c_str());
 
 	ImGui::End();
 }

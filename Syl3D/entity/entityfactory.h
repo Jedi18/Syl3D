@@ -13,15 +13,22 @@ public:
 
 	static EntityFactory* entityFactory();
 
-	static void setEntityContainer(std::shared_ptr<EntityContainer> entityContainer);
+	void setEntityContainer(std::shared_ptr<EntityContainer> entityContainer);
+
+	std::shared_ptr<EntityContainer> entityContainer();
 
 	static void releaseInstance();
 
 	std::shared_ptr<entity::Entity> addEntity(const EntityType entityType);
 
 private:
+	EntityFactory();
+
+private:
 	static EntityFactory* _instance;
 	static unsigned int ENTITY_COUNT;
-	static std::shared_ptr<EntityContainer> _entityContainer;
+	static std::map<int, std::string> _defaultShaders;
+
+	std::shared_ptr<EntityContainer> _entityContainer = nullptr;
 };
 
