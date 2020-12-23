@@ -65,6 +65,8 @@ namespace entity
 
 		void setTexture(std::shared_ptr<TextureMaterial> texMaterial);
 
+		std::shared_ptr<TextureMaterial> texture();
+
 		void activateTexture();
 
 		unsigned int id() const;

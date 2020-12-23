@@ -9,6 +9,12 @@ EntityFactory* EntityFactory::_instance = nullptr;
 unsigned int EntityFactory::ENTITY_COUNT = 0;
 std::map<int, std::string> EntityFactory::_defaultShaders = std::map<int, std::string>();
 
+std::map<EntityFactory::EntityType, std::string> EntityFactory::ENTITY_NAMES = {
+	{EntityFactory::EntityType::Cube, "Cube"},
+	{EntityFactory::EntityType::UVSphere, "UVSphere"},
+	{EntityFactory::EntityType::Terrain, "Terrain"}
+};
+
 EntityFactory::EntityFactory() {
 	for (int entityT = (int)EntityType::Cube; entityT <= (int)EntityType::Terrain; entityT++) {
 		_defaultShaders[entityT] = "phongShader";

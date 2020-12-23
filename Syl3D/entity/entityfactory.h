@@ -24,6 +24,9 @@ public:
 
 	static unsigned int generateID();
 
+public:
+	static std::map<EntityType, std::string> ENTITY_NAMES;
+
 private:
 	EntityFactory();
 

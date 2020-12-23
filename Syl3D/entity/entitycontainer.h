@@ -24,6 +24,8 @@ public:
 
 	void setSelectedEntity(std::shared_ptr<entity::Entity> entity);
 
+	void setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex);
+
 	void drawEntities();
 
 	std::shared_ptr<entity::Entity> selectedEntity();
@@ -42,4 +44,6 @@ private:
 	std::vector<std::shared_ptr<collisions::Collidable>> _collidableEntities;
 	std::vector<std::shared_ptr<light::Light>> _lights;
 	std::shared_ptr<entity::Entity> _selectedEntity = nullptr;
+	std::shared_ptr<TextureMaterial> _selectedEntityTexture = nullptr;
+	std::shared_ptr<TextureMaterial> _selectedEntityOldTexture = nullptr;
 };

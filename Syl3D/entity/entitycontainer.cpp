@@ -25,6 +25,15 @@ void EntityContainer::addLight(std::shared_ptr<light::Light> light) {
 }
 
 void EntityContainer::setSelectedEntity(std::shared_ptr<entity::Entity> entity) {
+	if (_selectedEntity != nullptr && _selectedEntityOldTexture != nullptr) {
+		_selectedEntity->setTexture(_selectedEntityOldTexture);
+	}
+
+	if (_selectedEntityTexture != nullptr) {
+		_selectedEntityOldTexture = entity->texture();
+		entity->setTexture(_selectedEntityTexture);
+	}
+
 	_selectedEntity = entity;
 }
 
@@ -87,4 +96,8 @@ void EntityContainer::setLightUniforms(std::shared_ptr<ShaderProgram> shaderProg
 
 std::vector<std::shared_ptr<collisions::Collidable>> EntityContainer::collidableEntities() {
 	return _collidableEntities;
+}
+
+void EntityContainer::setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex) {
+	_selectedEntityTexture = entityTex;
 }

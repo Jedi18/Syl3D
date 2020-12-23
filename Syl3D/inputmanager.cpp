@@ -1,8 +1,9 @@
 #include "inputmanager.h"
 
-InputManager::InputManager(Renderer* rend) 
+InputManager::InputManager(Renderer* rend, gui::GUIManager* guiManager)
 	:
 	_renderer(rend),
+	_guiManager(guiManager),
 	selectMode(false)
 {}
 
@@ -70,7 +71,7 @@ void InputManager::keyCallback(GLFWwindow* window, int key, int scanCode, int ac
 }
 
 void InputManager::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
-	if (selectMode) {
+	if (selectMode && !_guiManager->mouseOnGUI()) {
 		if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 		{
 			double xpos, ypos;

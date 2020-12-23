@@ -4,11 +4,12 @@
 #include <GLFW/glfw3.h>
 
 #include "renderer.h"
+#include "gui/guimanager.h"
 
 class InputManager
 {
 public:
-	InputManager(Renderer* rend);
+	InputManager(Renderer* rend, gui::GUIManager* guiManager);
 
 	void processInput(GLFWwindow* window);
 
@@ -25,6 +26,7 @@ public:
 
 private:
 	Renderer* _renderer;
+	gui::GUIManager* _guiManager;
 	float deltaTime = 0.0f;
 	float lastFrame = 0.0f;
 

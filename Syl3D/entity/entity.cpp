@@ -144,6 +144,10 @@ void Entity::setTexture(std::shared_ptr<TextureMaterial> texMaterial) {
 	_textureMaterial = texMaterial;
 }
 
+std::shared_ptr<TextureMaterial> Entity::texture() {
+	return _textureMaterial;
+}
+
 void Entity::activateTexture() {
 	if (_textureMaterial != nullptr) {
 		_textureMaterial->activateTextures();

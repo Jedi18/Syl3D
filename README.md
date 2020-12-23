@@ -22,9 +22,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <!-- <a href="https://github.com/Jedi18/Syl3D">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
+  <a href="https://github.com/Jedi18/Syl3D">
+    <img src="img/syl3dlogo.png" alt="Logo" width="80" height="80">
+  </a>
 
   <h3 align="center">Syl3D</h3>
 
@@ -87,6 +87,7 @@ Syl3D so far supports meshes, textures, terrain (procedural and using heightmaps
 * [GLAD](https://glad.dav1d.de/)
 * [GLFW3](https://www.glfw.org/)
 * [Assimp](https://www.assimp.org/)
+* [Dear ImGui](https://github.com/ocornut/imgui/)
 
 
 

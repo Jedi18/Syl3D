@@ -51,6 +51,4 @@ private:
 	std::shared_ptr<ShaderManager> _shaderManager;
 	std::shared_ptr<EntityContainer> _entityContainer;
 	std::shared_ptr<light::SpotLight> _spotLight;
-
-	std::shared_ptr<TextureMaterial> _wallMaterial;
 };

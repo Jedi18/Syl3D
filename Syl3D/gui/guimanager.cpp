@@ -2,11 +2,10 @@
 
 #include <iostream>
 
-#include "../entity/cube.h"
 #include "../entity/entityfactory.h"
-#include "../texture/texturefactory.h"
 
 #include "entityeditor.h"
+#include "entitycreator.h"
 
 using namespace gui;
 
@@ -37,17 +36,14 @@ void GUIManager::cleanUp() {
 	ImGui::DestroyContext();
 }
 
+bool GUIManager::mouseOnGUI() const {
+	return ImGui::IsAnyWindowHovered();
+}
+
 void GUIManager::toolsMenu() {
 	ImGui::Begin("Tools");
-	ImGui::Text("Add Entity");
 
-	if (ImGui::Button("Cube")) {
-		EntityFactory* entityFactory = EntityFactory::entityFactory();
-		TextureFactory* textureFactory = TextureFactory::textureFactory();
-		std::shared_ptr<entity::Entity> cube = entityFactory->addEntity(EntityFactory::EntityType::Cube);
-		cube->translateTo(math::Vec3(0.0f, 0.0f, 0.0f));
-		cube->scale(5);
-	}
+	EntityCreator::displayEntityCreator();
 
 	std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
 	std::shared_ptr<entity::Entity> selectedEntity = entityContainer->selectedEntity();
@@ -55,6 +51,5 @@ void GUIManager::toolsMenu() {
 	EntityEditor::displayEntityEditor(selectedEntity);
 
 	ImGui::End();
-
 	//ImGui::ShowDemoWindow();
 }

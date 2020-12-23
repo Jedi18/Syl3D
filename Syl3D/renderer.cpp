@@ -54,11 +54,14 @@ void Renderer::initialize(float window_width, float window_height) {
 	textureFactory->addShader("terrainShader");
 
 	std::shared_ptr<TextureMaterial> _texMaterial = textureFactory->addTextureMaterial("texMaterial", "resources/container2.png", "resources/container2_specular.png");
-	_wallMaterial = textureFactory->addTextureMaterial("wallMaterial", "resources/wall.jpg", "resources/container2_specular.png");
+	std::shared_ptr<TextureMaterial>_wallMaterial = textureFactory->addTextureMaterial("wallMaterial", "resources/wall.jpg", "resources/container2_specular.png");
 	std::shared_ptr<TextureMaterial> _terrainTex = textureFactory->addTextureMaterial("terrainTex", "resources/snowtex.png", "resources/container2_specular.png", "terrainShader");
 
 	EntityFactory* entityFactory = EntityFactory::entityFactory();
 	entityFactory->setEntityContainer(_entityContainer);
+
+	// set selected entity texture
+	_entityContainer->setSelectedEntityTexture(_wallMaterial);
 
 	for (int i = 0; i < 10; i++) {
 		float angle = 20.0f * i;
@@ -116,10 +119,6 @@ void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
 	for (std::shared_ptr<collisions::Collidable> collidable : collidableEntities) {
 		if (collidable->intersects(ray)) {
 			_entityContainer->setSelectedEntity(std::dynamic_pointer_cast<entity::Entity>(collidable));
-			std::shared_ptr<entity::Entity> ent = std::dynamic_pointer_cast<entity::Entity>(collidable);
-			if (ent != nullptr) {
-				ent->setTexture(_wallMaterial);
-			}
 		}
 	}
 }
