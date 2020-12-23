@@ -82,11 +82,11 @@ void Renderer::initialize(float window_width, float window_height) {
 	terrain1->setTexture(_terrainTex);
 	terrain1->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
 	terrain1->scale(20);
-	_entityContainer->addEntity("terrain1", terrain1);
+	_entityContainer->addEntity(terrain1);
 
-	std::shared_ptr<entity::Model> model1 = utility::ModelFactory::loadModel("resources/backpack/backpack.obj", "phongShader", _shaderManager->shaderByName("phongShader"));
+	/*std::shared_ptr<entity::Model> model1 = utility::ModelFactory::loadModel("resources/backpack/backpack.obj", "phongShader", _shaderManager->shaderByName("phongShader"));
 	model1->translate(math::Vec3(0, -4, 0));
-	_entityContainer->addEntity("model1", model1);
+	_entityContainer->addEntity("model1", model1);*/
 
 	_spotLight = std::make_shared<light::SpotLight>(_freeCamera->cameraPosition(), _freeCamera->cameraFrontDirection(), shading::Color(0.8f, 0.8f, 0.8f));
 

@@ -41,6 +41,10 @@ namespace entity
 
 		virtual void rotateTo(float angleInRadians, math::Vec3 axis);
 
+		virtual glm::mat4 rotation() const;
+
+		virtual void setRotation(glm::mat4 rot);
+
 		virtual void scale(math::Vec3 scaleVec);
 
 		virtual void scale(float factor);
@@ -51,7 +55,11 @@ namespace entity
 
 		virtual void scaleZ(float zfactor);
 
+		virtual void setScale(math::Vec3 scaleVec);
+
 		virtual math::Vec3 position() const;
+
+		virtual math::Vec3 getScale() const;
 
 		std::string shaderName() const;
 
@@ -59,10 +67,13 @@ namespace entity
 
 		void activateTexture();
 
+		unsigned int id() const;
+
 	public:
 		virtual void accept(EntityVisitor& v) = 0;
 
 	protected:
+		unsigned int _ID;
 		std::vector<unsigned int> _VAOs;
 		bool _usesEBO;
 		math::Vec3 _pos;

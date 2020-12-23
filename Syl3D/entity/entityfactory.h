@@ -22,6 +22,8 @@ public:
 
 	std::shared_ptr<entity::Entity> addEntity(const EntityType entityType);
 
+	static unsigned int generateID();
+
 private:
 	EntityFactory();
 

@@ -17,6 +17,8 @@ namespace entity
 
 		bool intersects(const math::Ray& ray) const override;
 
+		void scale(float factor) override;
+
 		void accept(EntityVisitor& v) override;
 
 	private:

@@ -57,9 +57,14 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 	}
 
 	if (entity != nullptr) {
-		_entityContainer->addEntity("entity" + std::to_string(ENTITY_COUNT), entity);
+		_entityContainer->addEntity(entity);
 	}
 	entity->setTexture(textureFactory->getTextureMaterial("texMaterial"));
 
 	return entity;
+}
+
+unsigned int EntityFactory::generateID() {
+	ENTITY_COUNT++;
+	return ENTITY_COUNT;
 }

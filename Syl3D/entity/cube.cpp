@@ -31,6 +31,11 @@ bool Cube::intersects(const math::Ray& ray) const {
 	return _boundingBox->intersects(_pos, ray);
 }
 
+void Cube::scale(float factor) {
+	Entity::scale(factor);
+	dynamic_cast<collisions::SphereBB*>(_boundingBox)->scaleRadius(factor);
+}
+
 void Cube::accept(EntityVisitor& v) {
 	v.visit(this);
 }

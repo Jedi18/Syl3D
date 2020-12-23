@@ -1,12 +1,16 @@
 #include "entity.h"
 
+#include "entityfactory.h"
+
 using namespace entity;
 
 Entity::Entity(std::string shaderName)
 	:
+	_ID(EntityFactory::generateID()),
 	_shaderName(shaderName),
 	_scale(1,1,1),
-	_textureMaterial(nullptr)
+	_textureMaterial(nullptr),
+	_usesEBO(false)
 {
 	_rotation = glm::mat4(1.0f);
 }
@@ -86,6 +90,14 @@ void Entity::rotateTo(float angleInRadians, math::Vec3 axis) {
 	_rotation = glm::rotate(glm::mat4(1.0f), angleInRadians, glm::vec3(axis.x, axis.y, axis.z));
 }
 
+glm::mat4 Entity::rotation() const {
+	return _rotation;
+}
+
+void Entity::setRotation(glm::mat4 rot) {
+	_rotation = rot;
+}
+
 void Entity::scale(math::Vec3 scaleVec) {
 	_scale.x *= scaleVec.x;
 	_scale.y *= scaleVec.y;
@@ -104,6 +116,10 @@ void Entity::scaleZ(float zfactor) {
 	_scale.z *= zfactor;
 }
 
+void Entity::setScale(math::Vec3 scaleVec) {
+	_scale = scaleVec;
+}
+
 void Entity::scale(float factor) {
 	_scale *= factor;
 }
@@ -112,8 +128,16 @@ math::Vec3 Entity::position() const {
 	return _pos;
 }
 
+math::Vec3 Entity::getScale() const {
+	return _scale;
+}
+
 std::string Entity::shaderName() const {
 	return _shaderName;
+}
+
+unsigned int Entity::id() const {
+	return _ID;
 }
 
 void Entity::setTexture(std::shared_ptr<TextureMaterial> texMaterial) {

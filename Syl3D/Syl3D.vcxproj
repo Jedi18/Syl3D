@@ -225,6 +225,7 @@
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\perlinnoise.h" />
     <ClInclude Include="math\ray.h" />
+    <ClInclude Include="math\rotation.h" />
     <ClInclude Include="math\vec2.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\cubemesh.h" />

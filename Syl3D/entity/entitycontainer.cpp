@@ -6,7 +6,7 @@ EntityContainer::EntityContainer(std::shared_ptr<ShaderManager> shaderManager, s
 	_freeCamera(freeCamera)
 {}
 
-void EntityContainer::addEntity(std::string entityName, std::shared_ptr<entity::Entity> entity) {
+void EntityContainer::addEntity(std::shared_ptr<entity::Entity> entity) {
 	std::string shaderName = entity->shaderName();
 
 	if (_shaderEntityMap.find(shaderName) == _shaderEntityMap.end()) {

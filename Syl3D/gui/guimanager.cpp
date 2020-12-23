@@ -6,7 +6,7 @@
 #include "../entity/entityfactory.h"
 #include "../texture/texturefactory.h"
 
-#include "entityinfovisitor.h"
+#include "entityeditor.h"
 
 using namespace gui;
 
@@ -50,21 +50,11 @@ void GUIManager::toolsMenu() {
 	}
 
 	std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
-	ImGui::Text("Current Selected Entity");
-	
 	std::shared_ptr<entity::Entity> selectedEntity = entityContainer->selectedEntity();
 
-	std::string entityInfo;
-	if (selectedEntity == nullptr) {
-		entityInfo = "No entity selected";
-	}
-	else {
-		EntityInfoVisitor entityInfoVisitor;
-		selectedEntity->accept(entityInfoVisitor);
-		entityInfo = entityInfoVisitor.getData();
-	}
-
-	ImGui::Text(entityInfo.c_str());
+	EntityEditor::displayEntityEditor(selectedEntity);
 
 	ImGui::End();
+
+	//ImGui::ShowDemoWindow();
 }

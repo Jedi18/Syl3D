@@ -20,6 +20,8 @@ namespace entity
 
 		void accept(EntityVisitor& v) override;
 
+		void scale(float factor) override;
+
 	private:
 		std::shared_ptr<mesh::CubeMesh> _cube;
 	};

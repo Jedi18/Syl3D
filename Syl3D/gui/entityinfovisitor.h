@@ -7,40 +7,46 @@ namespace gui
 	class EntityInfoVisitor : public entity::EntityVisitor
 	{
 	public:
+		struct EntityInfo
+		{
+			std::string entityTypeName;
+		};
+
+	public:
 		void visit(entity::Cube* cube) override {
-			data = "Cube";
+			data.entityTypeName = "Cube";
 		}
 
 		void visit(entity::Triangle* triangle) override {
-			data = "Triangle";
+			data.entityTypeName = "Triangle";
 		}
 
 		void visit(entity::Rectangle* rectangle) override {
-			data = "Rectangle";
+			data.entityTypeName = "Rectangle";
 		}
 
 		void visit(entity::UVSphere* uvSphere) override {
-			data = "UVSphere";
+			data.entityTypeName = "UVSphere";
 		}
 
 		void visit(entity::IcoSphere* icoSphere) override {
-			data = "IcoSphere";
+			data.entityTypeName = "IcoSphere";
 		}
 
 		void visit(entity::Terrain* terrain) override {
-			data = "Terrain";
+			data.entityTypeName = "Terrain";
 		}
 
 		void visit(entity::Model* model) override {
-			data = "Model";
+			data.entityTypeName = "Model";
 		}
 
-		std::string getData() {
+		EntityInfo getData() {
 			return data;
 		}
 
 	private:
-		std::string data;
+		EntityInfo data;
 	};
 }
 

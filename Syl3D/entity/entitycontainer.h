@@ -18,7 +18,7 @@ class EntityContainer
 public:
 	EntityContainer(std::shared_ptr<ShaderManager> shaderManager, std::shared_ptr<FreeCamera> freeCamera);
 
-	void addEntity(std::string entityName, std::shared_ptr<entity::Entity> entity);
+	void addEntity(std::shared_ptr<entity::Entity> entity);
 
 	void addLight(std::shared_ptr<light::Light> light);
 
