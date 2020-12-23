@@ -7,8 +7,12 @@ SphereBB::SphereBB(float r)
 	radius(r)
 {}
 
-void SphereBB::setRadius(float rad) {
+void SphereBB::setRadius(const float rad) {
 	radius = rad;
+}
+
+void SphereBB::scaleRadius(const float factor) {
+	radius *= factor;
 }
 
 bool SphereBB::intersects(const math::Vec3& boundingBoxCenter, const math::Ray& ray) const {

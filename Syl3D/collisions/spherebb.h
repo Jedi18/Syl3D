@@ -11,7 +11,9 @@ namespace collisions
 
 		bool intersects(const math::Vec3& boundingBoxCenter, const math::Ray& ray) const override;
 
-		void setRadius(float rad);
+		void setRadius(const float rad);
+
+		void scaleRadius(const float factor);
 
 	private:
 		float radius;

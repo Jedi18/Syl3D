@@ -3,10 +3,11 @@
 #include "entity.h"
 #include "../mesh/cubemesh.h"
 #include "../collisions/SphereBB.h"
+#include "../collisions/Collidable.h"
 
 namespace entity
 {
-	class Cube : public Entity
+	class Cube : public Entity, public collisions::Collidable
 	{
 	public:
 		Cube(std::string shaderName = "default");
@@ -15,10 +16,13 @@ namespace entity
 
 		void draw() override;
 
-		bool intersects(const math::Ray& ray) const;
+		bool intersects(const math::Ray& ray) const override;
+
+		void accept(EntityVisitor& v) override;
+
+		void scale(float factor) override;
 
 	private:
 		std::shared_ptr<mesh::CubeMesh> _cube;
-		collisions::SphereBB _boundingBox;
 	};
 }

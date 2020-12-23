@@ -5,6 +5,7 @@
 
 #include "inputmanager.h"
 #include "renderer.h"
+#include "gui/guimanager.h"
 
 class Application
 {
@@ -30,10 +31,13 @@ private:
 
 	void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
+	void mouseButtonCallback(GLFWwindow* wind, int button, int action, int mode);
+
 private:
 	GLFWwindow* _window;
 	Renderer _renderer;
 	InputManager _inputManager;
+	gui::GUIManager _guiManager;
 
 	static const int INIT_WINDOW_WIDTH;
 	static const int INIT_WINDOW_HEIGHT;

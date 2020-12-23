@@ -23,3 +23,7 @@ void IcoSphere::draw() {
 		glDrawElements(GL_TRIANGLES, _sphere->numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 	}
 }
+
+void IcoSphere::accept(EntityVisitor& v) {
+	v.visit(this);
+}

@@ -15,3 +15,7 @@ void Triangle::draw() {
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 	}
 }
+
+void Triangle::accept(EntityVisitor& v) {
+	v.visit(this);
+}

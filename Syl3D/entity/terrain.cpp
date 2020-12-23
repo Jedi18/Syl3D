@@ -23,3 +23,7 @@ void Terrain::draw() {
 		glDrawElements(GL_TRIANGLES, _terrain->numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 	}
 }
+
+void Terrain::accept(EntityVisitor& v) {
+	v.visit(this);
+}

@@ -1,6 +1,6 @@
 #include "heightmapgenerator.h"
 
-#include "../stb_image.h"
+#include "../vendor/stb_image/stb_image.h"
 #include "../math/perlinnoise.h"
 
 #include <iostream>

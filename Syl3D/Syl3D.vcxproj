@@ -150,7 +150,9 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
-    <ClCompile Include="entitycontainer.cpp" />
+    <ClCompile Include="gui\entityeditor.cpp" />
+    <ClCompile Include="entity\entitycontainer.cpp" />
+    <ClCompile Include="entity\entityfactory.cpp" />
     <ClCompile Include="entity\cube.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\icosphere.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="entity\triangle.cpp" />
     <ClCompile Include="entity\uvsphere.cpp" />
     <ClCompile Include="freecamera.cpp" />
+    <ClCompile Include="gui\guimanager.cpp" />
     <ClCompile Include="lights\directionallight.cpp" />
     <ClCompile Include="lights\pointlight.cpp" />
     <ClCompile Include="lights\spotlight.cpp" />
@@ -169,7 +172,8 @@
     <ClCompile Include="mesh\modelmesh.cpp" />
     <ClCompile Include="mousepicker.cpp" />
     <ClCompile Include="shadermanager.cpp" />
-    <ClCompile Include="collisions\SphereBB.cpp" />
+    <ClCompile Include="collisions\spherebb.cpp" />
+    <ClCompile Include="texture\texturefactory.cpp" />
     <ClCompile Include="utility\heightmapgenerator.cpp" />
     <ClCompile Include="utility\modelfactory.cpp" />
     <ClCompile Include="vendor\glad.c" />
@@ -185,14 +189,25 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shaderprogram.cpp" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="texturematerial.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="texture\texturematerial.cpp" />
+    <ClCompile Include="vendor\imgui\imgui.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
-    <ClInclude Include="collisions\BoundingBox.h" />
+    <ClInclude Include="collisions\boundingbox.h" />
+    <ClInclude Include="collisions\collidable.h" />
     <ClInclude Include="color.h" />
-    <ClInclude Include="entitycontainer.h" />
+    <ClInclude Include="gui\entityinfovisitor.h" />
+    <ClInclude Include="entity\entityvisitor.h" />
+    <ClInclude Include="gui\entityeditor.h" />
+    <ClInclude Include="entity\entitycontainer.h" />
+    <ClInclude Include="entity\entityfactory.h" />
     <ClInclude Include="entity\cube.h" />
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\icosphere.h" />
@@ -201,6 +216,7 @@
     <ClInclude Include="entity\triangle.h" />
     <ClInclude Include="entity\uvsphere.h" />
     <ClInclude Include="freecamera.h" />
+    <ClInclude Include="gui\guimanager.h" />
     <ClInclude Include="inputmanager.h" />
     <ClInclude Include="lights\directionallight.h" />
     <ClInclude Include="lights\light.h" />
@@ -209,6 +225,7 @@
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\perlinnoise.h" />
     <ClInclude Include="math\ray.h" />
+    <ClInclude Include="math\rotation.h" />
     <ClInclude Include="math\vec2.h" />
     <ClInclude Include="math\vec3.h" />
     <ClInclude Include="mesh\cubemesh.h" />
@@ -225,11 +242,20 @@
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadermanager.h" />
     <ClInclude Include="shaderprogram.h" />
-    <ClInclude Include="collisions\SphereBB.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="texturematerial.h" />
+    <ClInclude Include="collisions\spherebb.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h" />
+    <ClInclude Include="texture\texturefactory.h" />
+    <ClInclude Include="texture\texturematerial.h" />
     <ClInclude Include="utility\heightmapgenerator.h" />
     <ClInclude Include="utility\modelfactory.h" />
+    <ClInclude Include="vendor\imgui\imconfig.h" />
+    <ClInclude Include="vendor\imgui\imgui.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="vendor\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="vendor\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
