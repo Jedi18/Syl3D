@@ -4,6 +4,8 @@
 #include "../entity/entityfactory.h"
 #include "../texture/texturefactory.h"
 
+#include "terraingenerator.h"
+
 using namespace gui;
 
 void EntityCreator::displayEntityCreator() {
@@ -13,14 +15,8 @@ void EntityCreator::displayEntityCreator() {
 	
 	ImGui::Text("Entity Creator");
 
-	/*if (ImGui::Button("Cube")) {
-		std::shared_ptr<entity::Entity> cube = entityFactory->addEntity(EntityFactory::EntityType::Cube);
-		cube->translateTo(math::Vec3(0.0f, 0.0f, 0.0f));
-		cube->scale(5);
-	}*/
-
-    float n = (float)((int)EntityFactory::EntityType::Terrain + 1);
-    for (int entityT = (int)EntityFactory::EntityType::Cube; entityT <= (int)EntityFactory::EntityType::Terrain; entityT++) {
+    float n = (float)((int)EntityFactory::EntityType::IcoSphere + 1);
+    for (int entityT = (int)EntityFactory::EntityType::Cube; entityT <= (int)EntityFactory::EntityType::IcoSphere; entityT++) {
         if (entityT > 0)
             ImGui::SameLine();
         ImGui::PushID(entityT);
@@ -36,6 +32,11 @@ void EntityCreator::displayEntityCreator() {
         ImGui::PopStyleColor(3);
         ImGui::PopID();
     }
+
+    if (ImGui::Button("Terrain Generator")) {
+        TerrainGenerator::open = true;
+    }
+    TerrainGenerator::ShowTerrainGenerator();
 
     ImGui::Separator();
 }

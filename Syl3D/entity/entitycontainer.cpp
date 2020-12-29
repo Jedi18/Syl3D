@@ -20,6 +20,23 @@ void EntityContainer::addEntity(std::shared_ptr<entity::Entity> entity) {
 	}
 }
 
+bool EntityContainer::deleteEntity(std::shared_ptr<entity::Entity> entity) {
+	std::string shaderName = entity->shaderName();
+
+	if (_shaderEntityMap.find(shaderName) == _shaderEntityMap.end()) {
+		return false;
+	}
+
+	_shaderEntityMap[shaderName].erase(std::remove(_shaderEntityMap[shaderName].begin(), _shaderEntityMap[shaderName].end(), entity), _shaderEntityMap[shaderName].end());
+	
+	std::shared_ptr<collisions::Collidable> collid = std::dynamic_pointer_cast<collisions::Collidable>(entity);
+	if (collid != nullptr) { 
+		_collidableEntities.erase(std::remove(_collidableEntities.begin(), _collidableEntities.end(), collid), _collidableEntities.end());
+	}
+
+	return true;
+}
+
 void EntityContainer::addLight(std::shared_ptr<light::Light> light) {
 	_lights.push_back(light);
 }

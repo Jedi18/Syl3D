@@ -20,6 +20,8 @@ public:
 
 	void addEntity(std::shared_ptr<entity::Entity> entity);
 
+	bool deleteEntity(std::shared_ptr<entity::Entity> entity);
+
 	void addLight(std::shared_ptr<light::Light> light);
 
 	void setSelectedEntity(std::shared_ptr<entity::Entity> entity);

@@ -51,5 +51,5 @@ void GUIManager::toolsMenu() {
 	EntityEditor::displayEntityEditor(selectedEntity);
 
 	ImGui::End();
-	//ImGui::ShowDemoWindow();
+	ImGui::ShowDemoWindow();
 }

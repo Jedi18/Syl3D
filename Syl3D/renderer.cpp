@@ -31,19 +31,6 @@ void Renderer::initialize(float window_width, float window_height) {
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
 
-	math::Vec3 cubePositions[] = {
-	math::Vec3(0.0f,  0.0f,  0.0f),
-	math::Vec3(2.0f,  5.0f, -15.0f),
-	math::Vec3(-1.5f, -2.2f, -2.5f),
-	math::Vec3(-3.8f, -2.0f, -12.3f),
-	math::Vec3(2.4f, -0.4f, -3.5f),
-	math::Vec3(-1.7f,  3.0f, -7.5f),
-	math::Vec3(1.3f, -2.0f, -2.5f),
-	math::Vec3(1.5f,  2.0f, -2.5f),
-	math::Vec3(1.5f,  0.2f, -1.5f),
-	math::Vec3(-1.3f,  1.0f, -1.5f)
-	};
-
 	TextureFactory* textureFactory = TextureFactory::textureFactory();
 	textureFactory->setShaderManager(_shaderManager);
 
@@ -54,7 +41,7 @@ void Renderer::initialize(float window_width, float window_height) {
 	textureFactory->addShader("terrainShader");
 
 	std::shared_ptr<TextureMaterial> _texMaterial = textureFactory->addTextureMaterial("texMaterial", "resources/container2.png", "resources/container2_specular.png");
-	std::shared_ptr<TextureMaterial>_wallMaterial = textureFactory->addTextureMaterial("wallMaterial", "resources/wall.jpg", "resources/container2_specular.png");
+	std::shared_ptr<TextureMaterial> _wallMaterial = textureFactory->addTextureMaterial("wallMaterial", "resources/wall.jpg", "resources/container2_specular.png");
 	std::shared_ptr<TextureMaterial> _terrainTex = textureFactory->addTextureMaterial("terrainTex", "resources/snowtex.png", "resources/container2_specular.png", "terrainShader");
 
 	EntityFactory* entityFactory = EntityFactory::entityFactory();
@@ -63,29 +50,14 @@ void Renderer::initialize(float window_width, float window_height) {
 	// set selected entity texture
 	_entityContainer->setSelectedEntityTexture(_wallMaterial);
 
-	for (int i = 0; i < 10; i++) {
-		float angle = 20.0f * i;
-		std::shared_ptr<entity::Entity> ent;
-		
-		if (i % 2 == 0) {
-			ent = entityFactory->addEntity(EntityFactory::EntityType::Cube);
-		}
-		else {
-			ent = entityFactory->addEntity(EntityFactory::EntityType::UVSphere);
-		}
-		
-		ent->translateTo(cubePositions[i]);
-		ent->rotateAround(glm::radians(angle), math::Vec3(1.0f, 0.3f, 0.5f));
-	}
-
 	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
-	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/snow1.png");
+	/*utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/snow1.png");
 	
 	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData, "terrainShader");
 	terrain1->setTexture(_terrainTex);
 	terrain1->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
 	terrain1->scale(20);
-	_entityContainer->addEntity(terrain1);
+	_entityContainer->addEntity(terrain1);*/
 
 	/*std::shared_ptr<entity::Model> model1 = utility::ModelFactory::loadModel("resources/backpack/backpack.obj", "phongShader", _shaderManager->shaderByName("phongShader"));
 	model1->translate(math::Vec3(0, -4, 0));

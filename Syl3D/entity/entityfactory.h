@@ -9,7 +9,7 @@ public:
 	enum class EntityType {
 		Cube,
 		UVSphere,
-		Terrain
+		IcoSphere
 	};
 
 	static EntityFactory* entityFactory();

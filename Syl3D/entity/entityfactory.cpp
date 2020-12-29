@@ -2,6 +2,7 @@
 
 #include "cube.h"
 #include "uvsphere.h"
+#include "icosphere.h"
 #include "terrain.h"
 #include "../texture/texturefactory.h"
 
@@ -12,15 +13,13 @@ std::map<int, std::string> EntityFactory::_defaultShaders = std::map<int, std::s
 std::map<EntityFactory::EntityType, std::string> EntityFactory::ENTITY_NAMES = {
 	{EntityFactory::EntityType::Cube, "Cube"},
 	{EntityFactory::EntityType::UVSphere, "UVSphere"},
-	{EntityFactory::EntityType::Terrain, "Terrain"}
+	{EntityFactory::EntityType::IcoSphere, "IcoSphere"}
 };
 
 EntityFactory::EntityFactory() {
-	for (int entityT = (int)EntityType::Cube; entityT <= (int)EntityType::Terrain; entityT++) {
+	for (int entityT = (int)EntityType::Cube; entityT <= (int)EntityType::IcoSphere; entityT++) {
 		_defaultShaders[entityT] = "phongShader";
 	}
-
-	_defaultShaders[(int)EntityType::Terrain] = "terrainShader";
 }
 
 EntityFactory* EntityFactory::entityFactory() {
@@ -60,12 +59,17 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 			entity = std::make_shared<entity::UVSphere>(10,10,_defaultShaders[(int)EntityFactory::EntityType::UVSphere]);
 			break;
 		}
+		case EntityFactory::EntityType::IcoSphere:
+		{
+			entity = std::make_shared<entity::IcoSphere>(3, _defaultShaders[(int)EntityFactory::EntityType::IcoSphere]);
+			break;
+		}
 	}
 
 	if (entity != nullptr) {
 		_entityContainer->addEntity(entity);
+		entity->setTexture(textureFactory->getTextureMaterial("texMaterial"));
 	}
-	entity->setTexture(textureFactory->getTextureMaterial("texMaterial"));
 
 	return entity;
 }
