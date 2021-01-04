@@ -20,6 +20,8 @@ public:
 
 	void activateTextures();
 
+	unsigned int getTextureId(int index) const;
+
 private:
 	std::shared_ptr<ShaderProgram> _shaderProgram;
 	std::vector<unsigned int> _textures;

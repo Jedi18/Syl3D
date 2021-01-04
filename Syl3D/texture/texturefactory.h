@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <sstream>
 #include <map>
 #include "../shadermanager.h"
 #include "texturematerial.h"
@@ -17,6 +18,8 @@ public:
 	static std::shared_ptr<TextureMaterial> addTextureMaterial(const std::string& textureName, const std::string& diffuseTex, const std::string& specularTex, std::string shaderName = "default");
 
 	static std::shared_ptr<TextureMaterial> getTextureMaterial(const std::string& textureName);
+
+	static std::vector<std::string> getAvailableTextureMaterials();
 
 	static void releaseInstance();
 

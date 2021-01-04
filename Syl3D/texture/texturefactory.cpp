@@ -38,6 +38,16 @@ std::shared_ptr<TextureMaterial> TextureFactory::getTextureMaterial(const std::s
 	return textureList[textureName];
 }
 
+std::vector<std::string> TextureFactory::getAvailableTextureMaterials() {
+	std::vector<std::string> textureMaterials;
+
+	for (auto iter = textureList.begin(); iter != textureList.end(); iter++) {
+		textureMaterials.push_back((*iter).first);
+	}
+
+	return textureMaterials;
+}
+
 void TextureFactory::releaseInstance() {
 	if (_textureFactory != nullptr) {
 		delete _textureFactory;

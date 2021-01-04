@@ -5,6 +5,7 @@
 #include "../texture/texturefactory.h"
 
 #include "terraingenerator.h"
+#include "texturemanager.h"
 
 using namespace gui;
 
@@ -37,6 +38,11 @@ void EntityCreator::displayEntityCreator() {
         TerrainGenerator::open = true;
     }
     TerrainGenerator::ShowTerrainGenerator();
+
+    if (ImGui::Button("Texture Manager")) {
+        TextureManager::open = true;
+    }
+    TextureManager::ShowTextureManager();
 
     ImGui::Separator();
 }

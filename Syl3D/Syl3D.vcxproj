@@ -175,6 +175,7 @@
     <ClCompile Include="shadermanager.cpp" />
     <ClCompile Include="collisions\spherebb.cpp" />
     <ClCompile Include="gui\terraingenerator.cpp" />
+    <ClCompile Include="gui\texturemanager.cpp" />
     <ClCompile Include="texture\texturefactory.cpp" />
     <ClCompile Include="utility\heightmapgenerator.cpp" />
     <ClCompile Include="utility\modelfactory.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="collisions\spherebb.h" />
     <ClInclude Include="gui\terraingenerator.h" />
+    <ClInclude Include="gui\texturemanager.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
     <ClInclude Include="texture\texturefactory.h" />
     <ClInclude Include="texture\texturematerial.h" />

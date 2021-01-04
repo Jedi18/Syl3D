@@ -77,3 +77,7 @@ void TextureMaterial::activateTextures() {
 		_shaderProgram->setInt(_textureNames[i], i);
 	}
 }
+
+unsigned int TextureMaterial::getTextureId(int index) const {
+	return _textures[index];
+}
