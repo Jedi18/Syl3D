@@ -4,7 +4,7 @@ using namespace utility;
 
 std::map<std::string, ModelFactory::TexturePath> ModelFactory::textures;
 
-std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, const std::string& shaderName, std::shared_ptr<ShaderProgram> shaderProgram) {
+std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, const std::string& shaderName) {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
@@ -18,7 +18,7 @@ std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, 
 	std::string directory = path.substr(0, path.find_last_of('/'));
 	processNode(scene->mRootNode, scene, meshes);
 
-	std::shared_ptr<TextureMaterial> _modelTex = std::make_shared<TextureMaterial>(shaderProgram);
+	std::shared_ptr<TextureMaterial> _modelTex = std::make_shared<TextureMaterial>(shaderName);
 	for (auto texture : textures) {
 		if (texture.second.type == "texture_diffuse") {
 			_modelTex->addTexture("material.diffuse", directory + "/" + texture.first);
@@ -29,7 +29,7 @@ std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, 
 		}
 	}
 
-	std::shared_ptr<entity::Model> model = std::make_shared<entity::Model>(meshes, shaderName);
+	std::shared_ptr<entity::Model> model = std::make_shared<entity::Model>(meshes);
 	model->setTexture(_modelTex);
 	return model;
 }

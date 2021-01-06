@@ -21,21 +21,18 @@ Renderer::Renderer()
 	:
 	_freeCamera(std::make_shared<FreeCamera>()),
 	_mousePicker(_freeCamera),
-	_shaderManager(std::make_shared<ShaderManager>()),
-	_entityContainer(std::make_shared<EntityContainer>(_shaderManager, _freeCamera))
+	_entityContainer(std::make_shared<EntityContainer>(_freeCamera))
 {}
 
 void Renderer::initialize(float window_width, float window_height) {
-	_shaderManager->initialize();
-
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
 
+	ShaderManager* shaderManager = ShaderManager::shaderManager();
 	TextureFactory* textureFactory = TextureFactory::textureFactory();
-	textureFactory->setShaderManager(_shaderManager);
 
-	_shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
-	_shaderManager->addShader("terrainShader", "shaders/phongvertex.shader", "shaders/terrainfragment.shader");
+	shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
+	shaderManager->addShader("terrainShader", "shaders/phongvertex.shader", "shaders/terrainfragment.shader");
 
 	textureFactory->addShader("phongShader");
 	textureFactory->addShader("terrainShader");
@@ -53,7 +50,7 @@ void Renderer::initialize(float window_width, float window_height) {
 	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
 	/*utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/snow1.png");
 	
-	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData, "terrainShader");
+	std::shared_ptr<entity::Terrain> terrain1 = std::make_shared<entity::Terrain>(heightmapData);
 	terrain1->setTexture(_terrainTex);
 	terrain1->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
 	terrain1->scale(20);

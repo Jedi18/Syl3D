@@ -22,6 +22,11 @@ public:
 	*/
 	void run();
 
+	/**
+	* Cleanup on exiting
+	*/
+	void cleanUp();
+
 private:
 	void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 

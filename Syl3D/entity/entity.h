@@ -19,7 +19,7 @@ namespace entity
 	class Entity
 	{
 	public:
-		Entity(std::string shaderName = "default");
+		Entity();
 
 		void initialize(const std::vector<std::shared_ptr<mesh::Mesh>>& mesh);
 
@@ -61,8 +61,6 @@ namespace entity
 
 		virtual math::Vec3 getScale() const;
 
-		std::string shaderName() const;
-
 		void setTexture(std::shared_ptr<TextureMaterial> texMaterial);
 
 		std::shared_ptr<TextureMaterial> texture();
@@ -81,7 +79,6 @@ namespace entity
 		math::Vec3 _pos;
 		math::Vec3 _scale;
 		glm::mat4 _rotation;
-		std::string _shaderName;
 		std::shared_ptr<TextureMaterial> _textureMaterial;
 	};
 }

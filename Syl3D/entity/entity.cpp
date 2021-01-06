@@ -4,10 +4,9 @@
 
 using namespace entity;
 
-Entity::Entity(std::string shaderName)
+Entity::Entity()
 	:
 	_ID(EntityFactory::generateID()),
-	_shaderName(shaderName),
 	_scale(1,1,1),
 	_textureMaterial(nullptr),
 	_usesEBO(false)
@@ -130,10 +129,6 @@ math::Vec3 Entity::position() const {
 
 math::Vec3 Entity::getScale() const {
 	return _scale;
-}
-
-std::string Entity::shaderName() const {
-	return _shaderName;
 }
 
 unsigned int Entity::id() const {

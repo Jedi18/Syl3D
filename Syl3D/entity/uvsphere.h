@@ -9,9 +9,9 @@ namespace entity
 	class UVSphere : public Entity, public collisions::Collidable
 	{
 	public:
-		UVSphere(int parallels = 10, int meridians = 10, std::string shaderName = "default");
+		UVSphere(int parallels = 10, int meridians = 10);
 
-		UVSphere(math::Vec3 startingPos, int parallels = 10, int meridians = 10, std::string shaderName = "default");
+		UVSphere(math::Vec3 startingPos, int parallels = 10, int meridians = 10);
 
 		void draw() override;
 

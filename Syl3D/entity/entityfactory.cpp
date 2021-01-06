@@ -8,7 +8,6 @@
 
 EntityFactory* EntityFactory::_instance = nullptr;
 unsigned int EntityFactory::ENTITY_COUNT = 0;
-std::map<int, std::string> EntityFactory::_defaultShaders = std::map<int, std::string>();
 
 std::map<EntityFactory::EntityType, std::string> EntityFactory::ENTITY_NAMES = {
 	{EntityFactory::EntityType::Cube, "Cube"},
@@ -17,9 +16,6 @@ std::map<EntityFactory::EntityType, std::string> EntityFactory::ENTITY_NAMES = {
 };
 
 EntityFactory::EntityFactory() {
-	for (int entityT = (int)EntityType::Cube; entityT <= (int)EntityType::IcoSphere; entityT++) {
-		_defaultShaders[entityT] = "phongShader";
-	}
 }
 
 EntityFactory* EntityFactory::entityFactory() {
@@ -51,24 +47,26 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 	switch (entityType) {
 		case EntityFactory::EntityType::Cube:
 		{
-			entity = std::make_shared<entity::Cube>(_defaultShaders[(int)EntityFactory::EntityType::Cube]);
+			entity = std::make_shared<entity::Cube>();
 			break;
 		}
 		case EntityFactory::EntityType::UVSphere:
 		{
-			entity = std::make_shared<entity::UVSphere>(10,10,_defaultShaders[(int)EntityFactory::EntityType::UVSphere]);
+			entity = std::make_shared<entity::UVSphere>(10,10);
 			break;
 		}
 		case EntityFactory::EntityType::IcoSphere:
 		{
-			entity = std::make_shared<entity::IcoSphere>(3, _defaultShaders[(int)EntityFactory::EntityType::IcoSphere]);
+			entity = std::make_shared<entity::IcoSphere>(3);
 			break;
 		}
 	}
 
 	if (entity != nullptr) {
-		_entityContainer->addEntity(entity);
+		// material needs to be applied before adding to entity container (maybe instead 
+		// should check for null and add default in entity container?)
 		entity->setTexture(textureFactory->getTextureMaterial("texMaterial"));
+		_entityContainer->addEntity(entity);
 	}
 
 	return entity;

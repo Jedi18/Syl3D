@@ -8,22 +8,26 @@
 #include <GLFW/glfw3.h>
 
 #include "../shaderprogram.h"
+#include "../shadermanager.h"
 
 class TextureMaterial
 {
 public:
-	TextureMaterial(std::shared_ptr<ShaderProgram> shaderProgram);
+	TextureMaterial(std::string shaderName = "default");
 
 	void addTexture(std::string textureName, std::string textureFile, bool flipVertical = false);
 
-	void setShaderProgram(std::shared_ptr<ShaderProgram> shaderProgram);
+	void setShaderProgramName(std::string shaderName);
+
+	std::string shaderName() const;
 
 	void activateTextures();
 
 	unsigned int getTextureId(int index) const;
 
 private:
-	std::shared_ptr<ShaderProgram> _shaderProgram;
+	std::string _shaderName;
+	ShaderManager* shaderManager;
 	std::vector<unsigned int> _textures;
 	std::vector<std::string> _textureNames;
 

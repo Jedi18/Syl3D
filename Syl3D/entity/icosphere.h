@@ -9,9 +9,9 @@ namespace entity
 	class IcoSphere : public Entity, public collisions::Collidable
 	{
 	public:
-		IcoSphere(int recursionLevel = 3, std::string shaderName = "default");
+		IcoSphere(int recursionLevel = 3);
 
-		IcoSphere(math::Vec3 startingPos, int recursionLevel = 3, std::string shaderName = "default");
+		IcoSphere(math::Vec3 startingPos, int recursionLevel = 3);
 
 		void draw() override;
 
