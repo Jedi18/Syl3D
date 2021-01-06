@@ -34,6 +34,8 @@ public:
 
 	std::vector<std::shared_ptr<collisions::Collidable>> collidableEntities();
 
+	void changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName);
+
 private:
 	void setLightUniforms(std::shared_ptr<ShaderProgram> shaderProgram);
 

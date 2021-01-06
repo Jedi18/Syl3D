@@ -1,8 +1,7 @@
 #include "texturematerial.h"
+#include "texturefactory.h"
 
 #include "../vendor/stb_image/stb_image.h"
-
-#include <iostream>
 
 const std::map<int, GLenum> TextureMaterial::texturePositionMap = {
 	{0, GL_TEXTURE0},
@@ -17,9 +16,14 @@ const std::map<int, GLenum> TextureMaterial::texturePositionMap = {
 
 TextureMaterial::TextureMaterial(std::string shaderName)
 	:
+	_ID(TextureFactory::generateID()),
 	_shaderName(shaderName),
 	shaderManager(ShaderManager::shaderManager())
 {}
+
+unsigned int TextureMaterial::ID() const {
+	return _ID;
+}
 
 void TextureMaterial::addTexture(std::string textureName, std::string textureFile, bool flipVertical) {
 	GLuint texture1;

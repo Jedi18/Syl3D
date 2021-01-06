@@ -1,5 +1,6 @@
 #include "texturefactory.h"
 
+unsigned int TextureFactory::TEXTURE_COUNT = 0;
 TextureFactory* TextureFactory::_textureFactory = nullptr;
 std::vector<std::string> TextureFactory::shaderList = std::vector<std::string>();
 ShaderManager* TextureFactory::shaderManager = nullptr;
@@ -43,6 +44,19 @@ std::vector<std::string> TextureFactory::getAvailableTextureMaterials() {
 	}
 
 	return textureMaterials;
+}
+
+std::string TextureFactory::getTextureMaterialName(std::shared_ptr<TextureMaterial> textureMaterial) {
+	for (auto iter = textureList.begin(); iter != textureList.end(); iter++) {
+		if ((*iter).second->ID() == textureMaterial->ID()) {
+			return (*iter).first;
+		}
+	}
+}
+
+unsigned int TextureFactory::generateID() {
+	TEXTURE_COUNT++;
+	return TEXTURE_COUNT;
 }
 
 void TextureFactory::releaseInstance() {

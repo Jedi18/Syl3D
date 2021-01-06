@@ -1,5 +1,7 @@
 #include "entitycontainer.h"
 
+#include "entitymanager.h"
+
 EntityContainer::EntityContainer(std::shared_ptr<FreeCamera> freeCamera)
 	:
 	_freeCamera(freeCamera)
@@ -53,7 +55,7 @@ void EntityContainer::setSelectedEntity(std::shared_ptr<entity::Entity> entity) 
 
 	if (_selectedEntityTexture != nullptr) {
 		_selectedEntityOldTexture = entity->texture();
-		entity->setTexture(_selectedEntityTexture);
+		entity::EntityManager::entityManager()->changeTexture(entity, _selectedEntityTexture);
 	}
 
 	_selectedEntity = entity;
@@ -122,4 +124,15 @@ std::vector<std::shared_ptr<collisions::Collidable>> EntityContainer::collidable
 
 void EntityContainer::setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex) {
 	_selectedEntityTexture = entityTex;
+}
+
+void EntityContainer::changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName) {
+	for (auto iter = _shaderEntityMap[oldShaderName].begin(); iter != _shaderEntityMap[oldShaderName].end(); ++iter) {
+		if ((*iter)->id() == entity->id()) {
+			_shaderEntityMap[oldShaderName].erase(iter);
+			break;
+		}
+	}
+
+	_shaderEntityMap[newShaderName].push_back(entity);
 }

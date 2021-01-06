@@ -1,5 +1,8 @@
 #pragma once
 
+#include "entity.h"
+#include "../texture/texturematerial.h"
+
 namespace entity
 {
 	/**
@@ -12,7 +15,7 @@ namespace entity
 
 		static void releaseInstance();
 
-		void changeTexture() const;
+		void changeTexture(std::shared_ptr<entity::Entity> entity, std::shared_ptr<TextureMaterial> newTextureMaterial) const;
 
 	private:
 		EntityManager();

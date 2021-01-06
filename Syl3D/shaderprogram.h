@@ -11,11 +11,12 @@
 class ShaderProgram
 {
 public:
+	// So that only shader manager can call use on the shader program
+	friend class ShaderManager;
+
 	ShaderProgram();
 
 	ShaderProgram(unsigned int ID);
-
-	void use();
 
 	unsigned int id() const;
 
@@ -32,6 +33,9 @@ public:
 	void setColor3(std::string uniformName, shading::Color val);
 
 	void setMat4(std::string uniformName, glm::mat4 val);
+
+private:
+	void use();
 
 private:
 	unsigned int _ID;

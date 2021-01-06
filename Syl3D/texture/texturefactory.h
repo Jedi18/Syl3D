@@ -19,9 +19,15 @@ public:
 
 	static std::vector<std::string> getAvailableTextureMaterials();
 
+	static std::string getTextureMaterialName(std::shared_ptr<TextureMaterial>);
+
 	static void releaseInstance();
 
+	static unsigned int generateID();
+
 private:
+	static unsigned int TEXTURE_COUNT;
+
 	static TextureFactory* _textureFactory;
 	static std::vector<std::string> shaderList;
 	static ShaderManager* shaderManager;

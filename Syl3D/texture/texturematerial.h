@@ -25,7 +25,10 @@ public:
 
 	unsigned int getTextureId(int index) const;
 
+	unsigned int ID() const;
+
 private:
+	unsigned int _ID;
 	std::string _shaderName;
 	ShaderManager* shaderManager;
 	std::vector<unsigned int> _textures;

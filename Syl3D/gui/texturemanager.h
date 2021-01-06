@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <functional>
 
 #include "../vendor/imgui/imgui.h"
 #include "../vendor/imgui/imgui_impl_glfw.h"
@@ -14,11 +15,15 @@ namespace gui
 	public:
 		static void ShowTextureManager();
 
+		static void textureMaterialsListGUI(std::function<void(int)> callbackFunc, int& selectedTexture);
+
 	private:
 		static std::string getTextureMaterialsList(const std::vector<std::string>& textureMaterialsList);
 
+		static void textureSelectedCallback(int selectedTex);
+
 	public:
 		static bool open;
-		static int selectedTexture;
+		static int _selectedTexture;
 	};
 }
