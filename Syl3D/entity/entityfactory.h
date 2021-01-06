@@ -33,7 +33,6 @@ private:
 private:
 	static EntityFactory* _instance;
 	static unsigned int ENTITY_COUNT;
-	static std::map<int, std::string> _defaultShaders;
 
 	std::shared_ptr<EntityContainer> _entityContainer = nullptr;
 };

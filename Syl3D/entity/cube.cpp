@@ -4,9 +4,9 @@
 
 using namespace entity;
 
-Cube::Cube(std::string shaderName)
+Cube::Cube()
 	:
-	Entity(shaderName),
+	Entity(),
 	Collidable(new collisions::SphereBB(_scale.x/2)),
 	_cube(std::make_shared<mesh::CubeMesh>())
 {

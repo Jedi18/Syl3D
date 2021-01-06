@@ -12,6 +12,15 @@ namespace gui
 	{
 	public:
 		static void displayEntityEditor(std::shared_ptr<entity::Entity> selectedEntity);
+
+	private:
+		static void textureSelectedCallback(int selectedTexture);
+
+	private:
+		static int _selectedTexture;
+		// to update entity texture when required instead of checking every frame
+		static bool entityTextureUpdated;
+		static std::shared_ptr<entity::Entity> currentEntity;
 	};
 }
 

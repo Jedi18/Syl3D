@@ -6,16 +6,38 @@
 #include "../math/rotation.h"
 
 #include "entityinfovisitor.h"
+#include "../entity/entitymanager.h"
+
+#include "texturemanager.h"
+#include "../texture/texturefactory.h"
 
 using namespace gui;
 
+int EntityEditor::_selectedTexture = 0;
+bool EntityEditor::entityTextureUpdated = false;
+std::shared_ptr<entity::Entity> EntityEditor::currentEntity = nullptr;
+
 void EntityEditor::displayEntityEditor(std::shared_ptr<entity::Entity> selectedEntity) {
+	if (currentEntity == nullptr) {
+		currentEntity = selectedEntity;
+	}
+
 	ImGui::Text("Entity Editor");
 
 	if (selectedEntity == nullptr) {
 		ImGui::Text("No entity selected.");
 		return;
 	}
+
+	ImGui::Separator();
+
+	/* Entity specific info */
+	EntityInfoVisitor::EntityInfo entityInfo;
+	EntityInfoVisitor entityInfoVisitor;
+	selectedEntity->accept(entityInfoVisitor);
+	entityInfo = entityInfoVisitor.getData();
+
+	ImGui::Text(entityInfo.entityTypeName.c_str());
 
 	ImGui::Separator();
 	// Common entity data like location, rotation, scale
@@ -41,11 +63,28 @@ void EntityEditor::displayEntityEditor(std::shared_ptr<entity::Entity> selectedE
 	}
 
 	ImGui::Separator();
-	/* Entity specific info */
-	EntityInfoVisitor::EntityInfo entityInfo;
-	EntityInfoVisitor entityInfoVisitor;
-	selectedEntity->accept(entityInfoVisitor);
-	entityInfo = entityInfoVisitor.getData();
 
-	ImGui::Text(entityInfo.entityTypeName.c_str());
+	if (!entityTextureUpdated) {
+		std::vector<std::string> textureMaterialsList = TextureFactory::getAvailableTextureMaterials();
+		std::string textureName = TextureFactory::getTextureMaterialName(selectedEntity->texture());
+		for (int i = 0; i < textureMaterialsList.size(); i++) {
+			if (textureMaterialsList[i] == textureName) {
+				_selectedTexture = i;
+				break;
+			}
+		}
+
+		entityTextureUpdated = true;
+	}
+
+	TextureManager::textureMaterialsListGUI(textureSelectedCallback, _selectedTexture);
+}
+
+void EntityEditor::textureSelectedCallback(int selectedTexture) {
+	if (currentEntity != nullptr) {
+		std::vector<std::string> textureMaterialsList = TextureFactory::getAvailableTextureMaterials();
+		entity::EntityManager* entityManager = entity::EntityManager::entityManager();
+		entityManager->changeTexture(currentEntity, TextureFactory::getTextureMaterial(textureMaterialsList[selectedTexture]));
+		entityTextureUpdated = false;
+	}
 }

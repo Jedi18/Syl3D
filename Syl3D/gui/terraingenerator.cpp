@@ -29,7 +29,7 @@ void TerrainGenerator::ShowTerrainGenerator() {
 
         std::shared_ptr<TextureMaterial> terrainTex = TextureFactory::textureFactory()->getTextureMaterial("terrainTex");
 
-        currentTerrain = std::make_shared<entity::Terrain>(heightmapData, "terrainShader");
+        currentTerrain = std::make_shared<entity::Terrain>(heightmapData);
         currentTerrain->setTexture(terrainTex);
         currentTerrain->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
         currentTerrain->scale(20);

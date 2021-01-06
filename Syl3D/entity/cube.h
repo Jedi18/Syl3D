@@ -10,7 +10,7 @@ namespace entity
 	class Cube : public Entity, public collisions::Collidable
 	{
 	public:
-		Cube(std::string shaderName = "default");
+		Cube();
 
 		Cube(math::Vec3 startingPos);
 

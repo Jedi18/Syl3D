@@ -4,18 +4,18 @@
 
 using namespace entity;
 
-IcoSphere::IcoSphere(int recursionLevel, std::string shaderName)
+IcoSphere::IcoSphere(int recursionLevel)
 	:
-	Entity(shaderName),
+	Entity(),
 	Collidable(new collisions::SphereBB(1)),
 	_sphere(std::make_shared<mesh::IcoSphereMesh>(recursionLevel))
 {
 	this->initialize({ std::static_pointer_cast<mesh::Mesh>(_sphere) });
 }
 
-IcoSphere::IcoSphere(math::Vec3 startingPos, int recursionLevel, std::string shaderName)
+IcoSphere::IcoSphere(math::Vec3 startingPos, int recursionLevel)
 	:
-	IcoSphere(recursionLevel, shaderName)
+	IcoSphere(recursionLevel)
 {
 	_pos = startingPos;
 }

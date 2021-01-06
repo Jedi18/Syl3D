@@ -16,7 +16,7 @@
 class EntityContainer
 {
 public:
-	EntityContainer(std::shared_ptr<ShaderManager> shaderManager, std::shared_ptr<FreeCamera> freeCamera);
+	EntityContainer(std::shared_ptr<FreeCamera> freeCamera);
 
 	void addEntity(std::shared_ptr<entity::Entity> entity);
 
@@ -34,11 +34,13 @@ public:
 
 	std::vector<std::shared_ptr<collisions::Collidable>> collidableEntities();
 
+	void changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName);
+
 private:
 	void setLightUniforms(std::shared_ptr<ShaderProgram> shaderProgram);
 
 private:
-	std::shared_ptr<ShaderManager> _shaderManager;
+	ShaderManager* _shaderManager = nullptr;
 	std::shared_ptr<FreeCamera> _freeCamera;
 	// so we can draw all the related enities for a shader, might change later
 	std::map<std::string, std::vector<std::shared_ptr<entity::Entity>>> _shaderEntityMap;

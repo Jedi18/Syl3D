@@ -2,9 +2,9 @@
 
 using namespace entity;
 
-Model::Model(const std::vector<std::shared_ptr<mesh::ModelMesh>>& meshes, std::string shaderName)
+Model::Model(const std::vector<std::shared_ptr<mesh::ModelMesh>>& meshes)
 	:
-	Entity(shaderName),
+	Entity(),
 	_meshes(meshes)
 {
 	size_t n = _meshes.size();

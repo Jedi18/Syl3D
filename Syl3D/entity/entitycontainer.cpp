@@ -1,13 +1,20 @@
 #include "entitycontainer.h"
 
-EntityContainer::EntityContainer(std::shared_ptr<ShaderManager> shaderManager, std::shared_ptr<FreeCamera> freeCamera)
+#include "entitymanager.h"
+
+EntityContainer::EntityContainer(std::shared_ptr<FreeCamera> freeCamera)
 	:
-	_shaderManager(shaderManager),
 	_freeCamera(freeCamera)
 {}
 
 void EntityContainer::addEntity(std::shared_ptr<entity::Entity> entity) {
-	std::string shaderName = entity->shaderName();
+	// shader manager can't be instantiated on entitycontainer constructor as it's not ready to load the default texture at that point
+	// instantiating it here works since shaderManager won't be used in drawEntity until addEntity is called at least once
+	if (_shaderManager == nullptr) {
+		_shaderManager = ShaderManager::shaderManager();
+	}
+
+	std::string shaderName = entity->texture()->shaderName();
 
 	if (_shaderEntityMap.find(shaderName) == _shaderEntityMap.end()) {
 		_shaderEntityMap[shaderName] = std::vector<std::shared_ptr<entity::Entity>>();
@@ -21,7 +28,7 @@ void EntityContainer::addEntity(std::shared_ptr<entity::Entity> entity) {
 }
 
 bool EntityContainer::deleteEntity(std::shared_ptr<entity::Entity> entity) {
-	std::string shaderName = entity->shaderName();
+	std::string shaderName = entity->texture()->shaderName();
 
 	if (_shaderEntityMap.find(shaderName) == _shaderEntityMap.end()) {
 		return false;
@@ -48,7 +55,7 @@ void EntityContainer::setSelectedEntity(std::shared_ptr<entity::Entity> entity) 
 
 	if (_selectedEntityTexture != nullptr) {
 		_selectedEntityOldTexture = entity->texture();
-		entity->setTexture(_selectedEntityTexture);
+		entity::EntityManager::entityManager()->changeTexture(entity, _selectedEntityTexture);
 	}
 
 	_selectedEntity = entity;
@@ -117,4 +124,15 @@ std::vector<std::shared_ptr<collisions::Collidable>> EntityContainer::collidable
 
 void EntityContainer::setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex) {
 	_selectedEntityTexture = entityTex;
+}
+
+void EntityContainer::changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName) {
+	for (auto iter = _shaderEntityMap[oldShaderName].begin(); iter != _shaderEntityMap[oldShaderName].end(); ++iter) {
+		if ((*iter)->id() == entity->id()) {
+			_shaderEntityMap[oldShaderName].erase(iter);
+			break;
+		}
+	}
+
+	_shaderEntityMap[newShaderName].push_back(entity);
 }
