@@ -52,6 +52,8 @@ std::string TextureFactory::getTextureMaterialName(std::shared_ptr<TextureMateri
 			return (*iter).first;
 		}
 	}
+
+	return "";
 }
 
 unsigned int TextureFactory::generateID() {

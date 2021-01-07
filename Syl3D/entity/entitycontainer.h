@@ -24,7 +24,11 @@ public:
 
 	void addLight(std::shared_ptr<light::Light> light);
 
+	std::shared_ptr<entity::Entity> entityById(unsigned int entityId);
+
 	void setSelectedEntity(std::shared_ptr<entity::Entity> entity);
+
+	void setSelectedEntity(unsigned int entityId);
 
 	void setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex);
 
@@ -33,6 +37,8 @@ public:
 	std::shared_ptr<entity::Entity> selectedEntity();
 
 	std::vector<std::shared_ptr<collisions::Collidable>> collidableEntities();
+
+	std::vector<std::shared_ptr<entity::Entity>> entityList();
 
 	void changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName);
 

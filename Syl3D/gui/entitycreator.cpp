@@ -6,6 +6,7 @@
 
 #include "terraingenerator.h"
 #include "texturemanager.h"
+#include "objectlist.h"
 
 using namespace gui;
 
@@ -43,6 +44,11 @@ void EntityCreator::displayEntityCreator() {
         TextureManager::open = true;
     }
     TextureManager::ShowTextureManager();
+
+    if (ImGui::Button("Object List")) {
+        ObjectList::open = true;
+    }
+    ObjectList::ShowObjectList();
 
     ImGui::Separator();
 }

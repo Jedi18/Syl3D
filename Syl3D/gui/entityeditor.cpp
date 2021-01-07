@@ -18,7 +18,8 @@ bool EntityEditor::entityTextureUpdated = false;
 std::shared_ptr<entity::Entity> EntityEditor::currentEntity = nullptr;
 
 void EntityEditor::displayEntityEditor(std::shared_ptr<entity::Entity> selectedEntity) {
-	if (currentEntity == nullptr) {
+	if (currentEntity == nullptr || currentEntity != selectedEntity) {
+		entityTextureUpdated = false;
 		currentEntity = selectedEntity;
 	}
 

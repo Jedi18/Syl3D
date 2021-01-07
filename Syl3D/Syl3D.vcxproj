@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="gui\objectlist.cpp" />
     <ClCompile Include="entity\entitymanager.cpp" />
     <ClCompile Include="gui\entitycreator.cpp" />
     <ClCompile Include="gui\entityeditor.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="collisions\boundingbox.h" />
     <ClInclude Include="collisions\collidable.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="gui\objectlist.h" />
     <ClInclude Include="entity\entitymanager.h" />
     <ClInclude Include="gui\entitycreator.h" />
     <ClInclude Include="gui\entityinfovisitor.h" />
