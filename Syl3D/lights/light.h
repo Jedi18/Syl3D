@@ -1,14 +1,23 @@
 #pragma once
 
+#include "../base/object.h"
 #include "../shaderprogram.h"
 
 #include <memory>
 
 namespace light
 {
-	class Light
+	class Light : public Object
 	{
 	public:
+		Light()
+		{}
+
+		Light(math::Vec3 position)
+			:
+			Object(position)
+		{}
+
 		enum class LightType
 		{
 			Point,

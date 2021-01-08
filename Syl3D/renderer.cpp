@@ -73,7 +73,7 @@ void Renderer::render() {
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	_spotLight->setPosition(_freeCamera->cameraPosition());
+	_spotLight->translateTo(_freeCamera->cameraPosition());
 	_spotLight->setDirection(_freeCamera->cameraFrontDirection());
 	_entityContainer->drawEntities();
 }
