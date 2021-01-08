@@ -4,6 +4,7 @@
 #include "../shaderprogram.h"
 
 #include <memory>
+#include "lightvisitor.h"
 
 namespace light
 {
@@ -28,5 +29,7 @@ namespace light
 		virtual void setShaderUniforms(std::shared_ptr<ShaderProgram> shaderProgram, int index) = 0;
 
 		virtual LightType type() const = 0;
+
+		virtual void accept(LightVisitor& v) = 0;
 	};
 }

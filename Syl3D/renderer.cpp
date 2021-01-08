@@ -44,9 +44,6 @@ void Renderer::initialize(float window_width, float window_height) {
 	EntityFactory* entityFactory = EntityFactory::entityFactory();
 	entityFactory->setEntityContainer(_entityContainer);
 
-	// set selected entity texture
-	_entityContainer->setSelectedEntityTexture(_wallMaterial);
-
 	//utility::HeightmapData heightmapData = utility::HeightmapGenerator::ProceduralHeightmap(10, 10, 0.8f);
 	/*utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile("resources/snow1.png");
 	
@@ -87,7 +84,7 @@ void Renderer::mouseRayIntersections(math::Vec3 mouseRay) {
 	std::vector<std::shared_ptr<collisions::Collidable>> collidableEntities = _entityContainer->collidableEntities();
 	for (std::shared_ptr<collisions::Collidable> collidable : collidableEntities) {
 		if (collidable->intersects(ray)) {
-			_entityContainer->setSelectedEntity(std::dynamic_pointer_cast<entity::Entity>(collidable));
+			_entityContainer->setSelectedObject(std::dynamic_pointer_cast<entity::Entity>(collidable));
 		}
 	}
 }

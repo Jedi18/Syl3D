@@ -169,6 +169,7 @@
     <ClCompile Include="lights\directionallight.cpp" />
     <ClCompile Include="lights\pointlight.cpp" />
     <ClCompile Include="lights\spotlight.cpp" />
+    <ClCompile Include="lights\lightvisitor.cpp" />
     <ClCompile Include="math\perlinnoise.cpp" />
     <ClCompile Include="math\ray.cpp" />
     <ClCompile Include="math\vec2.cpp" />
@@ -212,7 +213,7 @@
     <ClInclude Include="gui\objectlist.h" />
     <ClInclude Include="entity\entitymanager.h" />
     <ClInclude Include="gui\entitycreator.h" />
-    <ClInclude Include="gui\entityinfovisitor.h" />
+    <ClInclude Include="gui\objectinfovisitor.h" />
     <ClInclude Include="entity\entityvisitor.h" />
     <ClInclude Include="gui\entityeditor.h" />
     <ClInclude Include="entity\entitycontainer.h" />
@@ -231,6 +232,7 @@
     <ClInclude Include="lights\light.h" />
     <ClInclude Include="lights\pointlight.h" />
     <ClInclude Include="lights\spotlight.h" />
+    <ClInclude Include="lights\lightvisitor.h" />
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\perlinnoise.h" />
     <ClInclude Include="math\ray.h" />

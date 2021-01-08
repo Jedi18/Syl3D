@@ -26,19 +26,21 @@ public:
 
 	std::shared_ptr<entity::Entity> entityById(unsigned int entityId);
 
-	void setSelectedEntity(std::shared_ptr<entity::Entity> entity);
+	std::shared_ptr<light::Light> lightById(unsigned int lightId);
 
-	void setSelectedEntity(unsigned int entityId);
+	void setSelectedObject(std::shared_ptr<Object> object);
 
-	void setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex);
+	void setSelectedObject(unsigned int objectId);
 
 	void drawEntities();
 
-	std::shared_ptr<entity::Entity> selectedEntity();
+	std::shared_ptr<Object> selectedObject();
 
 	std::vector<std::shared_ptr<collisions::Collidable>> collidableEntities();
 
 	std::vector<std::shared_ptr<entity::Entity>> entityList();
+
+	std::vector<std::shared_ptr<Object>> objectList();
 
 	void changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName);
 
@@ -53,7 +55,5 @@ private:
 	// maintain list of all collidable entities for easy access
 	std::vector<std::shared_ptr<collisions::Collidable>> _collidableEntities;
 	std::vector<std::shared_ptr<light::Light>> _lights;
-	std::shared_ptr<entity::Entity> _selectedEntity = nullptr;
-	std::shared_ptr<TextureMaterial> _selectedEntityTexture = nullptr;
-	std::shared_ptr<TextureMaterial> _selectedEntityOldTexture = nullptr;
+	std::shared_ptr<Object> _selectedObject = nullptr;
 };

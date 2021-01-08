@@ -68,3 +68,7 @@ void SpotLight::setOuterCutOff(float c) {
 Light::LightType SpotLight::type() const {
 	return LightType::SpotLight;
 }
+
+void SpotLight::accept(LightVisitor& v) {
+	v.visit(this);
+}

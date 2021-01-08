@@ -28,6 +28,10 @@ void EntityContainer::addEntity(std::shared_ptr<entity::Entity> entity) {
 }
 
 bool EntityContainer::deleteEntity(std::shared_ptr<entity::Entity> entity) {
+	if (entity->id() == _selectedObject->id()) {
+		setSelectedObject(nullptr);
+	}
+
 	std::string shaderName = entity->texture()->shaderName();
 
 	if (_shaderEntityMap.find(shaderName) == _shaderEntityMap.end()) {
@@ -48,23 +52,25 @@ void EntityContainer::addLight(std::shared_ptr<light::Light> light) {
 	_lights.push_back(light);
 }
 
-void EntityContainer::setSelectedEntity(std::shared_ptr<entity::Entity> entity) {
-	if (_selectedEntity != nullptr && _selectedEntityOldTexture != nullptr) {
-		//entity::EntityManager::entityManager()->changeTexture(_selectedEntity, _selectedEntityOldTexture);
-	}
-
-	if (_selectedEntityTexture != nullptr) {
-		_selectedEntityOldTexture = entity->texture();
-		//entity::EntityManager::entityManager()->changeTexture(entity, _selectedEntityTexture);
-	}
-
-	_selectedEntity = entity;
+void EntityContainer::setSelectedObject(std::shared_ptr<Object> object) {
+	_selectedObject = object;
 }
 
-void EntityContainer::setSelectedEntity(unsigned int entityId) {
+void EntityContainer::setSelectedObject(unsigned int entityId) {
 	std::shared_ptr<entity::Entity> entity = entityById(entityId);
 	if (entity != nullptr) {
-		setSelectedEntity(entity);
+		setSelectedObject(entity);
+	}
+	else {
+		// light
+		std::shared_ptr<light::Light> light = lightById(entityId);
+
+		if (light != nullptr) {
+			setSelectedObject(light);
+		}
+		else {
+			setSelectedObject(nullptr);
+		}
 	}
 }
 
@@ -82,8 +88,18 @@ std::shared_ptr<entity::Entity> EntityContainer::entityById(unsigned int entityI
 	return nullptr;
 }
 
-std::shared_ptr<entity::Entity> EntityContainer::selectedEntity() {
-	return _selectedEntity;
+std::shared_ptr<light::Light> EntityContainer::lightById(unsigned int lightId) {
+	for (std::shared_ptr<light::Light> light : _lights) {
+		if (light->id() == lightId) {
+			return light;
+		}
+	}
+
+	return nullptr;
+}
+
+std::shared_ptr<Object> EntityContainer::selectedObject() {
+	return _selectedObject;
 }
 
 void EntityContainer::drawEntities() {
@@ -143,10 +159,6 @@ std::vector<std::shared_ptr<collisions::Collidable>> EntityContainer::collidable
 	return _collidableEntities;
 }
 
-void EntityContainer::setSelectedEntityTexture(std::shared_ptr<TextureMaterial> entityTex) {
-	_selectedEntityTexture = entityTex;
-}
-
 void EntityContainer::changeEntityShader(std::shared_ptr<entity::Entity> entity, const std::string& oldShaderName, const std::string& newShaderName) {
 	for (auto iter = _shaderEntityMap[oldShaderName].begin(); iter != _shaderEntityMap[oldShaderName].end(); ++iter) {
 		if ((*iter)->id() == entity->id()) {
@@ -168,4 +180,20 @@ std::vector<std::shared_ptr<entity::Entity>> EntityContainer::entityList() {
 	}
 
 	return entitiesList;
+}
+
+std::vector<std::shared_ptr<Object>> EntityContainer::objectList() {
+	std::vector<std::shared_ptr<Object>> objectsList;
+
+	for (auto iter = _shaderEntityMap.begin(); iter != _shaderEntityMap.end(); ++iter) {
+		for (std::shared_ptr<entity::Entity> ptr : iter->second) {
+			objectsList.push_back(ptr);
+		}
+	}
+
+	for (std::shared_ptr<light::Light> light : _lights) {
+		objectsList.push_back(light);
+	}
+
+	return objectsList;
 }

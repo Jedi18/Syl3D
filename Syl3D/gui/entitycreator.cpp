@@ -28,7 +28,7 @@ void EntityCreator::displayEntityCreator() {
 
         if (ImGui::Button(EntityFactory::ENTITY_NAMES[(EntityFactory::EntityType)entityT].c_str())) {
             std::shared_ptr<entity::Entity> ent = entityFactory->addEntity((EntityFactory::EntityType)entityT);
-            entityContainer->setSelectedEntity(ent);
+            entityContainer->setSelectedObject(ent);
         }
 
         ImGui::PopStyleColor(3);
@@ -47,6 +47,7 @@ void EntityCreator::displayEntityCreator() {
 
         if (ImGui::Button(EntityFactory::LIGHT_NAMES[(EntityFactory::LightType)lightT].c_str())) {
             std::shared_ptr<light::Light> light = entityFactory->addLight((EntityFactory::LightType)lightT);
+            entityContainer->setSelectedObject(light);
         }
 
         ImGui::PopStyleColor(3);

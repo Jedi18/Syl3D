@@ -1,7 +1,7 @@
 #include "objectlist.h"
 #include "../entity/entityfactory.h"
 #include "../entity/entitycontainer.h"
-#include "entityinfovisitor.h"
+#include "objectinfovisitor.h"
 
 using namespace gui;
 
@@ -14,27 +14,35 @@ void ObjectList::ShowObjectList() {
     }
 
     std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
-    std::vector<std::shared_ptr<entity::Entity>> entityList = entityContainer->entityList();
+    std::vector<std::shared_ptr<Object>> objectList = entityContainer->objectList();
 
-    EntityInfoVisitor::EntityInfo entityInfo;
-    EntityInfoVisitor entityInfoVisitor;
+    ObjectInfoVisitor::ObjectInfo objectInfo;
+    ObjectInfoVisitor objectInfoVisitor;
 
     ImGui::Begin("Objects", &open);
 
     static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth
         | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanFullWidth;
 
-    for (const std::shared_ptr<entity::Entity> entity : entityList) {
-        int id = entity->id();
+    for (const std::shared_ptr<Object> object : objectList) {
+        int id = object->id();
         ImGuiTreeNodeFlags node_flags = base_flags;
-        const bool is_selected = (selectedObject == entity->id());
+        const bool is_selected = (selectedObject == object->id());
         if (is_selected)
             node_flags |= ImGuiTreeNodeFlags_Selected;
 
-        entity->accept(entityInfoVisitor);
-        entityInfo = entityInfoVisitor.getData();
+        std::shared_ptr<entity::Entity> selectedEntity = std::dynamic_pointer_cast<entity::Entity>(object);
+        if (selectedEntity != nullptr) {
+            selectedEntity->accept(objectInfoVisitor);
+            objectInfo = objectInfoVisitor.getData();
+        }
+        else {
+            std::shared_ptr<light::Light> selectedLight = std::dynamic_pointer_cast<light::Light>(object);
+            selectedLight->accept(objectInfoVisitor);
+            objectInfo = objectInfoVisitor.getData();
+        }
 
-        std::string entityName = entityInfo.entityTypeName;
+        std::string entityName = objectInfo.entityTypeName;
         entityName += " ID:%d";
 
         // Uncomment after entity relationships are implemented 
@@ -55,9 +63,13 @@ void ObjectList::ShowObjectList() {
         if (ImGui::IsItemClicked()) {
             selectedObject = id;
             std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
-            entityContainer->setSelectedEntity(selectedObject);
+            entityContainer->setSelectedObject(selectedObject);
         }
     }
  
     ImGui::End();
+}
+
+void ObjectList::setSelectedObject(int selectedObjectId) {
+    selectedObject = selectedObjectId;
 }

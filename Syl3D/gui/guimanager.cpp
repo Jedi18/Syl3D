@@ -46,10 +46,15 @@ void GUIManager::toolsMenu() {
 	EntityCreator::displayEntityCreator();
 
 	std::shared_ptr<EntityContainer> entityContainer = EntityFactory::entityFactory()->entityContainer();
-	std::shared_ptr<entity::Entity> selectedEntity = entityContainer->selectedEntity();
+	std::shared_ptr<Object> selectedObject = entityContainer->selectedObject();
 
-	EntityEditor::displayEntityEditor(selectedEntity);
+	if (selectedObject == nullptr) {
+		ImGui::End();
+		return;
+	}
+
+	EntityEditor::displayEntityEditor(selectedObject);
 
 	ImGui::End();
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 }

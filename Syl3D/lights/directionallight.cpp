@@ -36,3 +36,7 @@ void DirectionalLight::setSpecularColor(shading::Color col) {
 Light::LightType DirectionalLight::type() const {
 	return LightType::Directional;
 }
+
+void DirectionalLight::accept(LightVisitor& v) {
+	v.visit(this);
+}

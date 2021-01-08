@@ -1,13 +1,15 @@
 #pragma once
 
+#include <string>
 #include "../entity/entityvisitor.h"
+#include "../lights/lightvisitor.h"
 
 namespace gui
 {
-	class EntityInfoVisitor : public entity::EntityVisitor
+	class ObjectInfoVisitor : public entity::EntityVisitor, public light::LightVisitor
 	{
 	public:
-		struct EntityInfo
+		struct ObjectInfo
 		{
 			std::string entityTypeName;
 		};
@@ -41,12 +43,24 @@ namespace gui
 			data.entityTypeName = "Model";
 		}
 
-		EntityInfo getData() {
+		void visit(light::PointLight* point) override {
+			data.entityTypeName = "Point Light";
+		}
+
+		void visit(light::DirectionalLight* directional) override {
+			data.entityTypeName = "Directional Light";
+		}
+
+		void visit(light::SpotLight* spot) override {
+			data.entityTypeName = "Spot Light";
+		}
+
+		ObjectInfo getData() {
 			return data;
 		}
 
 	private:
-		EntityInfo data;
+		ObjectInfo data;
 	};
 }
 

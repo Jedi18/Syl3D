@@ -50,3 +50,7 @@ void PointLight::setQuadraticConstant(float c) {
 Light::LightType PointLight::type() const {
 	return LightType::Point;
 }
+
+void PointLight::accept(LightVisitor& v) {
+	v.visit(this);
+}

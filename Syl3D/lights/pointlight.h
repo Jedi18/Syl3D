@@ -25,6 +25,8 @@ namespace light
 
 		LightType type() const override;
 
+		void accept(LightVisitor& v) override;
+
 	private:
 		shading::Color _ambient;
 		shading::Color _diffuse;

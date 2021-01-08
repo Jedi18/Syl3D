@@ -31,6 +31,8 @@ namespace light
 
 		LightType type() const override;
 
+		void accept(LightVisitor& v) override;
+
 	private:
 		math::Vec3 _direction;
 		shading::Color _ambient;

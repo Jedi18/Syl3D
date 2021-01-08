@@ -11,6 +11,8 @@ namespace gui
 	public:
 		static void ShowObjectList();
 
+		static void setSelectedObject(int selectedObjectId);
+
 	public:
 		static bool open;
 		static int selectedObject;
