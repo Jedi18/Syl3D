@@ -41,6 +41,7 @@ bool GUIManager::mouseOnGUI() const {
 }
 
 void GUIManager::toolsMenu() {
+	ImGui::ShowDemoWindow();
 	ImGui::Begin("Tools");
 
 	EntityCreator::displayEntityCreator();
@@ -56,5 +57,4 @@ void GUIManager::toolsMenu() {
 	EntityEditor::displayEntityEditor(selectedObject);
 
 	ImGui::End();
-	//ImGui::ShowDemoWindow();
 }

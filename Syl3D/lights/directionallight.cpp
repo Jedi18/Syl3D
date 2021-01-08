@@ -4,10 +4,8 @@ using namespace light;
 
 DirectionalLight::DirectionalLight(math::Vec3 direction, shading::Color diffuse)
 	:
-	_direction(direction.normalized()),
-	_diffuse(diffuse),
-	_ambient(0.05f, 0.05f, 0.05f),
-	_specular(shading::Color(1.0f, 1.0f, 1.0f))
+	Light(math::Vec3(0.0f, 0.0f, 0.0f), diffuse),
+	_direction(direction.normalized())
 {}
 
 void DirectionalLight::setShaderUniforms(std::shared_ptr<ShaderProgram> shaderProgram, int index) {
@@ -21,16 +19,8 @@ void DirectionalLight::setDirection(math::Vec3 dir) {
 	_direction = dir.normalized();
 }
 
-void DirectionalLight::setAmbientColor(shading::Color col) {
-	_ambient = col;
-}
-
-void DirectionalLight::setDiffuseColor(shading::Color col) {
-	_diffuse = col;
-}
-
-void DirectionalLight::setSpecularColor(shading::Color col) {
-	_specular = col;
+const math::Vec3 DirectionalLight::direction() const {
+	return _direction;
 }
 
 Light::LightType DirectionalLight::type() const {

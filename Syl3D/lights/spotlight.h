@@ -11,11 +11,7 @@ namespace light
 
 		void setDirection(math::Vec3 dir);
 
-		void setAmbientColor(shading::Color col);
-
-		void setDiffuseColor(shading::Color col);
-
-		void setSpecularColor(shading::Color col);
+		const math::Vec3 direction() const;
 
 		void setConstant(float c);
 
@@ -25,7 +21,11 @@ namespace light
 
 		void setCutOff(float c);
 
+		float cutOff() const;
+
 		void setOuterCutOff(float c);
+
+		float outerCutOff() const;
 
 		void setShaderUniforms(std::shared_ptr<ShaderProgram> shaderProgram, int index) override;
 
@@ -35,9 +35,6 @@ namespace light
 
 	private:
 		math::Vec3 _direction;
-		shading::Color _ambient;
-		shading::Color _diffuse;
-		shading::Color _specular;
 
 		float _constant;
 		float _linearConstant;
