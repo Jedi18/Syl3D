@@ -1,9 +1,22 @@
 #include "shadermanager.h"
 
-ShaderManager::ShaderManager() {
+ShaderManager* ShaderManager::_instance = nullptr;
+
+ShaderManager* ShaderManager::shaderManager() {
+	if (_instance == nullptr) {
+		_instance = new ShaderManager();
+	}
+
+	return _instance;
 }
 
-void ShaderManager::initialize() {
+void ShaderManager::releaseInstance() {
+	if (_instance != nullptr) {
+		delete _instance;
+	}
+}
+
+ShaderManager::ShaderManager() {
 	addShader("default", "shaders/defaultvertex.shader", "shaders/defaultfragment.shader");
 }
 

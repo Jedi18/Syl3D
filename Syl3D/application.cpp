@@ -5,6 +5,8 @@
 #include "vendor/imgui/imgui_impl_glfw.h"
 #include "vendor/imgui/imgui_impl_opengl3.h"
 
+#include "entity/entitymanager.h"
+
 const int Application::INIT_WINDOW_WIDTH = 800;
 const int Application::INIT_WINDOW_HEIGHT = 600;
 const char* Application::INIT_WINDOW_TITLE = "Syl3D";
@@ -12,8 +14,7 @@ const char* Application::INIT_WINDOW_TITLE = "Syl3D";
 Application::Application() 
 	:
 	_window(nullptr),
-	_inputManager(&_renderer),
-	_guiManager()
+	_inputManager(&_renderer, &_guiManager)
 {}
 
 bool Application::initialize() {
@@ -91,6 +92,11 @@ void Application::run() {
 
 	_guiManager.cleanUp();
 	glfwTerminate();
+}
+
+void Application::cleanUp() {
+	EntityFactory::releaseInstance();
+	entity::EntityManager::releaseInstance();
 }
 
 void Application::frameBufferSizeCallback(GLFWwindow* window, int width, int height) {

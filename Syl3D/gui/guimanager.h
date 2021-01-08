@@ -20,6 +20,8 @@ namespace gui
 
 		void toolsMenu();
 
+		bool mouseOnGUI() const;
+
 	private:
 		const char* glsl_version = "#version 330";
 		bool show_demo_window = true;

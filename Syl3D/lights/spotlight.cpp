@@ -4,7 +4,7 @@ using namespace light;
 
 SpotLight::SpotLight(math::Vec3 position, math::Vec3 direction, shading::Color diffuse)
 	:
-	_position(position),
+	Light(position),
 	_direction(direction),
 	_diffuse(diffuse),
 	_ambient(shading::Color(0.0f, 0.0f, 0.0f)),
@@ -17,7 +17,7 @@ SpotLight::SpotLight(math::Vec3 position, math::Vec3 direction, shading::Color d
 {}
 
 void SpotLight::setShaderUniforms(std::shared_ptr<ShaderProgram> shaderProgram, int index) {
-	shaderProgram->setVec3("spotLights[" + std::to_string(index) + "].position", _position);
+	shaderProgram->setVec3("spotLights[" + std::to_string(index) + "].position", _pos);
 	shaderProgram->setVec3("spotLights[" + std::to_string(index) + "].direction", _direction);
 	shaderProgram->setColor3("spotLights[" + std::to_string(index) + "].ambient", _ambient);
 	shaderProgram->setColor3("spotLights[" + std::to_string(index) + "].diffuse", _diffuse);
@@ -27,10 +27,6 @@ void SpotLight::setShaderUniforms(std::shared_ptr<ShaderProgram> shaderProgram, 
 	shaderProgram->setFloat("spotLights[" + std::to_string(index) + "].quadraticConstant", _quadraticConstant);
 	shaderProgram->setFloat("spotLights[" + std::to_string(index) + "].cutOff", _cutOff);
 	shaderProgram->setFloat("spotLights[" + std::to_string(index) + "].outerCutOff", _outerCutOff);
-}
-
-void SpotLight::setPosition(math::Vec3 pos) {
-	_position = pos;
 }
 
 void SpotLight::setDirection(math::Vec3 dir) {
@@ -71,4 +67,8 @@ void SpotLight::setOuterCutOff(float c) {
 
 Light::LightType SpotLight::type() const {
 	return LightType::SpotLight;
+}
+
+void SpotLight::accept(LightVisitor& v) {
+	v.visit(this);
 }

@@ -1,8 +1,7 @@
 #include "texturematerial.h"
+#include "texturefactory.h"
 
 #include "../vendor/stb_image/stb_image.h"
-
-#include <iostream>
 
 const std::map<int, GLenum> TextureMaterial::texturePositionMap = {
 	{0, GL_TEXTURE0},
@@ -15,10 +14,16 @@ const std::map<int, GLenum> TextureMaterial::texturePositionMap = {
 	{7, GL_TEXTURE7}
 };
 
-TextureMaterial::TextureMaterial(std::shared_ptr<ShaderProgram> shaderProgram)
+TextureMaterial::TextureMaterial(std::string shaderName)
 	:
-	_shaderProgram(shaderProgram)
+	_ID(TextureFactory::generateID()),
+	_shaderName(shaderName),
+	shaderManager(ShaderManager::shaderManager())
 {}
+
+unsigned int TextureMaterial::ID() const {
+	return _ID;
+}
 
 void TextureMaterial::addTexture(std::string textureName, std::string textureFile, bool flipVertical) {
 	GLuint texture1;
@@ -56,24 +61,32 @@ void TextureMaterial::addTexture(std::string textureName, std::string textureFil
 
 	stbi_image_free(data);
 
-	_shaderProgram->use();
+	shaderManager->useShader(_shaderName);
 	glActiveTexture(texturePositionMap.at(_textures.size()));
 	glBindTexture(GL_TEXTURE_2D, texture1);
 
-	_shaderProgram->setInt(textureName, _textures.size());
+	shaderManager->shaderByName(_shaderName)->setInt(textureName, _textures.size());
 	_textures.push_back(texture1);
 	_textureNames.push_back(textureName);
 }
 
-void TextureMaterial::setShaderProgram(std::shared_ptr<ShaderProgram> shaderProgram) {
-	_shaderProgram = shaderProgram;
+void TextureMaterial::setShaderProgramName(std::string shaderName) {
+	_shaderName = shaderName;
+}
+
+std::string TextureMaterial::shaderName() const {
+	return _shaderName;
 }
 
 void TextureMaterial::activateTextures() {
-	_shaderProgram->use();
+	shaderManager->useShader(_shaderName);
 	for (int i = 0; i < _textures.size(); i++) {
 		glActiveTexture(texturePositionMap.at(i));
 		glBindTexture(GL_TEXTURE_2D, _textures[i]);
-		_shaderProgram->setInt(_textureNames[i], i);
+		shaderManager->shaderByName(_shaderName)->setInt(_textureNames[i], i);
 	}
+}
+
+unsigned int TextureMaterial::getTextureId(int index) const {
+	return _textures[index];
 }

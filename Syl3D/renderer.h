@@ -23,6 +23,7 @@
 #include "mousepicker.h"
 #include "entity/entitycontainer.h"
 #include "entity/entityfactory.h"
+#include "entity/entitymanager.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -48,9 +49,6 @@ public:
 	MousePicker _mousePicker;
 
 private:
-	std::shared_ptr<ShaderManager> _shaderManager;
 	std::shared_ptr<EntityContainer> _entityContainer;
 	std::shared_ptr<light::SpotLight> _spotLight;
-
-	std::shared_ptr<TextureMaterial> _wallMaterial;
 };

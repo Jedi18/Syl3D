@@ -22,6 +22,11 @@ public:
 	*/
 	void run();
 
+	/**
+	* Cleanup on exiting
+	*/
+	void cleanUp();
+
 private:
 	void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 
@@ -36,8 +41,8 @@ private:
 private:
 	GLFWwindow* _window;
 	Renderer _renderer;
-	InputManager _inputManager;
 	gui::GUIManager _guiManager;
+	InputManager _inputManager;
 
 	static const int INIT_WINDOW_WIDTH;
 	static const int INIT_WINDOW_HEIGHT;

@@ -21,7 +21,7 @@ namespace utility
 		};
 
 	public:
-		static std::shared_ptr<entity::Model> loadModel(const std::string& path, const std::string& shaderName, std::shared_ptr<ShaderProgram> shaderProgram);
+		static std::shared_ptr<entity::Model> loadModel(const std::string& path, const std::string& shaderName = "default");
 
 	private:
 		static void processNode(aiNode* node, const aiScene* scene, std::vector<std::shared_ptr<mesh::ModelMesh>>& meshes);

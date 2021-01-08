@@ -9,8 +9,6 @@ namespace light
 	public:
 		PointLight(math::Vec3 position, shading::Color diffuse);
 
-		void setPosition(math::Vec3 pos);
-
 		void setAmbientColor(shading::Color col);
 
 		void setDiffuseColor(shading::Color col);
@@ -27,8 +25,9 @@ namespace light
 
 		LightType type() const override;
 
+		void accept(LightVisitor& v) override;
+
 	private:
-		math::Vec3 _position;
 		shading::Color _ambient;
 		shading::Color _diffuse;
 		shading::Color _specular;

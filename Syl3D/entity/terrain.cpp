@@ -2,17 +2,17 @@
 
 using namespace entity;
 
-Terrain::Terrain(utility::HeightmapData& heightmapData, std::string shaderName)
+Terrain::Terrain(utility::HeightmapData& heightmapData)
 	:
-	Entity(shaderName),
+	Entity(),
 	_terrain(std::make_shared<mesh::TerrainMesh>(heightmapData))
 {
 	this->initialize({ std::static_pointer_cast<mesh::Mesh>(_terrain) });
 }
 
-Terrain::Terrain(math::Vec3 startingPos, utility::HeightmapData& heightmapData, std::string shaderName)
+Terrain::Terrain(math::Vec3 startingPos, utility::HeightmapData& heightmapData)
 	:
-	Terrain(heightmapData, shaderName)
+	Terrain(heightmapData)
 {
 	_pos = startingPos;
 }

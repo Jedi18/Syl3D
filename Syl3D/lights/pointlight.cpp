@@ -4,7 +4,7 @@ using namespace light;
 
 PointLight::PointLight(math::Vec3 position, shading::Color diffuse)
 	:
-	_position(position),
+	Light(position),
 	_diffuse(diffuse),
 	_ambient(0.05f, 0.05f, 0.05f),
 	_specular(shading::Color(1.0f, 1.0f, 1.0f)),
@@ -14,17 +14,13 @@ PointLight::PointLight(math::Vec3 position, shading::Color diffuse)
 {}
 
 void PointLight::setShaderUniforms(std::shared_ptr<ShaderProgram> shaderProgram, int index) {
-	shaderProgram->setVec3("pointLights[" + std::to_string(index) + "].position", _position);
+	shaderProgram->setVec3("pointLights[" + std::to_string(index) + "].position", _pos);
 	shaderProgram->setColor3("pointLights[" + std::to_string(index) + "].ambient", _ambient);
 	shaderProgram->setColor3("pointLights[" + std::to_string(index) + "].diffuse", _diffuse);
 	shaderProgram->setColor3("pointLights[" + std::to_string(index) + "].specular", _specular);
 	shaderProgram->setFloat("pointLights[" + std::to_string(index) + "].constant", _constant);
 	shaderProgram->setFloat("pointLights[" + std::to_string(index) + "].linearConstant", _linearConstant);
 	shaderProgram->setFloat("pointLights[" + std::to_string(index) + "].quadraticConstant", _quadraticConstant);
-}
-
-void PointLight::setPosition(math::Vec3 pos) {
-	_position = pos;
 }
 
 void PointLight::setAmbientColor(shading::Color col) {
@@ -53,4 +49,8 @@ void PointLight::setQuadraticConstant(float c) {
 
 Light::LightType PointLight::type() const {
 	return LightType::Point;
+}
+
+void PointLight::accept(LightVisitor& v) {
+	v.visit(this);
 }

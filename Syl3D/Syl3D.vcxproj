@@ -150,6 +150,9 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="gui\objectlist.cpp" />
+    <ClCompile Include="entity\entitymanager.cpp" />
+    <ClCompile Include="gui\entitycreator.cpp" />
     <ClCompile Include="gui\entityeditor.cpp" />
     <ClCompile Include="entity\entitycontainer.cpp" />
     <ClCompile Include="entity\entityfactory.cpp" />
@@ -166,13 +169,17 @@
     <ClCompile Include="lights\directionallight.cpp" />
     <ClCompile Include="lights\pointlight.cpp" />
     <ClCompile Include="lights\spotlight.cpp" />
+    <ClCompile Include="lights\lightvisitor.cpp" />
     <ClCompile Include="math\perlinnoise.cpp" />
     <ClCompile Include="math\ray.cpp" />
     <ClCompile Include="math\vec2.cpp" />
     <ClCompile Include="mesh\modelmesh.cpp" />
     <ClCompile Include="mousepicker.cpp" />
+    <ClCompile Include="base\object.cpp" />
     <ClCompile Include="shadermanager.cpp" />
     <ClCompile Include="collisions\spherebb.cpp" />
+    <ClCompile Include="gui\terraingenerator.cpp" />
+    <ClCompile Include="gui\texturemanager.cpp" />
     <ClCompile Include="texture\texturefactory.cpp" />
     <ClCompile Include="utility\heightmapgenerator.cpp" />
     <ClCompile Include="utility\modelfactory.cpp" />
@@ -203,7 +210,10 @@
     <ClInclude Include="collisions\boundingbox.h" />
     <ClInclude Include="collisions\collidable.h" />
     <ClInclude Include="color.h" />
-    <ClInclude Include="gui\entityinfovisitor.h" />
+    <ClInclude Include="gui\objectlist.h" />
+    <ClInclude Include="entity\entitymanager.h" />
+    <ClInclude Include="gui\entitycreator.h" />
+    <ClInclude Include="gui\objectinfovisitor.h" />
     <ClInclude Include="entity\entityvisitor.h" />
     <ClInclude Include="gui\entityeditor.h" />
     <ClInclude Include="entity\entitycontainer.h" />
@@ -222,6 +232,7 @@
     <ClInclude Include="lights\light.h" />
     <ClInclude Include="lights\pointlight.h" />
     <ClInclude Include="lights\spotlight.h" />
+    <ClInclude Include="lights\lightvisitor.h" />
     <ClInclude Include="math\const.h" />
     <ClInclude Include="math\perlinnoise.h" />
     <ClInclude Include="math\ray.h" />
@@ -238,11 +249,14 @@
     <ClInclude Include="entity\rectangle.h" />
     <ClInclude Include="mesh\uvspheremesh.h" />
     <ClInclude Include="mousepicker.h" />
+    <ClInclude Include="base\object.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadermanager.h" />
     <ClInclude Include="shaderprogram.h" />
     <ClInclude Include="collisions\spherebb.h" />
+    <ClInclude Include="gui\terraingenerator.h" />
+    <ClInclude Include="gui\texturemanager.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
     <ClInclude Include="texture\texturefactory.h" />
     <ClInclude Include="texture\texturematerial.h" />

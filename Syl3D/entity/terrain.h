@@ -8,9 +8,9 @@ namespace entity
 	class Terrain : public Entity
 	{
 	public:
-		Terrain(utility::HeightmapData& heightmapData, std::string shaderName = "default");
+		Terrain(utility::HeightmapData& heightmapData);
 
-		Terrain(math::Vec3 startingPos, utility::HeightmapData& heightmapData, std::string shaderName = "default");
+		Terrain(math::Vec3 startingPos, utility::HeightmapData& heightmapData);
 
 		void draw() override;
 

@@ -174,6 +174,27 @@
     <ClCompile Include="collisions\spherebb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gui\entitycreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\terraingenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\texturemanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\entitymanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\objectlist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lights\lightvisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h">
@@ -332,9 +353,6 @@
     <ClInclude Include="entity\entityvisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\entityinfovisitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="collisions\collidable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -345,6 +363,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="math\rotation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\entitycreator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\terraingenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\texturemanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\entitymanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\objectlist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lights\lightvisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\objectinfovisitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

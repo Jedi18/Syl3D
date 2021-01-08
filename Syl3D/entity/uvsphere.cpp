@@ -4,18 +4,18 @@
 
 using namespace entity;
 
-UVSphere::UVSphere(int parallels, int meridians, std::string shaderName)
+UVSphere::UVSphere(int parallels, int meridians)
 	:
-	Entity(shaderName),
+	Entity(),
 	Collidable(new collisions::SphereBB(1)),
 	_sphere(std::make_shared<mesh::UVSphereMesh>(parallels, meridians))
 {
 	this->initialize({ std::static_pointer_cast<mesh::Mesh>(_sphere) });
 }
 
-UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians, std::string shaderName)
+UVSphere::UVSphere(math::Vec3 startingPos, int parallels, int meridians)
 	:
-	UVSphere(parallels, meridians, shaderName)
+	UVSphere(parallels, meridians)
 {
 	_pos = startingPos;
 }

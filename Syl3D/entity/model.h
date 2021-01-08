@@ -8,7 +8,7 @@ namespace entity
 	class Model : public Entity
 	{
 	public:
-		Model(const std::vector<std::shared_ptr<mesh::ModelMesh>>& meshes, std::string shaderName = "default");
+		Model(const std::vector<std::shared_ptr<mesh::ModelMesh>>& meshes);
 
 		void draw() override;
 

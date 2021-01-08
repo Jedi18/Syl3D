@@ -9,8 +9,6 @@ namespace light
 	public:
 		SpotLight(math::Vec3 position, math::Vec3 direction, shading::Color diffuse);
 
-		void setPosition(math::Vec3 pos);
-
 		void setDirection(math::Vec3 dir);
 
 		void setAmbientColor(shading::Color col);
@@ -33,8 +31,9 @@ namespace light
 
 		LightType type() const override;
 
+		void accept(LightVisitor& v) override;
+
 	private:
-		math::Vec3 _position;
 		math::Vec3 _direction;
 		shading::Color _ambient;
 		shading::Color _diffuse;

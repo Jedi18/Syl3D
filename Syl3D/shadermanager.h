@@ -10,9 +10,9 @@
 class ShaderManager
 {
 public:
-	ShaderManager();
+	static ShaderManager* shaderManager();
 
-	void initialize();
+	static void releaseInstance();
 
 	void addShader(std::string shaderName, std::string vertexShaderPath, std::string fragmentShaderPath);
 
@@ -23,6 +23,10 @@ public:
 	void useShader(std::string shaderName);
 
 private:
+	ShaderManager();
+
+private:
+	static ShaderManager* _instance;
 	Shader _shader;
 	std::map<std::string, std::shared_ptr<ShaderProgram>> _shaderPrograms;
 	std::string _currentShader;
