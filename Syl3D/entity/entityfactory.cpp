@@ -3,6 +3,10 @@
 #include "cube.h"
 #include "uvsphere.h"
 #include "icosphere.h"
+#include "../lights/pointlight.h"
+#include "../lights/directionallight.h"
+#include "../lights/spotlight.h"
+
 #include "terrain.h"
 #include "../texture/texturefactory.h"
 
@@ -13,6 +17,12 @@ std::map<EntityFactory::EntityType, std::string> EntityFactory::ENTITY_NAMES = {
 	{EntityFactory::EntityType::Cube, "Cube"},
 	{EntityFactory::EntityType::UVSphere, "UVSphere"},
 	{EntityFactory::EntityType::IcoSphere, "IcoSphere"}
+};
+
+std::map<EntityFactory::LightType, std::string> EntityFactory::LIGHT_NAMES = {
+	{EntityFactory::LightType::Point, "Point"},
+	{EntityFactory::LightType::Directional, "Directional"},
+	{EntityFactory::LightType::Spot, "Spot"}
 };
 
 EntityFactory::EntityFactory() {
@@ -70,6 +80,34 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 	}
 
 	return entity;
+}
+
+std::shared_ptr<light::Light> EntityFactory::addLight(const EntityFactory::LightType lightType) {
+	std::shared_ptr<light::Light> light = nullptr;
+
+	switch (lightType) {
+	case EntityFactory::LightType::Point:
+	{
+		light = std::make_shared<light::PointLight>(math::Vec3(0.0f, 0.0f, 0.0f), shading::Color(1.0f, 1.0f, 1.0f, 1.0f));
+		break;
+	}
+	case EntityFactory::LightType::Directional:
+	{
+		light = std::make_shared<light::DirectionalLight>(math::Vec3(-0.2f, -1.0f, -0.3f), shading::Color(0.8f, 0.8f, 0.8f, 1.0f));
+		break;
+	}
+	case EntityFactory::LightType::Spot:
+	{
+		light = std::make_shared<light::SpotLight>(math::Vec3(0.0f, 0.0f, 0.0f), math::Vec3(0.0f, 0.0f, 1.0f), shading::Color(0.8f, 0.8f, 0.8f));
+		break;
+	}
+	}
+
+	if (light != nullptr) {
+		_entityContainer->addLight(light);
+	}
+
+	return light;
 }
 
 unsigned int EntityFactory::generateID() {

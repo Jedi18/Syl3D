@@ -35,6 +35,24 @@ void EntityCreator::displayEntityCreator() {
         ImGui::PopID();
     }
 
+    ImGui::Text("Lights");
+    n = (float)((int)EntityFactory::LightType::Point + 1);
+    for (int lightT = (int)EntityFactory::LightType::Point; lightT <= (int)EntityFactory::LightType::Spot; lightT++) {
+        if (lightT > 0)
+            ImGui::SameLine();
+        ImGui::PushID(lightT);
+        ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(lightT / n, 0.6f, 0.6f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(lightT / n, 0.7f, 0.7f));
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(lightT / n, 0.8f, 0.8f));
+
+        if (ImGui::Button(EntityFactory::LIGHT_NAMES[(EntityFactory::LightType)lightT].c_str())) {
+            std::shared_ptr<light::Light> light = entityFactory->addLight((EntityFactory::LightType)lightT);
+        }
+
+        ImGui::PopStyleColor(3);
+        ImGui::PopID();
+    }
+
     if (ImGui::Button("Terrain Generator")) {
         TerrainGenerator::open = true;
     }
