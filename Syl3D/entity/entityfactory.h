@@ -29,6 +29,8 @@ public:
 
 	std::shared_ptr<entity::Entity> addEntity(const EntityType entityType);
 
+	std::shared_ptr<entity::Terrain> loadTerrain(const std::string& terrainFolder);
+
 	std::shared_ptr<light::Light> addLight(const LightType lightType);
 
 	static unsigned int generateID();

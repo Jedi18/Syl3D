@@ -11,13 +11,22 @@ namespace gui
 	class TerrainGenerator
 	{
 	public:
+		static void Initialize();
+
         static void ShowTerrainGenerator();
+
+		static void ShowTerrainSelector();
+
+	private:
+		static void deleteCurrentTerrain();
 
 	public:
 		static bool open;
 
 	private:
 		static std::shared_ptr<entity::Terrain> currentTerrain;
+		static std::vector<std::string> terrainFoldersList;
+		static int selectedTerrain;
 		static int rows;
 		static int cols;
 		static float frequency;

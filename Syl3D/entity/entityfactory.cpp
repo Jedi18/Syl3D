@@ -6,6 +6,7 @@
 #include "../lights/pointlight.h"
 #include "../lights/directionallight.h"
 #include "../lights/spotlight.h"
+#include "../utility/fileio.h"
 
 #include "terrain.h"
 #include "../texture/texturefactory.h"
@@ -108,6 +109,49 @@ std::shared_ptr<light::Light> EntityFactory::addLight(const EntityFactory::Light
 	}
 
 	return light;
+}
+
+std::shared_ptr<entity::Terrain> EntityFactory::loadTerrain(const std::string& terrainFolder) {
+	std::string folderPath = "resources/terrains/" + terrainFolder;
+	std::vector<std::string> terrainFiles = utility::FileIO::filesInPath(folderPath);
+
+	std::string heightMapFile = "";
+	std::string textureFile = "";
+	std::string specularFile = "";
+	std::string textureName = "";
+
+	for (const std::string& terrainFile : terrainFiles) {
+		if (terrainFile.find("heightmap") != std::string::npos) {
+			heightMapFile = folderPath + "/" + terrainFile;
+		}
+
+		if (terrainFile.find("texture") != std::string::npos) {
+			textureFile = folderPath + "/" + terrainFile;
+			textureName = terrainFile;
+		}
+
+		if (terrainFile.find("specular") != std::string::npos) {
+			specularFile = folderPath + "/" + terrainFile;
+		}
+	}
+
+	utility::HeightmapData heightmapData = utility::HeightmapGenerator::LoadHeightmapFromFile(heightMapFile);
+
+	std::shared_ptr<TextureMaterial> newTex = nullptr;
+	if (specularFile == "") {
+		newTex = TextureFactory::textureFactory()->addTextureMaterial(textureName, textureFile, "resources/default_specular.png", "terrainShader");
+	}
+	else {
+		newTex = TextureFactory::textureFactory()->addTextureMaterial(textureName, textureFile, specularFile, "terrainShader");
+	}
+
+	std::shared_ptr<entity::Terrain> terrain = std::make_shared<entity::Terrain>(heightmapData);
+	terrain->setTexture(newTex);
+	terrain->translateTo(math::Vec3(0.0f, -5.0f, 0.0f));
+	terrain->scale(20);
+	_entityContainer->addEntity(terrain);
+
+	return terrain;
 }
 
 unsigned int EntityFactory::generateID() {
