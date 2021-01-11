@@ -25,6 +25,8 @@ public:
 
 	static unsigned int generateID();
 
+	static void addTexturesFromFolder(const std::string& folderName);
+
 private:
 	static unsigned int TEXTURE_COUNT;
 

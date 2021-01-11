@@ -76,7 +76,7 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 	if (entity != nullptr) {
 		// material needs to be applied before adding to entity container (maybe instead 
 		// should check for null and add default in entity container?)
-		entity->setTexture(textureFactory->getTextureMaterial("texMaterial"));
+		entity->setTexture(textureFactory->getTextureMaterial("default"));
 		_entityContainer->addEntity(entity);
 	}
 
@@ -139,7 +139,7 @@ std::shared_ptr<entity::Terrain> EntityFactory::loadTerrain(const std::string& t
 
 	std::shared_ptr<TextureMaterial> newTex = nullptr;
 	if (specularFile == "") {
-		newTex = TextureFactory::textureFactory()->addTextureMaterial(textureName, textureFile, "resources/default_specular.png", "terrainShader");
+		newTex = TextureFactory::textureFactory()->addTextureMaterial(textureName, textureFile, "resources/textures/default_specular.jpg", "terrainShader");
 	}
 	else {
 		newTex = TextureFactory::textureFactory()->addTextureMaterial(textureName, textureFile, specularFile, "terrainShader");

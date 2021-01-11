@@ -60,12 +60,12 @@ void ObjectGUIVisitor::visit(light::SpotLight* spot) {
 	}
 
 	spot_cutoff = spot->cutOff();
-	if (ImGui::SliderFloat("Cutoff", &spot_cutoff, 0.0f, 1.0f, "ratio = %.3f")) {
+	if (ImGui::SliderFloat("Cutoff", &spot_cutoff, 0.0f, 1.0f, "%.3f")) {
 		spot->setCutOff(spot_cutoff);
 	}
 
 	spot_outerCutoff = spot->outerCutOff();
-	if (ImGui::SliderFloat("Outer Cutoff", &spot_outerCutoff, 0.0f, 1.0f, "ratio = %.3f")) {
+	if (ImGui::SliderFloat("Outer Cutoff", &spot_outerCutoff, 0.0f, 1.0f, "%.3f")) {
 		spot->setOuterCutOff(spot_outerCutoff);
 	}
 }

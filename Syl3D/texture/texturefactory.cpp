@@ -1,5 +1,8 @@
 #include "texturefactory.h"
 
+#include <unordered_map>
+#include "../utility/fileio.h"
+
 unsigned int TextureFactory::TEXTURE_COUNT = 0;
 TextureFactory* TextureFactory::_textureFactory = nullptr;
 std::vector<std::string> TextureFactory::shaderList = std::vector<std::string>();
@@ -64,5 +67,35 @@ unsigned int TextureFactory::generateID() {
 void TextureFactory::releaseInstance() {
 	if (_textureFactory != nullptr) {
 		delete _textureFactory;
+	}
+}
+
+void TextureFactory::addTexturesFromFolder(const std::string& folderName) {
+	std::vector<std::string> filesInFolder = utility::FileIO::filesInPath(folderName);
+	std::unordered_map<std::string, std::string> texturesFoundDiffuse;
+	std::unordered_map<std::string, std::string> texturesFoundSpecular;
+
+	for (const std::string& file : filesInFolder) {
+		size_t index = file.find_last_of('_');
+		size_t dotindex = file.find_last_of('.');
+		std::string textureName = file.substr(0, index);
+		std::string type = file.substr(index + 1, dotindex - index - 1);
+		
+		if (type == "diffuse") {
+			texturesFoundDiffuse[textureName] = file;
+		}
+
+		if (type == "specular") {
+			texturesFoundSpecular[textureName] = file;
+		}
+	}
+
+	for (auto diffuseTexture : texturesFoundDiffuse) {
+		if (texturesFoundSpecular.find(diffuseTexture.first) != texturesFoundSpecular.end()) {
+			addTextureMaterial(diffuseTexture.first, folderName + "/" + diffuseTexture.second, folderName + "/" + texturesFoundSpecular[diffuseTexture.first]);
+		}
+		else {
+			addTextureMaterial(diffuseTexture.first, folderName + "/" + diffuseTexture.second, folderName + "/" + "default_specular.png");
+		}
 	}
 }

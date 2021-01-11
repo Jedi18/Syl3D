@@ -57,7 +57,7 @@ void TextureMaterial::addTexture(std::string textureName, std::string textureFil
 		}
 	}
 	else {
-		std::cout << "Failed to load the texture" << std::endl;
+		std::cout << "Failed to load the texture " << textureFile << std::endl;
 	}
 
 	stbi_image_free(data);
