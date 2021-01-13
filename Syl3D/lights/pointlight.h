@@ -9,12 +9,6 @@ namespace light
 	public:
 		PointLight(math::Vec3 position, shading::Color diffuse);
 
-		void setAmbientColor(shading::Color col);
-
-		void setDiffuseColor(shading::Color col);
-
-		void setSpecularColor(shading::Color col);
-
 		void setConstant(float c);
 
 		void setLinearConstant(float c);
@@ -28,10 +22,6 @@ namespace light
 		void accept(LightVisitor& v) override;
 
 	private:
-		shading::Color _ambient;
-		shading::Color _diffuse;
-		shading::Color _specular;
-
 		float _constant;
 		float _linearConstant;
 		float _quadraticConstant;

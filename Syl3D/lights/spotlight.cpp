@@ -4,11 +4,8 @@ using namespace light;
 
 SpotLight::SpotLight(math::Vec3 position, math::Vec3 direction, shading::Color diffuse)
 	:
-	Light(position),
+	Light(position, diffuse),
 	_direction(direction),
-	_diffuse(diffuse),
-	_ambient(shading::Color(0.0f, 0.0f, 0.0f)),
-	_specular(shading::Color(1.0f, 1.0f, 1.0f)),
 	_constant(1.0f),
 	_linearConstant(0.09f),
 	_quadraticConstant(0.032f),
@@ -33,16 +30,8 @@ void SpotLight::setDirection(math::Vec3 dir) {
 	_direction = dir;
 }
 
-void SpotLight::setAmbientColor(shading::Color col) {
-	_ambient = col;
-}
-
-void SpotLight::setDiffuseColor(shading::Color col) {
-	_diffuse = col;
-}
-
-void SpotLight::setSpecularColor(shading::Color col) {
-	_specular = col;
+const math::Vec3 SpotLight::direction() const {
+	return _direction;
 }
 
 void SpotLight::setConstant(float c) {
@@ -71,4 +60,12 @@ Light::LightType SpotLight::type() const {
 
 void SpotLight::accept(LightVisitor& v) {
 	v.visit(this);
+}
+
+float SpotLight::cutOff() const {
+	return _cutOff;
+}
+
+float SpotLight::outerCutOff() const {
+	return _outerCutOff;
 }

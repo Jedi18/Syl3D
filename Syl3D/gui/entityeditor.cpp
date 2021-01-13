@@ -7,6 +7,7 @@
 
 #include "objectlist.h"
 #include "objectinfovisitor.h"
+#include "objectguivisitor.h"
 #include "../lights/light.h"
 #include "../entity/entitymanager.h"
 
@@ -42,12 +43,12 @@ void EntityEditor::displayEntityEditor(std::shared_ptr<Object> selectedObject) {
 	ObjectInfoVisitor entityInfoVisitor;
 
 	std::shared_ptr<entity::Entity> selectedEntity = std::dynamic_pointer_cast<entity::Entity>(selectedObject);
+	std::shared_ptr<light::Light> selectedLight = std::dynamic_pointer_cast<light::Light>(selectedObject);
 	if (selectedEntity != nullptr) {
 		selectedEntity->accept(entityInfoVisitor);
 		objectInfo = entityInfoVisitor.getData();
 	}
 	else {
-		std::shared_ptr<light::Light> selectedLight = std::dynamic_pointer_cast<light::Light>(selectedObject);
 		selectedLight->accept(entityInfoVisitor);
 		objectInfo = entityInfoVisitor.getData();
 	}
@@ -78,6 +79,14 @@ void EntityEditor::displayEntityEditor(std::shared_ptr<Object> selectedObject) {
 	}
 
 	ImGui::Separator();
+
+	ObjectGUIVisitor objectGUIvisitor;
+	if (selectedEntity != nullptr) {
+		selectedEntity->accept(objectGUIvisitor);
+	}
+	else {
+		selectedLight->accept(objectGUIvisitor);
+	}
 
 	if (isCurrentObjectAnEntity) {
 		if (!entityTextureUpdated) {

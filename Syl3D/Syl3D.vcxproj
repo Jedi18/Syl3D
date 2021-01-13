@@ -150,6 +150,8 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="utility\fileio.cpp" />
+    <ClCompile Include="gui\objectguivisitor.cpp" />
     <ClCompile Include="gui\objectlist.cpp" />
     <ClCompile Include="entity\entitymanager.cpp" />
     <ClCompile Include="gui\entitycreator.cpp" />
@@ -210,6 +212,7 @@
     <ClInclude Include="collisions\boundingbox.h" />
     <ClInclude Include="collisions\collidable.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="utility\fileio.h" />
     <ClInclude Include="gui\objectlist.h" />
     <ClInclude Include="entity\entitymanager.h" />
     <ClInclude Include="gui\entitycreator.h" />
@@ -250,6 +253,7 @@
     <ClInclude Include="mesh\uvspheremesh.h" />
     <ClInclude Include="mousepicker.h" />
     <ClInclude Include="base\object.h" />
+    <ClInclude Include="gui\objectguivisitor.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadermanager.h" />

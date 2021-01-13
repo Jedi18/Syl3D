@@ -6,6 +6,7 @@
 
 #include "entityeditor.h"
 #include "entitycreator.h"
+#include "terraingenerator.h"
 
 using namespace gui;
 
@@ -17,6 +18,8 @@ void GUIManager::initialize(GLFWwindow* window) {
 	ImGui::StyleColorsClassic();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init(glsl_version);
+
+	TerrainGenerator::Initialize();
 }
 
 void GUIManager::render() {
@@ -41,6 +44,7 @@ bool GUIManager::mouseOnGUI() const {
 }
 
 void GUIManager::toolsMenu() {
+	ImGui::ShowDemoWindow();
 	ImGui::Begin("Tools");
 
 	EntityCreator::displayEntityCreator();
@@ -56,5 +60,4 @@ void GUIManager::toolsMenu() {
 	EntityEditor::displayEntityEditor(selectedObject);
 
 	ImGui::End();
-	//ImGui::ShowDemoWindow();
 }

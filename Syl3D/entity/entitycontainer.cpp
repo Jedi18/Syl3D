@@ -28,7 +28,7 @@ void EntityContainer::addEntity(std::shared_ptr<entity::Entity> entity) {
 }
 
 bool EntityContainer::deleteEntity(std::shared_ptr<entity::Entity> entity) {
-	if (entity->id() == _selectedObject->id()) {
+	if (_selectedObject != nullptr && (entity->id() == _selectedObject->id())) {
 		setSelectedObject(nullptr);
 	}
 
