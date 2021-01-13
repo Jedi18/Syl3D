@@ -11,6 +11,10 @@ namespace math
 
 		static void setOctaves(unsigned int numOctaves);
 
+		static float persistence();
+
+		static unsigned int octaves();
+
 	private:
 		static float noise1(int x, int y);
 
@@ -21,7 +25,7 @@ namespace math
 		static float interpolate(float a, float b, float x);
 
 	private:
-		static float persistence;
-		static unsigned int numOctaves;
+		static float _persistence;
+		static unsigned int _numOctaves;
 	};
 }

@@ -17,8 +17,14 @@ namespace gui
 
 		static void ShowTerrainSelector();
 
+		static void ShowGenerateTerrain();
+
+		static void ShowPerlinNoiseOptions();
+
 	private:
 		static void deleteCurrentTerrain();
+
+		static void updateTerrain();
 
 	public:
 		static bool open;
@@ -30,6 +36,8 @@ namespace gui
 		static int rows;
 		static int cols;
 		static float frequency;
+		static float persistence;
+		static int octaves;
 	};
 
 }
