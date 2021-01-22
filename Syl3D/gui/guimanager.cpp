@@ -19,6 +19,7 @@ void GUIManager::initialize(GLFWwindow* window) {
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
+	EntityCreator::Initialize();
 	TerrainGenerator::Initialize();
 }
 
@@ -44,7 +45,7 @@ bool GUIManager::mouseOnGUI() const {
 }
 
 void GUIManager::toolsMenu() {
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 	ImGui::Begin("Tools");
 
 	EntityCreator::displayEntityCreator();

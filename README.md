@@ -83,6 +83,10 @@ Syl3D so far supports meshes, textures, terrain (procedural and using heightmaps
 
 Syl3D uses Dear ImGui for the GUI. Objects can be selected and moved around using the GUI, new objects can be added through the GUI as well. Terrain generator, texture manager and many other gui windows are being developed.
 
+![Syl3D](img/terrains.jpg)
+
+Show terrains were generated using WorldMachine and then loaded into Syl3D.
+
 ### Built With
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)

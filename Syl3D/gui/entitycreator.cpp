@@ -1,5 +1,7 @@
 #include "entitycreator.h"
 
+#include "../utility/fileio.h"
+#include "../utility/modelfactory.h"
 #include "../entity/cube.h"
 #include "../entity/entityfactory.h"
 #include "../texture/texturefactory.h"
@@ -9,6 +11,14 @@
 #include "objectlist.h"
 
 using namespace gui;
+
+std::vector<std::string> EntityCreator::modelFiles = std::vector<std::string>();
+int EntityCreator::selectedModel = -1;
+std::shared_ptr<entity::Model> EntityCreator::currentModel = nullptr;
+
+void EntityCreator::Initialize() {
+    modelFiles = utility::FileIO::filesInPath("resources/models");
+}
 
 void EntityCreator::displayEntityCreator() {
 	EntityFactory* entityFactory = EntityFactory::entityFactory();
@@ -54,6 +64,8 @@ void EntityCreator::displayEntityCreator() {
         ImGui::PopID();
     }
 
+    displayModelSelector();
+
     if (ImGui::Button("Terrain Generator")) {
         TerrainGenerator::open = true;
     }
@@ -70,4 +82,22 @@ void EntityCreator::displayEntityCreator() {
     ObjectList::ShowObjectList();
 
     ImGui::Separator();
+}
+
+void EntityCreator::displayModelSelector() {
+    if (ImGui::TreeNode("Load Models")) {
+        for (int i = 0; i < modelFiles.size(); i++) {
+            if (ImGui::Selectable(modelFiles[i].c_str(), selectedModel == i)) {
+                if (i == selectedModel) {
+                    continue;
+                }
+
+                selectedModel = i;
+                currentModel = utility::ModelFactory::loadModel("resources/models/" + modelFiles[selectedModel] + "/" + modelFiles[selectedModel] + ".obj", "modelShader");
+                EntityFactory::entityFactory()->entityContainer()->addEntity(currentModel);
+            }
+        }
+
+        ImGui::TreePop();
+    }
 }

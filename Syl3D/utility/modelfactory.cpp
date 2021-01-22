@@ -1,4 +1,5 @@
 #include "modelfactory.h"
+#include "../texture/texturefactory.h"
 
 using namespace utility;
 
@@ -18,17 +19,19 @@ std::shared_ptr<entity::Model> ModelFactory::loadModel(const std::string& path, 
 	std::string directory = path.substr(0, path.find_last_of('/'));
 	processNode(scene->mRootNode, scene, meshes);
 
-	std::shared_ptr<TextureMaterial> _modelTex = std::make_shared<TextureMaterial>(shaderName);
+	std::string diffusePath = "";
+	std::string specularPath = "";
 	for (auto texture : textures) {
 		if (texture.second.type == "texture_diffuse") {
-			_modelTex->addTexture("material.diffuse", directory + "/" + texture.first);
+			diffusePath = directory + "/" + texture.first;
 		}
 
 		if (texture.second.type == "texture_specular") {
-			_modelTex->addTexture("material.specular", directory + "/" + texture.first);
+			specularPath = directory + "/" + texture.first;
 		}
 	}
 
+	std::shared_ptr<TextureMaterial> _modelTex = TextureFactory::addTextureMaterial(path + "_modelTexture", diffusePath, specularPath);
 	std::shared_ptr<entity::Model> model = std::make_shared<entity::Model>(meshes);
 	model->setTexture(_modelTex);
 	return model;
