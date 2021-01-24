@@ -143,18 +143,18 @@ void EntityContainer::drawSkybox(glm::mat4& viewMatrix, glm::mat4& projectionMat
 		return;
 	}
 	
-	glDepthMask(GL_FALSE);
+	glDepthFunc(GL_LEQUAL);
 
 	_shaderManager->useShader(_skybox->cubemap()->shaderName());
 	std::shared_ptr<ShaderProgram> shaderProgram = _shaderManager->currentShader();
 
 	glm::mat4 viewSkybox = glm::mat3(viewMatrix);
-	shaderProgram->setMat4("view", viewMatrix);
+	shaderProgram->setMat4("view", viewSkybox);
 	shaderProgram->setMat4("projection", projectionMatrix);
 	_skybox->activateCubemap();
 	_skybox->draw();
 
-	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LESS);
 }
 
 void EntityContainer::setLightUniforms(std::shared_ptr<ShaderProgram> shaderProgram) {
