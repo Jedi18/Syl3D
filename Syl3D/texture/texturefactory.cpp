@@ -95,7 +95,7 @@ void TextureFactory::addTexturesFromFolder(const std::string& folderName) {
 			addTextureMaterial(diffuseTexture.first, folderName + "/" + diffuseTexture.second, folderName + "/" + texturesFoundSpecular[diffuseTexture.first]);
 		}
 		else {
-			addTextureMaterial(diffuseTexture.first, folderName + "/" + diffuseTexture.second, folderName + "/" + "default_specular.png");
+			addTextureMaterial(diffuseTexture.first, folderName + "/" + diffuseTexture.second, folderName + "/" + "default_specular.jpg");
 		}
 	}
 }

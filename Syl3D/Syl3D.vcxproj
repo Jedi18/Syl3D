@@ -150,6 +150,9 @@
   <ItemGroup>
     <ClCompile Include="application.cpp" />
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="mesh\skyboxmesh.cpp" />
+    <ClCompile Include="misc\skybox.cpp" />
+    <ClCompile Include="texture\cubemap.cpp" />
     <ClCompile Include="utility\fileio.cpp" />
     <ClCompile Include="gui\objectguivisitor.cpp" />
     <ClCompile Include="gui\objectlist.cpp" />
@@ -212,6 +215,9 @@
     <ClInclude Include="collisions\boundingbox.h" />
     <ClInclude Include="collisions\collidable.h" />
     <ClInclude Include="color.h" />
+    <ClInclude Include="mesh\skyboxmesh.h" />
+    <ClInclude Include="misc\skybox.h" />
+    <ClInclude Include="texture\cubemap.h" />
     <ClInclude Include="utility\fileio.h" />
     <ClInclude Include="gui\objectlist.h" />
     <ClInclude Include="entity\entitymanager.h" />
@@ -284,6 +290,8 @@
     <None Include="shaders\defaultfragment.shader" />
     <None Include="shaders\lampfragment.shader" />
     <None Include="shaders\defaultvertex.shader" />
+    <None Include="shaders\skyboxfragment.shader" />
+    <None Include="shaders\skyboxvertex.shader" />
     <None Include="shaders\terrainfragment.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

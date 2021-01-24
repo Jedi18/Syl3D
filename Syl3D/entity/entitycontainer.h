@@ -8,6 +8,7 @@
 #include "../freecamera.h"
 #include "../lights/light.h"
 #include "../collisions/collidable.h"
+#include "../misc/skybox.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -32,7 +33,11 @@ public:
 
 	void setSelectedObject(unsigned int objectId);
 
+	void setSkybox(std::shared_ptr<Skybox> skybox);
+
 	void drawEntities();
+
+	void drawSkybox(glm::mat4& viewMatrix, glm::mat4& projectionMatrix);
 
 	std::shared_ptr<Object> selectedObject();
 
@@ -56,4 +61,5 @@ private:
 	std::vector<std::shared_ptr<collisions::Collidable>> _collidableEntities;
 	std::vector<std::shared_ptr<light::Light>> _lights;
 	std::shared_ptr<Object> _selectedObject = nullptr;
+	std::shared_ptr<Skybox> _skybox = nullptr;
 };

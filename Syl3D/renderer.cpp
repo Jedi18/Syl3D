@@ -33,9 +33,11 @@ void Renderer::initialize(float window_width, float window_height) {
 
 	shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
 	shaderManager->addShader("terrainShader", "shaders/phongvertex.shader", "shaders/terrainfragment.shader");
+	shaderManager->addShader("skyboxShader", "shaders/skyboxvertex.shader", "shaders/skyboxfragment.shader");
 
 	textureFactory->addShader("phongShader");
 	textureFactory->addShader("terrainShader");
+	textureFactory->addShader("skyboxShader");
 
 	textureFactory->addTexturesFromFolder("resources/textures");
 
@@ -53,6 +55,11 @@ void Renderer::initialize(float window_width, float window_height) {
 	_spotLight = std::make_shared<light::SpotLight>(_freeCamera->cameraPosition(), _freeCamera->cameraFrontDirection(), shading::Color(0.8f, 0.8f, 0.8f));
 	_entityContainer->addLight(_spotLight);
 
+	std::shared_ptr<CubeMap> skycubebox1 = std::make_shared<CubeMap>("resources/skyboxes/skybox1");
+	std::shared_ptr<Skybox> skybox = std::make_shared<Skybox>();
+	skybox->setCubemap(skycubebox1);
+	_entityContainer->setSkybox(skybox);
+	
 	updateWindowDimensions(window_width, window_height);
 }
 

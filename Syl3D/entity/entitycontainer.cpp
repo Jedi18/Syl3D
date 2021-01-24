@@ -102,9 +102,19 @@ std::shared_ptr<Object> EntityContainer::selectedObject() {
 	return _selectedObject;
 }
 
+void EntityContainer::setSkybox(std::shared_ptr<Skybox> skybox) {
+	// ShaderManager is intialized in addEntity, so if setSkybox called before then initalize here
+	if (_shaderManager == nullptr) {
+		_shaderManager = ShaderManager::shaderManager();
+	}
+
+	_skybox = skybox;
+}
+
 void EntityContainer::drawEntities() {
 	glm::mat4 viewMatrix = _freeCamera->viewMatrix();
 	glm::mat4 projectionMatrix = _freeCamera->projectionMatrix();
+	drawSkybox(viewMatrix, projectionMatrix);
 
 	for (auto iter = _shaderEntityMap.begin(); iter != _shaderEntityMap.end(); ++iter) {
 		_shaderManager->useShader(iter->first);
@@ -126,6 +136,25 @@ void EntityContainer::drawEntities() {
 			ptr->draw();
 		}
 	}
+}
+
+void EntityContainer::drawSkybox(glm::mat4& viewMatrix, glm::mat4& projectionMatrix) {
+	if (_skybox == nullptr) {
+		return;
+	}
+	
+	glDepthMask(GL_FALSE);
+
+	_shaderManager->useShader(_skybox->cubemap()->shaderName());
+	std::shared_ptr<ShaderProgram> shaderProgram = _shaderManager->currentShader();
+
+	glm::mat4 viewSkybox = glm::mat3(viewMatrix);
+	shaderProgram->setMat4("view", viewMatrix);
+	shaderProgram->setMat4("projection", projectionMatrix);
+	_skybox->activateCubemap();
+	_skybox->draw();
+
+	glDepthMask(GL_TRUE);
 }
 
 void EntityContainer::setLightUniforms(std::shared_ptr<ShaderProgram> shaderProgram) {

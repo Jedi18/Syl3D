@@ -85,7 +85,7 @@ Syl3D uses Dear ImGui for the GUI. Objects can be selected and moved around usin
 
 ![Syl3D](img/terrains.jpg)
 
-Show terrains were generated using WorldMachine and then loaded into Syl3D.
+Shown terrains were generated using WorldMachine and then loaded into Syl3D.
 
 ### Built With
 

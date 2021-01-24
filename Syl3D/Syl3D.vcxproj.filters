@@ -201,6 +201,15 @@
     <ClCompile Include="utility\fileio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="texture\cubemap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh\skyboxmesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h">
@@ -401,6 +410,15 @@
     <ClInclude Include="utility\fileio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="texture\cubemap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh\skyboxmesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
@@ -416,5 +434,7 @@
     <None Include="shaders\gouradfragment.shader" />
     <None Include="shaders\gouradvertex.shader" />
     <None Include="shaders\terrainfragment.shader" />
+    <None Include="shaders\skyboxvertex.shader" />
+    <None Include="shaders\skyboxfragment.shader" />
   </ItemGroup>
 </Project>
