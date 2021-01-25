@@ -20,9 +20,12 @@ namespace gui
 
 		static void displayModelSelector();
 
+		static void displaySkyboxSelector();
+
 	private:
 		static std::vector<std::string> modelFiles;
 		static int selectedModel;
+		static int selectedSkybox;
 		static std::shared_ptr<entity::Model> currentModel;
 	};
 }

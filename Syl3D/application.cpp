@@ -6,9 +6,10 @@
 #include "vendor/imgui/imgui_impl_opengl3.h"
 
 #include "entity/entitymanager.h"
+#include "misc/skyboxmanager.h"
 
-const int Application::INIT_WINDOW_WIDTH = 800;
-const int Application::INIT_WINDOW_HEIGHT = 600;
+const int Application::INIT_WINDOW_WIDTH = 1280;
+const int Application::INIT_WINDOW_HEIGHT = 720;
 const char* Application::INIT_WINDOW_TITLE = "Syl3D";
 
 Application::Application() 
@@ -95,6 +96,7 @@ void Application::run() {
 }
 
 void Application::cleanUp() {
+	SkyboxManager::releaseInstance();
 	EntityFactory::releaseInstance();
 	entity::EntityManager::releaseInstance();
 }

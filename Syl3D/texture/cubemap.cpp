@@ -10,12 +10,12 @@ CubeMap::CubeMap(std::string cubemapFolderPath, std::string shaderName) {
 	_shaderName = shaderName;
 
 	std::vector<std::string> faces = {
-		"right.jpg",
-		"left.jpg",
-		"top.jpg",
-		"bottom.jpg",
-		"front.jpg",
-		"back.jpg"
+		"right.png",
+		"left.png",
+		"top.png",
+		"bottom.png",
+		"back.png",
+		"front.png"
 	};
 
 	ShaderManager* shaderManager = ShaderManager::shaderManager();

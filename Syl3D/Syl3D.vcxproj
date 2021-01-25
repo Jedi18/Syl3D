@@ -152,6 +152,7 @@
     <ClCompile Include="color.cpp" />
     <ClCompile Include="mesh\skyboxmesh.cpp" />
     <ClCompile Include="misc\skybox.cpp" />
+    <ClCompile Include="misc\skyboxmanager.cpp" />
     <ClCompile Include="texture\cubemap.cpp" />
     <ClCompile Include="utility\fileio.cpp" />
     <ClCompile Include="gui\objectguivisitor.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="mesh\skyboxmesh.h" />
     <ClInclude Include="misc\skybox.h" />
+    <ClInclude Include="misc\skyboxmanager.h" />
     <ClInclude Include="texture\cubemap.h" />
     <ClInclude Include="utility\fileio.h" />
     <ClInclude Include="gui\objectlist.h" />

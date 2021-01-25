@@ -5,6 +5,7 @@
 #include "../entity/cube.h"
 #include "../entity/entityfactory.h"
 #include "../texture/texturefactory.h"
+#include "../misc/skyboxmanager.h"
 
 #include "terraingenerator.h"
 #include "texturemanager.h"
@@ -14,6 +15,7 @@ using namespace gui;
 
 std::vector<std::string> EntityCreator::modelFiles = std::vector<std::string>();
 int EntityCreator::selectedModel = -1;
+int EntityCreator::selectedSkybox = -1;
 std::shared_ptr<entity::Model> EntityCreator::currentModel = nullptr;
 
 void EntityCreator::Initialize() {
@@ -66,6 +68,8 @@ void EntityCreator::displayEntityCreator() {
 
     displayModelSelector();
 
+    displaySkyboxSelector();
+
     if (ImGui::Button("Terrain Generator")) {
         TerrainGenerator::open = true;
     }
@@ -95,6 +99,24 @@ void EntityCreator::displayModelSelector() {
                 selectedModel = i;
                 currentModel = utility::ModelFactory::loadModel("resources/models/" + modelFiles[selectedModel] + "/" + modelFiles[selectedModel] + ".obj", "modelShader");
                 EntityFactory::entityFactory()->entityContainer()->addEntity(currentModel);
+            }
+        }
+
+        ImGui::TreePop();
+    }
+}
+
+void EntityCreator::displaySkyboxSelector() {
+    if (ImGui::TreeNode("Skybox")) {
+        const std::vector<std::string>& skyboxNames = SkyboxManager::skyboxManager()->skyboxNames();
+        for (int i = 0; i < skyboxNames.size(); i++) {
+            if (ImGui::Selectable(skyboxNames[i].c_str(), selectedSkybox == i)) {
+                if (i == selectedSkybox) {
+                    continue;
+                }
+
+                selectedSkybox = i;
+                SkyboxManager::skyboxManager()->addSkybox(skyboxNames[selectedSkybox]);
             }
         }
 
