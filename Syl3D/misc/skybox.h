@@ -3,6 +3,9 @@
 #include "../mesh/skyboxmesh.h"
 #include "../texture/cubemap.h"
 
+/**
+* Skybox class, holds the VAO for the skybox mesh and  cubemap for the skybox
+*/
 class Skybox
 {
 public:

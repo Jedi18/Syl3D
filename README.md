@@ -75,11 +75,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Syl3D](img/syl3d4.PNG)
+![Syl3D](img/syl3dsky1.png)
 
 Syl3D so far supports meshes, textures, terrain (procedural and using heightmaps), lighting, basic camera movement, mouse picking using ray intersections. There are a lot more things that could be added.
 
-![Syl3D](img/guisyl.PNG)
+![Syl3D](img/sylgui3.png)
 
 Syl3D uses Dear ImGui for the GUI. Objects can be selected and moved around using the GUI, new objects can be added through the GUI as well. Terrain generator, texture manager and many other gui windows are being developed.
 

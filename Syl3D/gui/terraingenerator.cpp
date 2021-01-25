@@ -84,6 +84,11 @@ void TerrainGenerator::ShowTerrainSelector() {
 
         ImGui::TreePop();
     }
+
+    if (ImGui::Button("Finish")) {
+        currentTerrain = nullptr;
+        open = false;
+    }
 }
 
 void TerrainGenerator::ShowPerlinNoiseOptions() {
