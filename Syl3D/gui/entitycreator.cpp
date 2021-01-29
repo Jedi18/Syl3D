@@ -29,8 +29,8 @@ void EntityCreator::displayEntityCreator() {
 	
 	ImGui::Text("Entity Creator");
 
-    float n = (float)((int)EntityFactory::EntityType::IcoSphere + 1);
-    for (int entityT = (int)EntityFactory::EntityType::Cube; entityT <= (int)EntityFactory::EntityType::IcoSphere; entityT++) {
+    float n = (float)((int)EntityFactory::EntityType::Rectangle + 1);
+    for (int entityT = (int)EntityFactory::EntityType::Cube; entityT <= (int)EntityFactory::EntityType::Rectangle; entityT++) {
         if (entityT > 0)
             ImGui::SameLine();
         ImGui::PushID(entityT);

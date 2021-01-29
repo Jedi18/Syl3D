@@ -3,6 +3,9 @@
 #include "cube.h"
 #include "uvsphere.h"
 #include "icosphere.h"
+#include "triangle.h"
+#include "rectangle.h"
+#include "circle.h"
 #include "../lights/pointlight.h"
 #include "../lights/directionallight.h"
 #include "../lights/spotlight.h"
@@ -17,7 +20,10 @@ unsigned int EntityFactory::ENTITY_COUNT = 0;
 std::map<EntityFactory::EntityType, std::string> EntityFactory::ENTITY_NAMES = {
 	{EntityFactory::EntityType::Cube, "Cube"},
 	{EntityFactory::EntityType::UVSphere, "UVSphere"},
-	{EntityFactory::EntityType::IcoSphere, "IcoSphere"}
+	{EntityFactory::EntityType::IcoSphere, "IcoSphere"},
+	{EntityFactory::EntityType::Triangle, "Triangle"},
+	{EntityFactory::EntityType::Circle, "Circle"},
+	{EntityFactory::EntityType::Rectangle, "Rectangle"}
 };
 
 std::map<EntityFactory::LightType, std::string> EntityFactory::LIGHT_NAMES = {
@@ -69,6 +75,21 @@ std::shared_ptr<entity::Entity> EntityFactory::addEntity(const EntityFactory::En
 		case EntityFactory::EntityType::IcoSphere:
 		{
 			entity = std::make_shared<entity::IcoSphere>(3);
+			break;
+		}
+		case EntityFactory::EntityType::Triangle:
+		{
+			entity = std::make_shared<entity::Triangle>();
+			break;
+		}
+		case EntityFactory::EntityType::Circle:
+		{
+			entity = std::make_shared<entity::Circle>();
+			break;
+		}
+		case EntityFactory::EntityType::Rectangle:
+		{
+			entity = std::make_shared<entity::Rectangle>();
 			break;
 		}
 	}

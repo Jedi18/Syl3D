@@ -20,6 +20,10 @@ void ObjectGUIVisitor::visit(entity::Rectangle* rectangle) {
 	ImGui::Text("Rectangle");
 }
 
+void ObjectGUIVisitor::visit(entity::Circle* circle) {
+	ImGui::Text("Circle");
+}
+
 void ObjectGUIVisitor::visit(entity::UVSphere* uvSphere) {
 	ImGui::Text("UVSphere");
 }

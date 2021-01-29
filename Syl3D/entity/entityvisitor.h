@@ -7,6 +7,7 @@ namespace entity
 	class Cube;
 	class Triangle;
 	class Rectangle;
+	class Circle;
 	class UVSphere;
 	class IcoSphere;
 	class Terrain;
@@ -20,6 +21,8 @@ namespace entity
 		virtual void visit(entity::Triangle* triangle) = 0;
 
 		virtual void visit(entity::Rectangle* rectangle) = 0;
+
+		virtual void visit(entity::Circle* circle) = 0;
 
 		virtual void visit(entity::UVSphere* uvSphere) = 0;
 

@@ -21,6 +21,8 @@ namespace gui
 
 		void visit(entity::Rectangle* rectangle) override;
 
+		void visit(entity::Circle* circle) override;
+
 		void visit(entity::UVSphere* uvSphere) override;
 
 		void visit(entity::IcoSphere* icoSphere) override;

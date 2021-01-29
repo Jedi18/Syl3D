@@ -10,7 +10,10 @@ public:
 	enum class EntityType {
 		Cube,
 		UVSphere,
-		IcoSphere
+		IcoSphere,
+		Triangle,
+		Circle,
+		Rectangle
 	};
 
 	enum class LightType {

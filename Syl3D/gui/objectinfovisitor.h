@@ -27,6 +27,10 @@ namespace gui
 			data.entityTypeName = "Rectangle";
 		}
 
+		void visit(entity::Circle* circle) override {
+			data.entityTypeName = "Circle";
+		}
+
 		void visit(entity::UVSphere* uvSphere) override {
 			data.entityTypeName = "UVSphere";
 		}

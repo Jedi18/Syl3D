@@ -12,7 +12,7 @@ Triangle::Triangle()
 void Triangle::draw() {
 	if (_usesEBO) {
 		glBindVertexArray(_VAOs[0]);
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, _triangle->numIndices() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 	}
 }
 

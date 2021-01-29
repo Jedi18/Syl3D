@@ -149,6 +149,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="entity\circle.cpp" />
+    <ClCompile Include="mesh\circlemesh.cpp" />
     <ClCompile Include="color.cpp" />
     <ClCompile Include="mesh\skyboxmesh.cpp" />
     <ClCompile Include="misc\skybox.cpp" />
@@ -213,6 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
+    <ClInclude Include="entity\circle.h" />
+    <ClInclude Include="mesh\circlemesh.h" />
     <ClInclude Include="collisions\boundingbox.h" />
     <ClInclude Include="collisions\collidable.h" />
     <ClInclude Include="color.h" />
