@@ -34,10 +34,13 @@ void Renderer::initialize(float window_width, float window_height) {
 	shaderManager->addShader("phongShader", "shaders/phongvertex.shader", "shaders/phongfragment.shader");
 	shaderManager->addShader("terrainShader", "shaders/phongvertex.shader", "shaders/terrainfragment.shader");
 	shaderManager->addShader("skyboxShader", "shaders/skyboxvertex.shader", "shaders/skyboxfragment.shader");
+	// for highlighting
+	shaderManager->addShader("singlecolorShader", "shaders/phongvertex.shader", "shaders/singlecolorfragment.shader");
 
 	textureFactory->addShader("phongShader");
 	textureFactory->addShader("terrainShader");
 	textureFactory->addShader("skyboxShader");
+	textureFactory->addShader("singlecolorShader");
 
 	textureFactory->addTexturesFromFolder("resources/textures");
 
@@ -51,11 +54,11 @@ void Renderer::initialize(float window_width, float window_height) {
 }
 
 void Renderer::render() {
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	_spotLight->translateTo(_freeCamera->cameraPosition());
 	_spotLight->setDirection(_freeCamera->cameraFrontDirection());
+
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
 	_entityContainer->drawEntities();
 }
 

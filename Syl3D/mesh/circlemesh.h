@@ -7,7 +7,7 @@ namespace mesh
 	class CircleMesh : public Mesh
 	{
 	public:
-		CircleMesh(int numPoints = 4);
+		CircleMesh(int numPoints = 32);
 
 		~CircleMesh();
 

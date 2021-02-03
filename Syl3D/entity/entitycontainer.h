@@ -37,6 +37,9 @@ public:
 
 	void drawEntities();
 
+	// draw selected entity and highlight around selected entity using stencil testing
+	void drawSelectedEntity(glm::mat4& viewMatrix, glm::mat4& projectionMatrix);
+
 	void drawSkybox(glm::mat4& viewMatrix, glm::mat4& projectionMatrix);
 
 	std::shared_ptr<Object> selectedObject();

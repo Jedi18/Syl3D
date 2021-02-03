@@ -1,10 +1,11 @@
 #include "inputmanager.h"
 
+bool InputManager::selectMode = false;
+
 InputManager::InputManager(Renderer* rend, gui::GUIManager* guiManager)
 	:
 	_renderer(rend),
-	_guiManager(guiManager),
-	selectMode(false)
+	_guiManager(guiManager)
 {}
 
 void InputManager::processInput(GLFWwindow* window) {

@@ -112,6 +112,8 @@ void EntityContainer::setSkybox(std::shared_ptr<Skybox> skybox) {
 }
 
 void EntityContainer::drawEntities() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	glm::mat4 viewMatrix = _freeCamera->viewMatrix();
 	glm::mat4 projectionMatrix = _freeCamera->projectionMatrix();
 	drawSkybox(viewMatrix, projectionMatrix);
@@ -129,6 +131,10 @@ void EntityContainer::drawEntities() {
 		shaderProgram->setMat4("projection", projectionMatrix);
 
 		for (std::shared_ptr<entity::Entity> ptr : iter->second) {
+			if (_selectedObject != nullptr && _selectedObject->id() == ptr->id()) {
+				continue;
+			}
+
 			ptr->activateTexture();
 			glm::mat4 modelMatrix = ptr->modelMatrix();
 			shaderProgram->setMat4("model", modelMatrix);
@@ -136,6 +142,59 @@ void EntityContainer::drawEntities() {
 			ptr->draw();
 		}
 	}
+
+	if (_selectedObject != nullptr) {
+		drawSelectedEntity(viewMatrix, projectionMatrix);
+	}
+}
+
+void EntityContainer::drawSelectedEntity(glm::mat4& viewMatrix, glm::mat4& projectionMatrix) {
+	glClear(GL_STENCIL_BUFFER_BIT);
+
+	glEnable(GL_STENCIL_TEST);
+	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+	glStencilMask(0x00);
+
+	std::shared_ptr<entity::Entity> _selectedEntity = std::dynamic_pointer_cast<entity::Entity>(_selectedObject);
+	if (_selectedEntity != nullptr) {
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glStencilMask(0xFF);
+
+		// draw selected entity
+		_selectedEntity->activateTexture();
+		std::shared_ptr<ShaderProgram> shaderProgram = _shaderManager->currentShader();
+		glm::mat4 modelMatrix = _selectedEntity->modelMatrix();
+		shaderProgram->setMat4("model", modelMatrix);
+		shaderProgram->setMat4("normalMatrix", glm::transpose(glm::inverse(modelMatrix)));
+		shaderProgram->setMat4("view", viewMatrix);
+		shaderProgram->setMat4("projection", projectionMatrix);
+		_selectedEntity->draw();
+
+		glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+		glStencilMask(0x00);
+		glDisable(GL_DEPTH_TEST);
+
+		_shaderManager->useShader("singlecolorShader");
+		math::Vec3 oldScale = _selectedEntity->getScale();
+		_selectedEntity->scale(1.05f);
+
+		shaderProgram = _shaderManager->currentShader();
+		modelMatrix = _selectedEntity->modelMatrix();
+		shaderProgram->setMat4("model", modelMatrix);
+		shaderProgram->setMat4("normalMatrix", glm::transpose(glm::inverse(modelMatrix)));
+		shaderProgram->setMat4("view", viewMatrix);
+		shaderProgram->setMat4("projection", projectionMatrix);
+		_selectedEntity->draw();
+
+		_selectedEntity->setScale(oldScale);
+
+		glStencilMask(0xFF);
+		glStencilFunc(GL_ALWAYS, 1, 0xFF);
+		glEnable(GL_DEPTH_TEST);
+	}
+
+	glDisable(GL_STENCIL_TEST);
 }
 
 void EntityContainer::drawSkybox(glm::mat4& viewMatrix, glm::mat4& projectionMatrix) {

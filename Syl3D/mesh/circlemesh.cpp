@@ -18,8 +18,8 @@ CircleMesh::CircleMesh(int numPoints) {
     float angle = 0.0f;
 
     for (int i = 0; i < numPoints; i++) {
-        _vertices[3 * index] = std::cos(angle);
-        _vertices[3 * index + 1] = std::sin(angle);
+        _vertices[3 * index] = 0.5f * std::cos(angle);
+        _vertices[3 * index + 1] = 0.5f * std::sin(angle);
         _vertices[3 * index + 2] = 0.0f;
 
         angle += increment;

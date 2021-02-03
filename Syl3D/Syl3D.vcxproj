@@ -296,6 +296,7 @@
     <None Include="shaders\defaultfragment.shader" />
     <None Include="shaders\lampfragment.shader" />
     <None Include="shaders\defaultvertex.shader" />
+    <None Include="shaders\singlecolorfragment.shader" />
     <None Include="shaders\skyboxfragment.shader" />
     <None Include="shaders\skyboxvertex.shader" />
     <None Include="shaders\terrainfragment.shader" />
