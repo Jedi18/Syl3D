@@ -22,7 +22,7 @@ public:
 	void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
 public:
-	static bool selectMode;
+	static bool guiMode;
 
 private:
 	Renderer* _renderer;

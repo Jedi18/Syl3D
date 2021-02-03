@@ -4,7 +4,7 @@ using namespace shading;
 
 Color::Color() 
 	:
-	r(255), g(255), b(255), a(1)
+	r(1), g(1), b(1), a(1)
 {}
 
 Color::Color(float r, float g, float b) 
@@ -19,7 +19,7 @@ Color::Color(float r, float g, float b, float a)
 
 Color::Color(int r, int g, int b) 
 	:
-	r((float)r/255.0f), g((float)g/255.0f), b((float)b/255.0f)
+	r((float)r/255.0f), g((float)g/255.0f), b((float)b/255.0f), a(1)
 {}
 
 Color::Color(const Color& A)

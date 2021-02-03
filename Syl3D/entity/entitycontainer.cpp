@@ -1,6 +1,7 @@
 #include "entitycontainer.h"
 
 #include "entitymanager.h"
+#include "../inputmanager.h"
 
 EntityContainer::EntityContainer(std::shared_ptr<FreeCamera> freeCamera)
 	:
@@ -131,7 +132,7 @@ void EntityContainer::drawEntities() {
 		shaderProgram->setMat4("projection", projectionMatrix);
 
 		for (std::shared_ptr<entity::Entity> ptr : iter->second) {
-			if (_selectedObject != nullptr && _selectedObject->id() == ptr->id()) {
+			if (InputManager::guiMode && _selectedObject != nullptr && _selectedObject->id() == ptr->id()) {
 				continue;
 			}
 
@@ -143,7 +144,7 @@ void EntityContainer::drawEntities() {
 		}
 	}
 
-	if (_selectedObject != nullptr) {
+	if (_selectedObject != nullptr && InputManager::guiMode) {
 		drawSelectedEntity(viewMatrix, projectionMatrix);
 	}
 }
@@ -152,9 +153,7 @@ void EntityContainer::drawSelectedEntity(glm::mat4& viewMatrix, glm::mat4& proje
 	glClear(GL_STENCIL_BUFFER_BIT);
 
 	glEnable(GL_STENCIL_TEST);
-	glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-	glStencilMask(0x00);
 
 	std::shared_ptr<entity::Entity> _selectedEntity = std::dynamic_pointer_cast<entity::Entity>(_selectedObject);
 	if (_selectedEntity != nullptr) {
@@ -177,10 +176,12 @@ void EntityContainer::drawSelectedEntity(glm::mat4& viewMatrix, glm::mat4& proje
 
 		_shaderManager->useShader("singlecolorShader");
 		math::Vec3 oldScale = _selectedEntity->getScale();
-		_selectedEntity->scale(1.05f);
+		_selectedEntity->scale(_selectedHighlightScaleFactor);
 
+		// draw the enlarged selected entity in a single color
 		shaderProgram = _shaderManager->currentShader();
 		modelMatrix = _selectedEntity->modelMatrix();
+		shaderProgram->setColor("color", _selectedHighlightColor);
 		shaderProgram->setMat4("model", modelMatrix);
 		shaderProgram->setMat4("normalMatrix", glm::transpose(glm::inverse(modelMatrix)));
 		shaderProgram->setMat4("view", viewMatrix);

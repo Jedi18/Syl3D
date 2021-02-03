@@ -83,7 +83,7 @@ void Application::run() {
 		_inputManager.processInput(_window);
 		_renderer.render();
 
-		if (_inputManager.selectMode) {
+		if (InputManager::guiMode) {
 			_guiManager.render();
 		}
 

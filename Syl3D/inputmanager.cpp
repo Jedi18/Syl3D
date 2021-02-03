@@ -1,6 +1,6 @@
 #include "inputmanager.h"
 
-bool InputManager::selectMode = false;
+bool InputManager::guiMode = false;
 
 InputManager::InputManager(Renderer* rend, gui::GUIManager* guiManager)
 	:
@@ -43,7 +43,7 @@ void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
 		firstMouse = false;
 	}
 
-	if (!selectMode) {
+	if (!guiMode) {
 		float xoffset = (float)(xpos - lastX);
 		float yoffset = (float)(lastY - ypos);
 		lastX = (float)xpos;
@@ -59,20 +59,20 @@ void InputManager::scrollCallback(GLFWwindow* window, double xoffset, double yof
 
 void InputManager::keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods) {
 	if (key == GLFW_KEY_P && action == GLFW_PRESS) {
-		if (selectMode) {
-			selectMode = false;
+		if (guiMode) {
+			guiMode = false;
 			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 			firstMouse = true;
 		}
 		else {
-			selectMode = true;
+			guiMode = true;
 			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		}
 	}
 }
 
 void InputManager::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
-	if (selectMode && !_guiManager->mouseOnGUI()) {
+	if (guiMode && !_guiManager->mouseOnGUI()) {
 		if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 		{
 			double xpos, ypos;

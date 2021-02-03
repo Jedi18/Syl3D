@@ -63,6 +63,10 @@ private:
 	// maintain list of all collidable entities for easy access
 	std::vector<std::shared_ptr<collisions::Collidable>> _collidableEntities;
 	std::vector<std::shared_ptr<light::Light>> _lights;
-	std::shared_ptr<Object> _selectedObject = nullptr;
 	std::shared_ptr<Skybox> _skybox = nullptr;
+
+	//selected entity
+	std::shared_ptr<Object> _selectedObject = nullptr;
+	shading::Color _selectedHighlightColor = shading::Color(252, 173, 3);
+	float _selectedHighlightScaleFactor = 1.025f;
 };
